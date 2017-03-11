@@ -73,6 +73,12 @@
             <?php echo $this->Html->link('Contato', array('controller' => 'pages', 'action' => 'contato'), array('title' => 'contato'));?>
           </li>
           <li>
+            <?php echo $this->Html->link('<i class="fa fa-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>
+          </li>
+          <li>
+            <?php echo $this->Html->link('<i class="fa fa-search"></i> Profissionais', array('controller' => 'users', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
+          </li>
+          <li>
             <a href="#">Position</a>
             <ul>
               <li><a href="job-list-1.htm">Browse jobs - 1</a></li>

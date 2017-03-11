@@ -8,13 +8,12 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'buscarProfissionais'));
     }
 
     public function index()
     {
-        self::isAuthorized();
-        $this->layout = 'admin';
+        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Usuários'));
     }
 
@@ -26,6 +25,17 @@ class UsersController extends AppController
             throw new NotFoundException(__('Usuário Inválido'));
         }
         $this->set('user', $this->User->read(null, $id));
+    }
+
+    public function vagas(){
+        //vagas está em empresa
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Vagas de Trabalho'));
+    }
+
+    public function buscarProfissionais(){
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Procurar Profissionais'));
     }
 
     public function add()
@@ -43,6 +53,8 @@ class UsersController extends AppController
             );
         }
     }
+
+
 
     public function edit($id = null)
     {

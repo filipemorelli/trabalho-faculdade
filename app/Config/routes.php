@@ -35,6 +35,8 @@
 
 	Router::connect('/sobre', array('controller' => 'pages', 'action' => 'sobre'));
 	Router::connect('/contato', array('controller' => 'pages', 'action' => 'contato'));
+	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));
+	Router::connect('/profissionais', array('controller' => 'users', 'action' => 'buscarProfissionais'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
