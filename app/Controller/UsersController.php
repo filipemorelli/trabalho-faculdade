@@ -8,7 +8,7 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'buscarProfissionais'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil'));
     }
 
     public function index()
@@ -17,25 +17,10 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Usuários'));
     }
 
-    public function view($id = null)
-    {
-        self::isAuthorized();
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Usuário Inválido'));
-        }
-        $this->set('user', $this->User->read(null, $id));
-    }
-
     public function vagas(){
         //vagas está em empresa
         $this->layout = 'pagina';
         $this->set('title_for_layout', __('Vagas de Trabalho'));
-    }
-
-    public function buscarProfissionais(){
-        $this->layout = 'pagina';
-        $this->set('title_for_layout', __('Procurar Profissionais'));
     }
 
     public function add()
@@ -52,6 +37,21 @@ class UsersController extends AppController
                 __('Usuário não pode ser salvo.'), 'error'
             );
         }
+    }
+
+    /**
+    Perfil visualizados por empresas e outros usuarios
+    */
+    public function perfil(){
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Vizualizar Perfil'));
+    }
+    /**
+    Curriculo visualizado somente pelo usuario e pode ser editado
+    */
+    public function editarPerfil(){
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Vizualizar currículo'));
     }
 
 

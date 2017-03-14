@@ -29,14 +29,29 @@
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
+ 	/*Login area*/
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 	Router::connect('/esqueceu-a-senha', array('controller' => 'users', 'action' => 'forgot'));
 	Router::connect('/cadastrar', array('controller' => 'users', 'action' => 'add'));
 
+	/*Paginas simples em geral*/
 	Router::connect('/sobre', array('controller' => 'pages', 'action' => 'sobre'));
 	Router::connect('/contato', array('controller' => 'pages', 'action' => 'contato'));
+
+	/*Recursos do trabalhador*/
 	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));
-	Router::connect('/profissionais', array('controller' => 'users', 'action' => 'buscarProfissionais'));
+	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
+	Router::connect('/curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
+
+	/*Recursos para as empresas*/
+	Router::connect('/profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'));
+	Router::connect('/perfil-empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'));
+	Router::connect('/adicionar-vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'));
+	Router::connect('/editar-perfil-empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'));
+	Router::connect('/nossas-vagas', array('controller' => 'empresas', 'action' => 'listarVagas'));
+	Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
+	Router::connect('/candidatar-vaga', array('controller' => 'empresas', 'action' => 'candidatarVaga'));
+	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

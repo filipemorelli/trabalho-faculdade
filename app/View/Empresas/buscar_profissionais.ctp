@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
                                     <?php echo $this->html->image('/template/img/avatar-1.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
@@ -153,7 +153,7 @@
                                 </footer>
                             </a>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
                                     <?php echo $this->html->image('/template/img/avatar-2.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
@@ -173,7 +173,7 @@
                                 </footer>
                             </a>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
                                     <?php echo $this->html->image('/template/img/avatar-3.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
@@ -193,7 +193,7 @@
                                 </footer>
                             </a>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
                                     <?php echo $this->html->image('/template/img/avatar-4.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
@@ -212,6 +212,24 @@
                                     </ul>
                                 </footer>
                             </a>
+                        </div>
+                        <div class="col-xs-12">
+                            <ul class="pagination">
+                                <li>
+                                <a href="#" aria-label="Previous">
+                                    <i class="ti-angle-left"></i>
+                                </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li class="active"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li>
+                                <a href="#" aria-label="Next">
+                                    <i class="ti-angle-right"></i>
+                                </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

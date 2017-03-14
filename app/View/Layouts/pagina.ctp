@@ -30,6 +30,7 @@
         echo $this->Html->css(array(
             "/template/css/app.min.css",
             "/template/css/custom.css",
+            "/template/vendors/summernote/summernote.css",
             "http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700"
         ));
     ?>
@@ -76,50 +77,35 @@
             <?php echo $this->Html->link('<i class="fa fa-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>
           </li>
           <li>
-            <?php echo $this->Html->link('<i class="fa fa-search"></i> Profissionais', array('controller' => 'users', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
+            <?php echo $this->Html->link('<i class="fa fa-search"></i> Profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
           </li>
           <li>
-            <a href="#">Position</a>
+            <a href="#">Páginas</a>
             <ul>
-              <li><a href="job-list-1.htm">Browse jobs - 1</a></li>
-              <li><a href="job-list-2.htm">Browse jobs - 2</a></li>
-              <li><a href="job-list-3.htm">Browse jobs - 3</a></li>
-              <li><a href="job-detail.htm">Job detail</a></li>
-              <li><a href="job-apply.htm">Apply for job</a></li>
-              <li><a href="job-add.htm">Post a job</a></li>
-              <li><a href="job-manage.htm">Manage jobs</a></li>
-              <li><a href="job-candidates.htm">Candidates</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Resume</a>
-            <ul>
-              <li><a href="resume-list.htm">Browse resumes</a></li>
-              <li><a href="resume-detail.htm">Resume detail</a></li>
-              <li><a href="resume-add.htm">Create a resume</a></li>
-              <li><a href="resume-manage.htm">Manage resumes</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Company</a>
-            <ul>
-              <li><a href="company-list.htm">Browse companies</a></li>
-              <li><a href="company-detail.htm">Company detail</a></li>
-              <li><a href="company-add.htm">Create a company</a></li>
-              <li><a href="company-manage.htm">Manage companies</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Pages</a>
-            <ul>
-              <li><a href="page-blog.htm">Blog</a></li>
-              <li><a href="page-post.htm">Blog-post</a></li>
-              <li><a href="page-about.htm">About</a></li>
-              <li><a href="page-contact.htm">Contact</a></li>
-              <li><a href="page-faq.htm">FAQ</a></li>
-              <li><a href="page-pricing.htm">Pricing</a></li>
-              <li><a href="page-typography.htm">Typography</a></li>
-              <li><a href="page-ui-elements.htm">UI elements</a></li>
+              <li>
+                <?php echo $this->Html->link('Perfil', array('controller' => 'users', 'action' => 'perfil'), array('title' => 'perfil', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Currículo', array('controller' => 'users', 'action' => 'editarPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Perfil Empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'), array('title' => 'Perfil Empresa', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Editar Pefil Empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'), array('title' => 'Pefil Empresa', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Add Vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'), array('title' => 'Add Vaga', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Listar Vagas da Empresa', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Sobre a vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('title' => 'Sobre a vaga', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Candidatos à vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('title' => 'Candidatos à vaga', 'escape' => false));?>
+              </li>
             </ul>
           </li>
         </ul>
@@ -201,6 +187,7 @@
     <?php
         echo $this->Html->script(array(
         "/template/js/app.min.js",
+        "/template/vendors/summernote/summernote.min.js",
         "/template/js/custom.js",
         ));
     ?>
