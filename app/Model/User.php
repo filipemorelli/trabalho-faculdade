@@ -21,8 +21,12 @@ class User extends AppModel {
         ),
         'email' => array(
             'notEmpty' => array(
-                'rule' => array('email', 'isUnique',),
+                'rule' => array('email'),
                 'message' => 'Digite um email valido para o usuário!'
+            ),
+            'required' => array(
+                'rule' => array('isUnique'),
+                'message' => 'E-mail já cadastrado!'
             ),
         ),
         'tipo' => array(
