@@ -9,7 +9,7 @@ class User extends AppModel {
     public $validate = array(
         'nome' => array(
             'required' => array(
-                'rule' => 'isUnique',
+                'rule' => array('notBlank'),
                 'message' => 'Digite um nome para o usuário'
             )
         ),
@@ -21,13 +21,13 @@ class User extends AppModel {
         ),
         'email' => array(
             'notEmpty' => array(
-                'rule' => array('email'),
+                'rule' => array('email', 'isUnique',),
                 'message' => 'Digite um email valido para o usuário!'
             ),
         ),
         'tipo' => array(
             'valid' => array(
-                'rule' => array('inList', array('empregador', 'usuario')),
+                'rule' => array('inList', array('trabalhador', 'empregador')),
                 'message' => 'Selecione o tipo',
                 'allowEmpty' => false
             )
@@ -37,16 +37,20 @@ class User extends AppModel {
     public $errorMessage = '';
 
     public function beforeSave($options = array()) {
-         
-         $passWrd = $this->findById($this->data[$this->alias]['id']);
-         
-        if (isset($this->data[$this->alias]['senha']) && ($passWrd['User']['senha'] != $this->data[$this->alias]['senha'])) {
+        
+        //se tiver id pega dados usuario
+        if(isset($this->data['User']['id'])){
+            $passWrd = $this->findById($this->data['User']['id']);
+        }
+        //se requisicao tiver senha e a senha for diferente da antiga
+        if (isset($this->data['User']['senha']) && ($passWrd['User']['senha'] != $this->data['User']['senha'])) {
             $passwordHasher = new SimplePasswordHasher();
-            $this->data[$this->alias]['senha'] = $passwordHasher->hash(
-                $this->data[$this->alias]['senha']
+            $this->data['User']['senha'] = $passwordHasher->hash(
+                $this->data['User']['senha']
             );
         } else {
-            $this->data[$this->alias]['senha'] = $passWrd['User']['senha'];
+            //se nao vai receber a senha antiga
+            $this->data['User']['senha'] = $passWrd['User']['senha'];
         }
         
         return true;

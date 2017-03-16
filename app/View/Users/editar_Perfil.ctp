@@ -11,7 +11,7 @@
             </div>
             <div class="col-xs-12 col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg" placeholder="Name"> </div>
+                    <input type="text" class="form-control input-lg" placeholder="Name" name="nome"> </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Headline (e.g. Front-end developer)"> </div>
                 <div class="form-group">
@@ -111,7 +111,8 @@
     <section class=" bg-alt">
         <div class="container">
             <header class="section-header"> <span>Latest degrees</span>
-                <h2>Education</h2> </header>
+                <h2>Education</h2>
+            </header>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="item-block">

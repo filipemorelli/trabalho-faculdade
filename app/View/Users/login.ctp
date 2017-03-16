@@ -23,7 +23,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="ti-unlock"></i></span>
-                <?php echo $this->Form->input('password', array(
+                <?php echo $this->Form->input('senha', array(
                     'type' => 'password',
                     'class' => 'form-control',
                     'placeholder' => __("Senha"),

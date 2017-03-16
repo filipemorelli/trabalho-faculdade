@@ -31,6 +31,7 @@
  */
  	/*Login area*/
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
+	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 	Router::connect('/esqueceu-a-senha', array('controller' => 'users', 'action' => 'forgot'));
 	Router::connect('/cadastrar', array('controller' => 'users', 'action' => 'add'));
 

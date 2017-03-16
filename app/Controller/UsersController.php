@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AuthComponent', 'Controller/Component');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class UsersController extends AppController
 {
@@ -31,7 +32,7 @@ class UsersController extends AppController
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('Usuário salvo com sucesso'), 'success');
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'login'));
             }
             $this->Session->setFlash(
                 __('Usuário não pode ser salvo.'), 'error'
