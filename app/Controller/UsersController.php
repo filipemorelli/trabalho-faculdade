@@ -9,7 +9,7 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil', 'curriculosPerfil', 'historicoCandidaturas'));
     }
 
     public function index()
@@ -52,9 +52,24 @@ class UsersController extends AppController
     */
     public function editarPerfil(){
         $this->layout = 'pagina';
-        $this->set('title_for_layout', __('Vizualizar currículo'));
+        $this->set('title_for_layout', __('Editar currículo'));
     }
 
+    /**
+    São os curriculos que o perfil irá ter
+    */
+    public function curriculosPerfil(){
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Vizualizar currículos'));
+    }
+
+    /**
+    Historico de candidaturas do usuario
+    */
+    public function historicoCandidaturas(){
+        $this->layout = 'pagina';
+        $this->set('title_for_layout', __('Histórico currículos'));
+    }
 
 
     public function edit($id = null)

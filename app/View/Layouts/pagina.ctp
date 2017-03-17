@@ -86,7 +86,13 @@
                 <?php echo $this->Html->link('Perfil', array('controller' => 'users', 'action' => 'perfil'), array('title' => 'perfil', 'escape' => false));?>
               </li>
               <li>
-                <?php echo $this->Html->link('Currículo', array('controller' => 'users', 'action' => 'editarPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+                <?php echo $this->Html->link('Add/Editar Currículo', array('controller' => 'users', 'action' => 'editarPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Listar Currículo', array('controller' => 'users', 'action' => 'curriculosPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+              </li>
+              <li>
+                <?php echo $this->Html->link('Histórico de candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'), array('title' => 'Currículo', 'escape' => false));?>
               </li>
               <li>
                 <?php echo $this->Html->link('Perfil Empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'), array('title' => 'Perfil Empresa', 'escape' => false));?>

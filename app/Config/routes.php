@@ -42,7 +42,10 @@
 	/*Recursos do trabalhador*/
 	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
-	Router::connect('/curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
+	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
+	Router::connect('/curriculos', array('controller' => 'users', 'action' => 'curriculosPerfil'));
+	Router::connect('/historico-de-candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'));
+	
 
 	/*Recursos para as empresas*/
 	Router::connect('/profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'));

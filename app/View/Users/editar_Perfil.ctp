@@ -51,6 +51,8 @@
                     <input type="text" value="HTML,CSS,Javascript" data-role="tagsinput" placeholder="Tag name"> <span class="help-block">Write tag name and press enter</span> </div>
             </div>
         </div>
+        <?php
+        /*
         <div class="button-group">
             <div class="action-buttons">
                 <div class="upload-button">
@@ -61,6 +63,8 @@
                     <input id="cover_img_file" type="file"> </div>
             </div>
         </div>
+        */
+        ?>
     </div>
 </header>
 <main>
@@ -120,11 +124,16 @@
                             <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
                             </button>
                             <div class="row">
+                                <?php
+                                /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
+                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span>
+                                    </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8">
+                                */
+                                ?>
+                                <div class="col-xs-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Degree, e.g. Bachelor"> </div>
                                     <div class="form-group">
@@ -150,11 +159,15 @@
                             <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
                             </button>
                             <div class="row">
+                                <?php
+                                /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
                                         <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8">
+                                */
+                                ?>
+                                <div class="col-xs-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Degree, e.g. Bachelor"> </div>
                                     <div class="form-group">
@@ -192,11 +205,15 @@
                             <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
                             </button>
                             <div class="row">
+                                <?php
+                                /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
                                         <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8">
+                                */
+                                ?>
+                                <div class="col-xs-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Company name"> </div>
                                     <div class="form-group">
@@ -222,11 +239,15 @@
                             <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
                             </button>
                             <div class="row">
+                                <?php
+                                /*    
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
                                         <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8">
+                                */
+                                ?>
+                                <div class="col-xs-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Company name"> </div>
                                     <div class="form-group">
@@ -253,6 +274,8 @@
             </div>
         </div>
     </section>
+    <?php
+    /*
     <section class=" bg-alt">
         <div class="container">
             <header class="section-header"> <span>Expertise Areas</span>
@@ -305,6 +328,8 @@
             </div>
         </div>
     </section>
+    */
+    ?>
     <section class=" bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-facts.jpg');?>);">
         <div class="container">
             <header class="section-header"> <span>Are you done?</span>
