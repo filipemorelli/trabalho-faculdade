@@ -58,6 +58,8 @@
                 </div>
             </div>
         </div>
+        <?php
+        /*
         <div class="button-group">
             <div class="action-buttons">
                 <div class="upload-button">
@@ -65,6 +67,8 @@
                     <input id="cover_img_file" type="file"> </div>
             </div>
         </div>
+        */
+        ?>
     </div>
 </header>
 <main>
