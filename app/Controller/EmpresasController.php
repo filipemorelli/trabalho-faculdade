@@ -8,7 +8,10 @@ class EmpresasController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('buscarProfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
+        if(!parent::isAuth()){
+            $this->redirect(array("controller" => "pages", "action" => "index"));
+        }
+        //$this->Auth->allow(array('buscarProfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
     }
 
     public function buscarProfissionais(){

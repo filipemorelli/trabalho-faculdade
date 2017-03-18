@@ -9,7 +9,11 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil', 'curriculosPerfil', 'historicoCandidaturas'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login'));
+        if(!parent::isAuth()){
+            $this->redirect(array("controller" => "pages", "action" => "index"));
+        }
+        //$this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil', 'curriculosPerfil', 'historicoCandidaturas'));
     }
 
     public function index()

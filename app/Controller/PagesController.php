@@ -40,16 +40,11 @@ class PagesController extends AppController {
 	public function index(){
 		$this->layout = "pagina";
 		$this->set('title_for_layout', __('Bem vindo'));
-
 	}
 
 	public function sobre(){
 		$this->layout = "pagina";
 		$this->set('title_for_layout', __('Sobre'));
-		/*echo "<pre>";
-		var_dump($this);
-		echo "</pre>";
-		exit();*/
 	}
 
 	public function contato(){

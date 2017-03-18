@@ -54,4 +54,117 @@ class AppController extends Controller {
             )
         )
     );
+
+    public function isAuth(){
+        return $this->verifyPermission();
+    }
+
+    private function verifyPermission(){
+        //$this->request->params['controller']
+        $userRole = $this->Session->read('Auth.User.tipo');
+
+        //verifica permisao geral de paginas
+        if($this->permissaoGeral()){
+            return true;
+        }
+
+        //verifica permissao de acesso de paginas
+        switch ($userRole) {
+            case 'trabalhador':
+                return $this->permissaoTrabalhador();
+                break;
+            case 'empregador':
+                return $this->permissaoEmpregador();
+                break;
+            default:
+                return false;
+                break;
+        }
+        
+        return false;
+    }
+
+    private function permissaoGeral(){
+        $controller = $this->request->params['controller'];
+        $action = $this->request->params['action'];
+        if($controller === "users"){
+            switch ($action) {
+                case 'login':
+                    return true;
+                    break;
+                case 'add':
+                    return true;
+                    break;
+                case 'forgot':
+                    return true;
+                    break;
+                case 'logout':
+                    return true;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+        }
+    } 
+
+    private function permissaoTrabalhador(){
+        $controller = $this->request->params['controller'];
+        $action = $this->request->params['action'];
+        if($controller === "users"){
+            switch ($action) {
+                case 'perfil':
+                    return true;
+                    break;
+                case 'editarPerfil':
+                    return true;
+                    break;
+                case 'curriculosPerfil':
+                    return true;
+                    break;
+                case 'historicoCandidaturas':
+                    return true;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+        }
+    }
+
+    private function permissaoEmpregador(){
+        $controller = $this->request->params['controller'];
+        $action = $this->request->params['action'];
+        if($controller === "empresas"){
+            switch ($action) {
+                case 'buscarProfissionais':
+                    return true;
+                    break;
+                case 'perfilEmpresa':
+                    return true;
+                    break;
+                case 'editarPerfilEmpresa':
+                    return true;
+                    break;
+                case 'adicionarVaga':
+                    return true;
+                    break;
+                case 'listarVagas':
+                    return true;
+                    break;
+                case 'detalhesVaga':
+                    return true;
+                    break;
+                case 'candidatarVaga':
+                    return true;
+                    break;
+                case 'candidadosAVaga':
+                    return true;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+        }
+    }
 }
