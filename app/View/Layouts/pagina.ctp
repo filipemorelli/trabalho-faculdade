@@ -75,9 +75,6 @@
           <li>
             <?php echo $this->Html->link('<i class="fa fa-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>
           </li>
-          <li>
-            <?php echo $this->Html->link('<i class="fa fa-search"></i> Profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
-          </li>
         </ul>
         <!-- END Navigation menu -->
 
