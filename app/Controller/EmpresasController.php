@@ -41,6 +41,16 @@ class EmpresasController extends AppController
     */
     public function editarPerfilEmpresa(){
         $this->set('title_for_layout', __('Editar perfil'));
+        if ($this->request->is('post')) {
+            $this->Empresa->create();
+            if ($this->Empresa->save($this->request->data)) {
+                $this->Session->setFlash(__('Perfil salvo com sucesso'), 'success');
+                return $this->redirect(array('action' => 'perfilEmpresa'));
+            }
+            $this->Session->setFlash(
+                __('Perfil não pode ser salvo.'), 'error'
+            );
+        }
     }
 
     public function adicionarVaga(){

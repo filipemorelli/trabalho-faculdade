@@ -112,7 +112,6 @@
     </nav>
     <!-- END Navigation bar -->
 
-    <?php echo $this->Session->flash(); ?>
     <?php echo $this->fetch('content'); ?> 
 
         <!-- Site footer -->

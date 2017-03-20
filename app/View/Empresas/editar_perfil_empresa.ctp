@@ -1,3 +1,7 @@
+<?php
+    echo $this->form->create('Empresa', array('type' => 'file'));
+    echo $this->Form->input('id', array('type' => 'hidden'));
+?>
 <header class="page-header">
     <div class="container page-name">
         <h1 class="text-center">Add your company</h1>
@@ -6,18 +10,53 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
+                <?php echo $this->Session->flash(); ?>
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-lg-2">
                         <div class="form-group">
-                            <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">A square logo</span> </div>
+                            <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> 
+                            <span class="help-block">Sua logo aqui.</span> 
+                        </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-lg-10">
                         <div class="form-group">
-                            <input type="text" class="form-control input-lg" placeholder="Comapny name"> </div>
+                            <?php
+                                echo $this->form->input('nome', array(
+                                    'label' => false,
+                                    'autofocus' => true,
+                                    'placeholder' => 'Informe o nome da empresa',
+                                    'required' => false,
+                                    'class' => 'form-control input-lg',
+                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                ));
+                            ?>
+                        </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Headline (e.g. Internet and computer software)"> </div>
+                            <?php
+                                echo $this->form->input('ramo', array(
+                                    'label' => false,
+                                    'autofocus' => false,
+                                    'placeholder' => 'Informe o ramo da empresa',
+                                    'required' => false,
+                                    'class' => 'form-control',
+                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                ));
+                            ?>
+                        </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Short description"></textarea>
+                            <?php
+                                echo $this->form->input('descricao_rapida', array(
+                                    'label' => false,
+                                    'autofocus' => false,
+                                    'type' => 'textarea',
+                                    'rows' => 3,
+                                    'cols' => 30,
+                                    'placeholder' => 'Descreva sua empresa de forma rápida',
+                                    'required' => false,
+                                    'class' => 'form-control',
+                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                ));
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -29,35 +68,95 @@
                             <input type="text" class="form-control" placeholder="Location, e.g. Melon Park, CA"> </div>
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                        <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                            <select class="form-control selectpicker">
-                                <option>0 - 9</option>
-                                <option selected>10 - 99</option>
-                                <option>100 - 999</option>
-                                <option>1,000 - 9,999</option>
-                                <option>10,000 - 99,999</option>
-                                <option>100,000 - 999,999</option>
-                            </select> <span class="input-group-addon">Employer</span> </div>
+                        <?php
+                            echo $this->form->input('qtde_empregados', array(
+                                'label' => false,
+                                'required' => false,
+                                'class' => 'form-control selectpicker',
+                                'options' => array(
+                                    'abaixo de 10' => '0 - 9',
+                                    'abaixo de 50' => '10 - 50',
+                                    'abaixo de 200' => '51 - 200',
+                                    'abaixo de 500' => '201 - 500',
+                                    'abaixo de 1000' => '501 - 1000',
+                                    'acima de 1000' => 'acima de 1000'
+                                ),
+                                'selected' => 'abaixo de 10',
+                                'empty' => '(Escolha um)',
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-users"></i></span>',
+                                'after' => '<span class="input-group-addon" title="Funcionários">Func.</span></div>',
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                            ));
+                        ?>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">  
+                        <?php
+                            echo $this->form->input('site', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Informe o site da empresa',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-globe"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <?php
+                            echo $this->MyForm->input('aniversario_empresa', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'customDate',
+                                'placeholder' => 'Informe a data de aniversário da da empresa',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                        <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                            <input type="text" class="form-control" placeholder="Website address"> </div>
+                        <?php
+                            echo $this->form->input('telefone', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'tel',
+                                'placeholder' => 'Informe o telefone para contato',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-phone"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                        <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                            <input type="text" class="form-control" placeholder="Founded on, e.g. 2013"> </div>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                        <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="text" class="form-control" placeholder="Phone number"> </div>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                        <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input type="text" class="form-control" placeholder="Email address"> </div>
+                        
+                        <?php
+                            echo $this->form->input('email', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'tel',
+                                'placeholder' => 'Informe o email para contato',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
+        <?php
+        /*
         <div class="button-group">
             <div class="action-buttons">
                 <div class="upload-button">
@@ -65,6 +164,8 @@
                     <input id="cover_img_file" type="file"> </div>
             </div>
         </div>
+        */
+        ?>
     </div>
 </header>
 <main>
@@ -133,3 +234,4 @@
         </div>
     </section>
 </main>
+</form>

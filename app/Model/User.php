@@ -18,6 +18,10 @@ class User extends AppModel {
                 'rule' => array('notBlank'),
                 'message' => 'A senha do usuário não pode estar vazia!'
             ),
+            'password' => array(
+                'rule' => array('minLength', '6'),
+                'message' => 'Minimo de 6 caracteres'
+            ),
         ),
         'email' => array(
             'notEmpty' => array(
