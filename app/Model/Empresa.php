@@ -76,6 +76,59 @@ class Empresa extends AppModel {
                 'message' => 'E-mail já cadastrado!'
             ),
         ),
+        'url_facebook' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url da página ou perfil da sua empresa no facebook!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'url_google_plus' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url da página ou perfil da sua empresa no Google +!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'url_twitter' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url da perfil da sua empresa no Twitter!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'url_instagram' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url do perfil da sua empresa no Instagram!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'url_pinterest' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url da página ou perfil da sua empresa no Pinterest!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'url_youtube' => array(
+            'regra' => array(
+                'rule' => array('url'),
+                'message' => 'Digite a url da página da sua empresa no Youtube!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'descricao_completa' => array(
+            'regra1' => array(
+                'rule' => array('notBlank'),
+                'message' => 'Digite a descrição completa da empresa!',
+                'allowEmpty' => false
+            ),
+            'regra2' => array(
+                'rule' => array('range', 10, 65535),
+                'message' => 'Digite uma descrição com mais de 10 caracteres e menos de 65535 caracteres!',
+            ),
+        ),
     );
     
     public $errorMessage = '';

@@ -81,7 +81,6 @@
                                     'abaixo de 1000' => '501 - 1000',
                                     'acima de 1000' => 'acima de 1000'
                                 ),
-                                'selected' => 'abaixo de 10',
                                 'empty' => '(Escolha um)',
                                 'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-users"></i></span>',
                                 'after' => '<span class="input-group-addon" title="Funcionários">Func.</span></div>',
@@ -176,38 +175,96 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_facebook', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Facebook',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-facebook"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_google_plus', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Google +',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-google-plus"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-dribbble"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pinterest"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_twitter', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Twitter',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-twitter"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_instagram', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Instagram',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-instagram"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-github"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_pinterest', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Pinterest',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-pinterest"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-youtube"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->form->input('url_youtube', array(
+                                'label' => false,
+                                'autofocus' => false,
+                                'type' => 'url',
+                                'placeholder' => 'Url do Youtube',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-youtube"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                 </div>
             </div>
@@ -219,7 +276,17 @@
                 <h2>Company detail</h2>
                 <p>Write about your company, culture, benefits of working there, etc.</p>
             </header>
-            <textarea class="summernote-editor"></textarea>
+            <?php
+                echo $this->form->input('descricao_completa', array(
+                    'label' => false,
+                    'autofocus' => false,
+                    'type' => 'textarea',
+                    'placeholder' => 'Digite a descrição completa da empresa',
+                    'required' => false,
+                    'class' => 'summernote-editor',
+                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                ));
+            ?>
         </div>
     </section>
     <section>

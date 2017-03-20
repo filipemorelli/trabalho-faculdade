@@ -55,33 +55,6 @@
         </div>
         <!-- END Logo -->
 
-        <!-- User account -->
-        <div class="pull-right user-login">
-            <ul class="nav-menu">
-                <li>
-                    <?php echo $this->Html->link('<i class="fa fa-user"></i> ' . $this->Session->read('Auth.User.nome'), "#", array('class' => '', 'title' => 'login', 'escape' => false)); ?>
-                    <ul>
-                        <li>
-                            <?php echo $this->Html->link('Perfil', array('controller' => 'users', 'action' => 'perfil'), array('title' => 'perfil', 'escape' => false));?>
-                        </li>
-                        <li>
-                            <?php echo $this->Html->link('Add/Editar Currículo', array('controller' => 'users', 'action' => 'editarPerfil'), array('title' => 'Currículo', 'escape' => false));?>
-                        </li>
-                        <li>
-                            <?php echo $this->Html->link('Currículos', array('controller' => 'users', 'action' => 'curriculosPerfil'), array('title' => 'Currículo', 'escape' => false));?>
-                        </li>
-                        <li>
-                            <?php echo $this->Html->link('Histórico de candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'), array('title' => 'Currículo', 'escape' => false));?>
-                        </li>
-                        <li>
-                            <?php echo $this->Html->link('<i class="fa fa-sign-out"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('title' => 'Sair', 'escape' => false));?>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- END User account -->
-
         <!-- Navigation menu -->
         <ul class="nav-menu">
           <li>
@@ -95,6 +68,26 @@
           </li>
           <li>
             <?php echo $this->Html->link('<i class="fa fa-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>
+          </li>
+          <li>
+              <?php echo $this->Html->link('<i class="fa fa-user"></i> ' . $this->Session->read('Auth.User.nome'), "#", array('class' => '', 'title' => 'login', 'escape' => false)); ?>
+              <ul>
+                  <li>
+                      <?php echo $this->Html->link('Perfil', array('controller' => 'users', 'action' => 'perfil'), array('title' => 'perfil', 'escape' => false));?>
+                  </li>
+                  <li>
+                      <?php echo $this->Html->link('Add/Editar Currículo', array('controller' => 'users', 'action' => 'editarPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+                  </li>
+                  <li>
+                      <?php echo $this->Html->link('Currículos', array('controller' => 'users', 'action' => 'curriculosPerfil'), array('title' => 'Currículo', 'escape' => false));?>
+                  </li>
+                  <li>
+                      <?php echo $this->Html->link('Histórico de candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'), array('title' => 'Currículo', 'escape' => false));?>
+                  </li>
+                  <li>
+                      <?php echo $this->Html->link('<i class="fa fa-sign-out"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('title' => 'Sair', 'escape' => false));?>
+                  </li>
+              </ul>
           </li>
         </ul>
         <!-- END Navigation menu -->
