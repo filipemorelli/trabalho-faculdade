@@ -40,8 +40,8 @@ class AppController extends Controller {
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'users',
-                'action' => 'login'
+                'controller' => 'pages',
+                'action' => 'index'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -99,6 +99,9 @@ class AppController extends Controller {
                     return true;
                     break;
                 case 'logout':
+                    return true;
+                    break;
+                case 'vagas':
                     return true;
                     break;
                 default:

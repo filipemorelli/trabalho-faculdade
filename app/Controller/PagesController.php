@@ -34,21 +34,30 @@ class PagesController extends AppController {
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('index', 'sobre', 'contato'));
+		$this->Auth->allow(array('index', 'sobre', 'contato'));
+        $tipoUsuario = $this->Session->read('Auth.User.tipo');
+        switch ($tipoUsuario) {
+            case 'trabalhador':
+                $this->layout = "trabalhador";
+                break;
+            case 'empregador':
+                $this->layout = "empregador";
+                break;
+            default:
+                $this->layout = "pagina";
+                break;
+        }
     }
 
 	public function index(){
-		$this->layout = "pagina";
 		$this->set('title_for_layout', __('Bem vindo'));
 	}
 
 	public function sobre(){
-		$this->layout = "pagina";
 		$this->set('title_for_layout', __('Sobre'));
 	}
 
 	public function contato(){
-		$this->layout = "pagina";
 		$this->set('title_for_layout', __('Contato'));		
 	}
 }

@@ -57,7 +57,34 @@
 
         <!-- User account -->
         <div class="pull-right user-login">
-          <?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-sm btn-primary', 'title' => 'login')); ?> ou <?php echo $this->Html->link('Cadastrar', array('controller' => 'users', 'action' => 'add'), array('class' => 'btn btn-sm btn-success', 'title' => 'login')); ?>
+            <ul class="nav-menu">
+                <li>
+                    <?php echo $this->Html->link('<i class="fa fa-user"></i> ' . $this->Session->read('Auth.User.nome'), "#", array('class' => '', 'title' => 'login', 'escape' => false)); ?>
+                    <ul>
+                        <li>
+                            <?php echo $this->Html->link('Perfil Empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'), array('title' => 'Perfil Empresa', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Editar Pefil Empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'), array('title' => 'Pefil Empresa', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Add Vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'), array('title' => 'Add Vaga', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Listar Vagas da Empresa', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Sobre a vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('title' => 'Sobre a vaga', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Candidatos à vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('title' => 'Candidatos à vaga', 'escape' => false));?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('<i class="fa fa-sign-out"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('title' => 'Sair', 'escape' => false));?>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <!-- END User account -->
 

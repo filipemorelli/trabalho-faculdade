@@ -11,51 +11,55 @@ class EmpresasController extends AppController
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
-        //$this->Auth->allow(array('buscarProfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
+        $tipoUsuario = $this->Session->read('Auth.User.tipo');
+        switch ($tipoUsuario) {
+            case 'trabalhador':
+                $this->layout = "trabalhador";
+                break;
+            case 'empregador':
+                $this->layout = "empregador";
+                break;
+            default:
+                $this->layout = "pagina";
+                break;
+        }
+        //$this->Auth->allow(array('buscarfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
     }
 
-    public function buscarProfissionais(){
-        $this->layout = 'pagina';
-        $this->set('title_for_layout', __('Procurar Profissionais'));
+    public function buscarfissionais(){
+        $this->set('title_for_layout', __('curar fissionais'));
     }
 
     /**
     Perfil visualizados por empresas e outros usuarios
     */
     public function perfilEmpresa(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Vizualizar perfil da Empresa'));
     }
     /**
     Curriculo visualizado somente pelo usuario e pode ser editado
     */
     public function editarPerfilEmpresa(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Editar perfil'));
     }
 
     public function adicionarVaga(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Adicionar vaga'));
     }
 
     public function listarVagas(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
     }
 
     public function detalhesVaga(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Sobre a vaga'));
     }
 
     public function candidatarVaga() {
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Candidatar a vaga'));
 	}
 
     public function candidadosAVaga(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Candidatos à vaga'));
     }
 }

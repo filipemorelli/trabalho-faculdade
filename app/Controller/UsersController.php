@@ -13,18 +13,27 @@ class UsersController extends AppController
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
-        //$this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'perfil', 'editarPerfil', 'curriculosPerfil', 'historicoCandidaturas'));
+        $tipoUsuario = $this->Session->read('Auth.User.tipo');
+        switch ($tipoUsuario) {
+            case 'trabalhador':
+                $this->layout = "trabalhador";
+                break;
+            case 'empregador':
+                $this->layout = "empregador";
+                break;
+            default:
+                $this->layout = "pagina";
+                break;
+        }
     }
 
     public function index()
     {
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Usuários'));
     }
 
     public function vagas(){
         //vagas está em empresa
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Vagas de Trabalho'));
     }
 
@@ -48,14 +57,12 @@ class UsersController extends AppController
     Perfil visualizados por empresas e outros usuarios
     */
     public function perfil(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Vizualizar Perfil'));
     }
     /**
     Curriculo visualizado somente pelo usuario e pode ser editado
     */
     public function editarPerfil(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Editar currículo'));
     }
 
@@ -63,7 +70,6 @@ class UsersController extends AppController
     São os curriculos que o perfil irá ter
     */
     public function curriculosPerfil(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Vizualizar currículos'));
     }
 
@@ -71,7 +77,6 @@ class UsersController extends AppController
     Historico de candidaturas do usuario
     */
     public function historicoCandidaturas(){
-        $this->layout = 'pagina';
         $this->set('title_for_layout', __('Histórico currículos'));
     }
 
