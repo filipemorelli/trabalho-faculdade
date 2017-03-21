@@ -6,6 +6,13 @@ class Empresa extends AppModel {
     public $displayField = 'nome';
 
     public $validate = array(
+        'url_imagem' => array(
+            'regra1_extensao' => array(
+                'rule' => array('extension', array('jpg', 'jpeg', 'png', 'gif')),
+                'message' => 'Somente arquivos JPG, PNG e GIF',
+                'allowEmpty' => true
+            )
+        ),
         'nome' => array(
             'required' => array(
                 'rule' => array('notBlank'),
@@ -24,8 +31,12 @@ class Empresa extends AppModel {
                 'message' => 'Digite a descrição de sua empresa!'
             ),
             'regra2' => array(
-                'rule' => array('range', 10, 255),
-                'message' => 'Digite uma descrição com mais de 10 caracteres e menos de 256 caracteres!'
+                'rule' => array('minLength', 10),
+                'message' => 'Digite uma descrição com mais de 10 caracteres!'
+            ),
+            'regra3' => array(
+                'rule' => array('maxLength', 255),
+                'message' => 'Digite uma descrição com menos de 256 caracteres!'
             )
         ),
         'qtde_empregados' => array(
@@ -73,7 +84,8 @@ class Empresa extends AppModel {
             ),
             'required' => array(
                 'rule' => array('isUnique'),
-                'message' => 'E-mail já cadastrado!'
+                'message' => 'E-mail já cadastrado!',
+                'on' => 'create'
             ),
         ),
         'url_facebook' => array(
@@ -125,25 +137,145 @@ class Empresa extends AppModel {
                 'allowEmpty' => false
             ),
             'regra2' => array(
-                'rule' => array('range', 10, 65535),
-                'message' => 'Digite uma descrição com mais de 10 caracteres e menos de 65535 caracteres!',
+                'rule' => array('minLength', 10),
+                'message' => 'Digite uma descrição com mais de 10 caracteres!',
             ),
+            'regra3' => array(
+                'rule' => array('maxLength', 65535),
+                'message' => 'Digite uma descrição com menos de 65535 caracteres!'
+            )
         ),
     );
     
     public $errorMessage = '';
+    public function beforeValidate($options = array())
+    {
+        if($this->data['Empresa']['url_imagem']['size'] === 0){
+            unset($this->data['Empresa']['url_imagem']);
+        }
+    }
+
+    public function beforeSave($options = array())
+    {
+        $this->uploadAction();
+    }
+
+    private function salvaEmail(){
+        if(isset($this->data['Empresa']['id'])){
+            $email = $this->findById($this->data['Empresa']['id']);
+        }
+        //se requisicao tiver senha e a senha for diferente da antiga
+        if (isset($this->data['Empresa']['email']) && ($email['Empresa']['email'] != $this->data['Empresa']['email'])) {
+            $passwordHasher = new SimplePasswordHasher();
+            $this->data['Empresa']['senha'] = $passwordHasher->hash(
+                $this->data['Empresa']['senha']
+            );
+        } else {
+            //se nao vai receber a senha antiga
+            $this->data['Empresa']['senha'] = $passWrd['Empresa']['senha'];
+        }
+    }
+
+    private function uploadAction(){
+        if(!empty($this->data['Empresa']['url_imagem']['name'])) {
+            $this->data['Empresa']['url_imagem'] = $this->upload($this->data['Empresa']['url_imagem']);
+        } else {
+            unset($this->data['Empresa']['url_imagem']);
+        }
+    }
+
+    private function upload($imagem = array(), $dir = 'img')
+    {
+        $dir = WWW_ROOT.'upload'.DS.$dir.DS.$this->data['Empresa']['user_id'].DS;
+
+        if(($imagem['error']!=0) and ($imagem['size']==0)) {
+            throw new NotImplementedException('Alguma coisa deu errado, o upload retornou erro '.$imagem['error'].' e tamanho '.$imagem['size']);
+        }
+
+        $this->checa_dir($dir);
+
+        $imagem = $this->checa_nome($imagem, $dir);
+
+        $this->move_arquivos($imagem, $dir);
+
+        return $imagem['name'];
+    }
+
+    /**
+    * Verifica se o diretório existe, se não ele cria.
+    * @access public
+    * @param Array $imagem
+    * @param String $data
+    */ 
+    private function checa_dir($dir)
+    {
+        App::uses('Folder', 'Utility');
+        $folder = new Folder();
+        if (!is_dir($dir)){
+            $folder->create($dir);
+        }
+    }
+
+    /**
+    * Verifica se o nome do arquivo já existe, se existir adiciona um numero ao nome e verifica novamente
+    * @access public
+    * @param Array $imagem
+    * @param String $data
+    * @return nome da imagem
+    */ 
+    public function checa_nome($imagem, $dir)
+    {
+        $imagem_info = pathinfo($dir.$imagem['name']);
+        $imagem_nome = $this->trata_nome($imagem_info['filename']).'.'.$imagem_info['extension'];
+        debug($imagem_nome);
+        $conta = 2;
+        while (file_exists($dir.$imagem_nome)) {
+            $imagem_nome  = $this->trata_nome($imagem_info['filename']).'-'.$conta;
+            $imagem_nome .= '.'.$imagem_info['extension'];
+            $conta++;
+            debug($imagem_nome);
+        }
+        $imagem['name'] = $imagem_nome;
+        return $imagem;
+    }
     
-    public function inativar($user){
+    /**
+    * Trata o nome removendo espaços, acentos e caracteres em maiúsculo.
+    * @access public
+    * @param Array $imagem
+    * @param String $data
+    */ 
+    public function trata_nome($imagem_nome)
+    {
+        $imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));
+        return $imagem_nome;
+    }
+
+    /**
+    * Move o arquivo para a pasta de destino.
+    * @access public
+    * @param Array $imagem
+    * @param String $data
+    */ 
+    public function move_arquivos($imagem, $dir)
+    {
+        App::uses('File', 'Utility');
+        $arquivo = new File($imagem['tmp_name']);
+        $arquivo->copy($dir.$imagem['name']);
+        $arquivo->close();
+    }
+
+    public function inativar($Empresa){
         
-        // pr(AuthComponent::user('id'));die;
-        if (AuthComponent::user('id') == $user['User']['id']) {
+        // pr(AuthComponent::Empresa('id'));die;
+        if (AuthComponent::Empresa('id') == $Empresa['Empresa']['id']) {
             $this->errorMessage = 'Usuário não pode excluir a si mesmo.';
             return false;
         }
         
-        if (!empty($user) && $user['User']['ativo'] == 1) {
-            $user['User']['ativo'] = 0;
-            if ($this->save($user)) {
+        if (!empty($Empresa) && $Empresa['Empresa']['ativo'] == 1) {
+            $Empresa['Empresa']['ativo'] = 0;
+            if ($this->save($Empresa)) {
                 return true;
             }
         }
@@ -151,10 +283,10 @@ class Empresa extends AppModel {
         return false;
     }
     
-    public function reativar($user){
-        if (!empty($user) && $user['User']['ativo'] == 0) {
-            $user['User']['ativo'] = 1;
-            if ($this->save($user)) {
+    public function reativar($Empresa){
+        if (!empty($Empresa) && $Empresa['Empresa']['ativo'] == 0) {
+            $Empresa['Empresa']['ativo'] = 1;
+            if ($this->save($Empresa)) {
                 return true;
             }
         }

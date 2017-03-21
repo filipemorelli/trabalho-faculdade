@@ -1,6 +1,5 @@
 <?php
     echo $this->form->create('Empresa', array('type' => 'file'));
-    echo $this->Form->input('id', array('type' => 'hidden'));
 ?>
 <header class="page-header">
     <div class="container page-name">
@@ -12,13 +11,26 @@
             <div class="col-xs-12">
                 <?php echo $this->Session->flash(); ?>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-lg-2">
+                    <div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="form-group">
-                            <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> 
-                            <span class="help-block">Sua logo aqui.</span> 
+                            <?php
+                                echo $this->form->input('url_imagem', array(
+                                    'label' => false,
+                                    'type' => 'file',
+                                    'autofocus' => false,
+                                    'placeholder' => 'Sua logo aqui.',
+                                    'required' => false,
+                                    'class' => 'dropify',
+                                    'data-default-file' => isset($this->request->data['Empresa']['url_imagem']) ? $this->html->url('/upload/img/'.$this->data['Empresa']['user_id'].'/'.$this->request->data['Empresa']['url_imagem']) : '',
+                                    'accept' => "image/*",
+                                    'data-max-file-size' => "2M",
+                                    'after' => '<span class="help-block">Sua logo aqui.</span>',
+                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                ));
+                            ?>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8 col-lg-10">
+                    <div class="col-xs-12 col-sm-8 col-lg-9">
                         <div class="form-group">
                             <?php
                                 echo $this->form->input('nome', array(

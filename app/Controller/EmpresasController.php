@@ -41,8 +41,25 @@ class EmpresasController extends AppController
     */
     public function editarPerfilEmpresa(){
         $this->set('title_for_layout', __('Editar perfil'));
-        if ($this->request->is('post')) {
-            $this->Empresa->create();
+
+        if ($this->request->is(array('post', 'put'))) {
+            // verifica se existe perfil criado
+
+            $empresaId = $this->Empresa->find('first', array(
+                'fields' => array('id'),
+                'conditions' => array(
+                    'user_id =' => $this->Session->read('Auth.User.id')
+                )
+            ));
+            if(!isset($empresaId['Empresa']['id'])){
+                $this->Empresa->create(); //cria perfil
+            } else {
+                $this->request->data['Empresa']['id'] = $empresaId['Empresa']['id'];
+            }
+            var_dump($this->request->data);
+            //coloca o user_id para vincular a conta
+            $this->request->data['Empresa']['user_id'] = $this->Session->read('Auth.User.id');
+            //salva ou atualiza
             if ($this->Empresa->save($this->request->data)) {
                 $this->Session->setFlash(__('Perfil salvo com sucesso'), 'success');
                 return $this->redirect(array('action' => 'perfilEmpresa'));
@@ -50,9 +67,36 @@ class EmpresasController extends AppController
             $this->Session->setFlash(
                 __('Perfil não pode ser salvo.'), 'error'
             );
+        } else {
+            $this->request->data = $this->Empresa->find('first', array(
+                'conditions' => array(
+                    'user_id =' => $this->Session->read('Auth.User.id')
+                ),
+            ));
+            unset($this->request->data['Empresa']['password']);
         }
     }
 
+/*
+    public function edit(){
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Usuário Inválido'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('Usuário editado com sucesso'), 'success');
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(
+                __('Usuário não pode ser editado.'), 'error'
+            );
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+    }
+*/
     public function adicionarVaga(){
         $this->set('title_for_layout', __('Adicionar vaga'));
     }
