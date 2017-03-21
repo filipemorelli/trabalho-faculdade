@@ -56,7 +56,6 @@ class EmpresasController extends AppController
             } else {
                 $this->request->data['Empresa']['id'] = $empresaId['Empresa']['id'];
             }
-            var_dump($this->request->data);
             //coloca o user_id para vincular a conta
             $this->request->data['Empresa']['user_id'] = $this->Session->read('Auth.User.id');
             //salva ou atualiza

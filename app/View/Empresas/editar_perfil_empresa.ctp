@@ -119,7 +119,7 @@
                 <div class="row">
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
                         <?php
-                            echo $this->MyForm->input('aniversario_empresa', array(
+                            echo $this->MyForm->input('Empresa.aniversario_empresa', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'customDate',
