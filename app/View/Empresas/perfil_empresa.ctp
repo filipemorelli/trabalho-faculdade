@@ -20,17 +20,16 @@
                 <ul class="social-icons">
                     <?php echo $empresa['Empresa']['url_facebook'] != "" ? '<li><a class="facebook" href="'.$empresa['Empresa']['url_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a></li>' : ""; ?>
                     <?php echo $empresa['Empresa']['url_google_plus'] != "" ? '<li><a class="google-plus" href="'.$empresa['Empresa']['url_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a></li>' : ""; ?>
-                    
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
-                    </li>
-                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
+                    <?php echo $empresa['Empresa']['url_twitter'] != "" ? '<li><a class="twitter" href="'.$empresa['Empresa']['url_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a></li>' : ""; ?>
+                    <?php echo $empresa['Empresa']['url_instagram'] != "" ? '<li><a class="instagram" href="'.$empresa['Empresa']['url_instagram'].'" target="_blank"><i class="fa fa-instagram"></i></a></li>' : ""; ?>
+                    <?php echo $empresa['Empresa']['url_youtube'] != "" ? '<li><a class="youtube" href="'.$empresa['Empresa']['url_youtube'].'" target="_blank"><i class="fa fa-youtube"></i></a></li>' : ""; ?>
+                    <?php echo $empresa['Empresa']['url_pinterest'] != "" ? '<li><a class="pinterest" href="'.$empresa['Empresa']['url_pinterest'].'" target="_blank"><i class="fa fa-pinterest"></i></a></li>' : ""; ?>
                 </ul>
+                <?php
+                /*
                 <div class="action-buttons"> <a class="btn btn-gray" href="#">Favorite</a> <a class="btn btn-success" href="#">Contact</a> </div>
+                */
+                ?>
             </div>
         </div>
     </div>
@@ -38,16 +37,18 @@
 <main>
     <section>
         <div class="container">
-            <header class="section-header"> <span>About</span>
-                <h2>Company detail</h2> </header>
-            <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University. Together they own about 14 percent of its shares but control 56 percent of the stockholder voting power through supervoting stock. They incorporated Google as a privately held company on September 4, 1998. An initial public offering followed on August 19, 2004. Its mission statement from the outset was "to organize the world's information and make it universally accessible and useful," and its unofficial slogan was "Don't be evil". In 2004, Google moved to its new headquarters in Mountain View, California, nicknamed the Googleplex. In August 2015, Google announced plans to reorganize its interests as a holding company called Alphabet Inc. When this restructuring took place on October 2, 2015, Google became Alphabet's leading subsidiary, as well as the parent for Google's Internet interests.</p>
-            <p>Rapid growth since incorporation has triggered a chain of products, acquisitions and partnerships beyond Google's core search engine (Google Search). It offers online productivity software (Google Docs) including email (Gmail), a cloud storage service (Google Drive) and a social networking service (Google+). Desktop products include applications for web browsing (Google Chrome), organizing and editing photos (Google Photos), and instant messaging (Hangouts). The company leads the development of the Android mobile operating system and the browser-only Chrome OS for a class of netbooks known as Chromebooks. Google has moved increasingly into communications hardware: it partners with major electronics manufacturers in the production of its "high-quality low-cost" Nexus devices. In 2012, a fiber-optic infrastructure was installed in Kansas City to facilitate a Google Fiber broadband service.</p>
+            <header class="section-header">
+                <h2>Sobre <?php echo $empresa['Empresa']['nome']; ?></h2>
+            </header>
+            <?php echo $empresa['Empresa']['descricao_completa']; ?>
         </div>
     </section>
     <section id="open-positions" class="bg-alt">
         <div class="container">
-            <header class="section-header"> <span>vacancies</span>
-                <h2>Open positions</h2> </header>
+            <header class="section-header">
+                <span>Vagas</span>
+                <h2>Vagas abertas</h2>
+            </header>
             <div class="row">
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">

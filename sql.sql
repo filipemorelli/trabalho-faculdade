@@ -28,7 +28,7 @@ CREATE TABLE `empresas` (
 	`url_google_plus` VARCHAR(255) NULL DEFAULT NULL,
 	`url_twitter` VARCHAR(255) NULL DEFAULT NULL,
 	`url_github` VARCHAR(255) NULL DEFAULT NULL,
-	`url_instagran` VARCHAR(255) NULL DEFAULT NULL,
+	`url_instagram` VARCHAR(255) NULL DEFAULT NULL,
 	`url_youtube` VARCHAR(255) NULL DEFAULT NULL,
 	`url_pintrest` VARCHAR(255) NULL DEFAULT NULL,
 	`descricao_completa` TEXT NULL,

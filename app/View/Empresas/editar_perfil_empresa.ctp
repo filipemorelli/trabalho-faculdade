@@ -3,8 +3,8 @@
 ?>
 <header class="page-header">
     <div class="container page-name">
-        <h1 class="text-center">Add your company</h1>
-        <p class="lead text-center">Create a profile for your company and put it online.</p>
+        <h1 class="text-center">Perfil</h1>
+        <p class="lead text-center">Crie um perfil para sua empresa e coloque-a on-line.</p>
     </div>
     <div class="container">
         <div class="row">
@@ -75,7 +75,7 @@
             </div>
             <div class="col-xs-12">
                 <div class="row">
-                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                    <div class="form-group col-xs-12 col-md-6">
                         <?php
                             echo $this->form->input('qtde_empregados', array(
                                 'label' => false,
@@ -96,7 +96,7 @@
                             ));
                         ?>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-6 col-md-6">  
+                    <div class="form-group col-xs-12 col-md-6">  
                         <?php
                             echo $this->form->input('site', array(
                                 'label' => false,
@@ -178,8 +178,9 @@
 <main>
     <section>
         <div class="container">
-            <header class="section-header"> <span>Get connected</span>
-                <h2>Social media</h2> </header>
+            <header class="section-header">
+                <h2>Redes Sociais</h2>
+            </header>
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
@@ -280,9 +281,9 @@
     </section>
     <section class=" bg-alt">
         <div class="container">
-            <header class="section-header"> <span>About</span>
-                <h2>Company detail</h2>
-                <p>Write about your company, culture, benefits of working there, etc.</p>
+            <header class="section-header"> <span>Sobre</span>
+                <h2>Detalhes da empresa</h2>
+                <p>Escreva sobre sua empresa, cultura, benefícios de trabalhar lá, etc.</p>
             </header>
             <?php
                 echo $this->form->input('descricao_completa', array(
@@ -299,12 +300,12 @@
     </section>
     <section>
         <div class="container">
-            <header class="section-header"> <span>Are you done?</span>
-                <h2>Submit it</h2>
-                <p>Please review your information once more and press the below button to put your company online.</p>
+            <header class="section-header"> <span>Você acabou?</span>
+                <h2>Enviar agora</h2>
+                <p>Revise suas informações mais uma vez e pressione o botão abaixo para colocar sua empresa online.</p>
             </header>
             <p class="text-center">
-                <button class="btn btn-success btn-xl btn-round">Submit your company</button>
+                <button class="btn btn-success btn-xl btn-round"><i class="fa fa-send"></i> Salvar Dados</button>
             </p>
         </div>
     </section>

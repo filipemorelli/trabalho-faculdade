@@ -6,8 +6,26 @@ class EmpresasController extends AppController
 {
     public $components = array('Paginator');
 
+    private function TemPerfil(){
+        $qtde = $this->Empresa->find('count', array(
+            'conditions' => array(
+                'user_id =' => $this->Session->read('Auth.User.id'),
+            ),
+        ));
+        return $qtde == 1;
+    }
+
+    private function ForcaCriarPerfil(){
+        if(!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilEmpresa"){
+            $this->Session->setFlash(__('Precisa criar perfil da empresa!'), 'info');
+            return $this->redirect(array('action' => 'editarPerfilEmpresa'));
+        }
+        return true;
+    }
+
     public function beforeFilter()
     {
+        $this->ForcaCriarPerfil();
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
