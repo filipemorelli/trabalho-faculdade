@@ -18,8 +18,9 @@
             </ul>
             <div class="button-group">
                 <ul class="social-icons">
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
+                    <?php echo $empresa['Empresa']['url_facebook'] != "" ? '<li><a class="facebook" href="'.$empresa['Empresa']['url_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a></li>' : ""; ?>
+                    <?php echo $empresa['Empresa']['url_google_plus'] != "" ? '<li><a class="google-plus" href="'.$empresa['Empresa']['url_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a></li>' : ""; ?>
+                    
                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
