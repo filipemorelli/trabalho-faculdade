@@ -31,10 +31,17 @@ class EmpresasController extends AppController
     }
 
     /**
-    Perfil visualizados por empresas e outros usuarios
+    Perfil visualizados pelo administrador do perfil
     */
     public function perfilEmpresa(){
         $this->set('title_for_layout', __('Vizualizar perfil da Empresa'));
+        $empresa = $this->Empresa->find('first', array(
+            'conditions' => array(
+                'user_id =' => $this->Session->read('Auth.User.id')
+            ),
+        ));
+        unset($empresa['Empresa']['password']);
+        $this->set('empresa', $empresa);
     }
     /**
     Curriculo visualizado somente pelo usuario e pode ser editado
@@ -61,7 +68,7 @@ class EmpresasController extends AppController
             //salva ou atualiza
             if ($this->Empresa->save($this->request->data)) {
                 $this->Session->setFlash(__('Perfil salvo com sucesso'), 'success');
-                return $this->redirect(array('action' => 'perfilEmpresa'));
+                return $this->redirect(array('action' => 'editarPerfilEmpresa'));
             }
             $this->Session->setFlash(
                 __('Perfil não pode ser salvo.'), 'error'
