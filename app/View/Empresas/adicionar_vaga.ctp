@@ -1,61 +1,162 @@
+<?php
+    echo $this->form->create('Empresa', array('type' => 'file'));
+?>
 <header class="page-header">
     <div class="container page-name">
-        <h1 class="text-center">Add a new job</h1>
-        <p class="lead text-center">Create a new vacancy for your company and put it online.</p>
+        <h1 class="text-center">Criar Vaga de Emprego</h1>
+        <p class="lead text-center">Crie uma nova vaga de emprego.</p>
     </div>
     <div class="container">
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-6">
-                <input type="text" class="form-control input-lg" placeholder="Job title, e.g. Front-end developer"> </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <select class="form-control selectpicker">
-                    <option>Select a company</option>
-                    <option>Google</option>
-                    <option>Microsoft</option>
-                    <option>Apple</option>
-                    <option>Facebook</option>
-                </select> <a class="help-block" href="company-add.htm">Add new company</a> </div>
             <div class="form-group col-xs-12">
-                <textarea class="form-control" rows="3" placeholder="Short description"></textarea>
+                <?php
+                    echo $this->form->input('nome', array(
+                        'label' => false,
+                        'autofocus' => true,
+                        'placeholder' => 'Título da vaga. Ex: (Administrador, Desenvolvedor, Pedreiro, etc...)',
+                        'required' => false,
+                        'class' => 'form-control input-lg',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
+        </div>
+        <div class="row">
             <div class="form-group col-xs-12">
-                <input type="text" class="form-control" placeholder="Application URL"> </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                    <input type="text" class="form-control" placeholder="Location, e.g. Melon Park, CA"> </div>
+                <?php
+                    echo $this->form->input('descricao_rapida', array(
+                        'label' => false,
+                        'type' => 'textarea',
+                        'rows' => '3',
+                        'autofocus' => false,
+                        'placeholder' => 'Rápida descrição sobre vaga',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
-                    <select class="form-control selectpicker">
-                        <option>Full time</option>
-                        <option>Part time</option>
-                        <option>Internship</option>
-                        <option>Freelance</option>
-                        <option>Remote</option>
-                    </select>
-                </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <?php
+                    echo $this->form->input('site', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Site da empresa que oferece a vaga.',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                    <input type="text" class="form-control" placeholder="Salary"> </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('endereco', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Endereço do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input type="text" class="form-control" placeholder="Working hours, e.g. 40"> <span class="input-group-addon">hours / week</span> </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('periodo_trabalho', array(
+                        'label' => false,
+                        'required' => false,
+                        'class' => 'form-control selectpicker',
+                        'options' => array(
+                            'abaixo de 10' => 'Full time',
+                            'abaixo de 50' => 'Part time',
+                            'abaixo de 200' => 'Internship',
+                            'abaixo de 500' => 'Freelance',
+                            'abaixo de 1000' => 'Remote',
+                        ),
+                        'empty' => '(Escolha um)',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-briefcase"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-flask"></i></span>
-                    <input type="text" class="form-control" placeholder="Experience, e.g. 5"> <span class="input-group-addon">Years</span> </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('salario', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 2000,00 - 3000,00)',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
-                    <select class="form-control selectpicker" multiple="">
-                        <option>Postdoc</option>
-                        <option>Ph.D.</option>
-                        <option>Master</option>
-                        <option selected="">Bachelor</option>
-                    </select>
-                </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('horario_trabalho', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Horas Semanais de trabalho. Ex: 40, 48, 12/36',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-clock-o"></i></span>',
+                        'after' => '<span class="input-group-addon">Horas Semanais</span> </div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('experiencia', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Experiência. Ex: Indiferente, Sem Experiência, 2 anos, 3 anos, etc.',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-flask"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->form->input('periodo_trabalho', array(
+                        'label' => false,
+                        'required' => false,
+                        'class' => 'form-control selectpicker',
+                        'options' => array(
+                            'abaixo de 10' => 'Ph.D.',
+                            'abaixo de 50' => 'Mestrado',
+                            'abaixo de 200' => 'Superior',
+                            'abaixo de 201' => 'Superior Incompleto/Cursando',
+                            'abaixo de 500' => 'Tecnico',
+                            'abaixo de 1000' => 'Ensino Médio',
+                            'abaixo de 1000' => 'Ensino Médio Incompleto/Cursando',
+                            'abaixo de 1001' => 'Ensino Fundamental',
+                            'abaixo de 1002' => 'Indiferente',
+                        ),
+                        'empty' => '(Escolha um)',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-certificate"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
         </div>
         <?php
@@ -74,22 +175,34 @@
 <main>
     <section>
         <div class="container">
-            <header class="section-header"> <span>Description</span>
-                <h2>Job detail</h2>
-                <p>Write about your company, job description, skills required, benefits, etc.</p>
+            <header class="section-header"> <span>Descrição Complete</span>
+                <h2>Detalhes da Vagas</h2>
+                <p>Escreva sobre a empresa, descrição do cargo, habilidades necessárias, benefícios, etc.</p>
             </header>
-            <textarea class="summernote-editor"></textarea>
+            <?php
+                echo $this->form->input('Empresa.descricao_completa', array(
+                    'label' => false,
+                    'autofocus' => false,
+                    'type' => 'textarea',
+                    'placeholder' => 'Digite a descrição completa da empresa',
+                    'required' => false,
+                    'class' => 'summernote-editor',
+                    'default' => '<p>O Google é e sempre será uma empresa de engenharia. Contratamos pessoas com um amplo conjunto de habilidades técnicas que estão prontas para enfrentar alguns dos maiores desafios da tecnologia e causar impacto em milhões, se não bilhões, de usuários. No Google, os engenheiros não apenas revolucionam a pesquisa, como também trabalham rotineiramente em escalabilidade e soluções de armazenamento em grande escala, aplicações em grande escala e plataformas inteiramente novas para desenvolvedores de todo o mundo. Do Google AdWords ao Google Chrome, do Android ao YouTube, do Google Social ao Local, os engenheiros do Google estão mudando o mundo de uma conquista tecnológica após a outra.</p><p><br></p><h2>Responsabilidades</h2><p><br></p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non.</p><p><br></p><p>Crie aplicações web de próxima geração com foco no lado do cliente.</p><p>Redesenhar as UIs, implementar novas UIs e pegar o Java como necessário.</p><p>Explore e crie experiências de consumo dinâmicas e convincentes.</p><p>Crie e construa uma estrutura escalável para aplicações web.</p><p><br></p><h2>Qualificações mínimas</h2><p><br></p><p>BA / BS em um campo técnico ou experiência prática equivalente.</p><p>2 anos de experiência de trabalho relevante em desenvolvimento de software.</p><p>Experiência de programação em C, C ++ ou Java.</p><p>Experiência com AJAX, HTML e CSS.</p><p><br></p><h2>Qualificações preferenciais</h2><p><br></p><p>Interesse no projeto da interface do usuário.</p><p>Experiência de desenvolvimento de aplicações Web.</p><p>Experiência de trabalho em plataformas cross-browser.</p><p>Experiência em desenvolvimento de JavaScript orientado a objetos.</p><p>Experiência com frameworks de interface de usuário como XUL, Flex e XAML.</p><p>Conhecimento do design da interface do usuário.</p>',
+                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                ));
+            ?>
         </div>
     </section>
     <section class="bg-alt">
         <div class="container">
-            <header class="section-header"> <span>Are you done?</span>
-                <h2>Submit Job</h2>
-                <p>Please review your information once more and press the below button to put your job online.</p>
+            <header class="section-header"> <span>Você acabou?</span>
+                <h2>Enviar agora</h2>
+                <p>Revise suas informações mais uma vez e pressione o botão abaixo para colocar sua empresa online.</p>
             </header>
             <p class="text-center">
-                <button class="btn btn-success btn-xl btn-round">Submit your job</button>
+                <button class="btn btn-success btn-xl btn-round"><i class="fa fa-send"></i> Salvar Dados</button>
             </p>
         </div>
     </section>
 </main>
+</form>

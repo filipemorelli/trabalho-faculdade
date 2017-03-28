@@ -1,4 +1,4 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner2.jpg');?>)">
+<header class="page-header bg-img size-lg">
     <div class="container">
         <div class="header-detail"> <img class="logo" src="<?php echo $empresa['Empresa']['url_imagem'] != "" ? $this->html->url('/upload/img/'.$empresa['Empresa']['user_id'].'/'.$empresa['Empresa']['url_imagem']) : '' ?>" alt="">
             <div class="hgroup">
