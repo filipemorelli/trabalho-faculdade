@@ -1,8 +1,8 @@
 <!-- Site header -->
     <header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner2.jpg');?>)">
       <div class="container no-shadow">
-        <h1 class="text-center">Contact us</h1>
-        <p class="lead text-center">Say hi, drop a letter, and follow us in social media websites.</p>
+        <h1 class="text-center">Entre em contato</h1>
+        <p class="lead text-center">Diga oi, solte uma carta e siga-nos em sites de mídia social.</p>
       </div>
     </header>
     <!-- END Site header -->
@@ -16,18 +16,22 @@
 
           <div class="row">
             <div class="col-sm-12 col-md-8">
-              <h4>Contact form</h4>
+              <h4>Formulário de Contato</h4>
               <form>
                 <div class="form-group">
-                  <input type="text" class="form-control input-lg" placeholder="Name">
+                  <input type="text" class="form-control input-lg" placeholder="Nome">
                 </div>
 
                 <div class="form-group">
-                  <input type="email" class="form-control input-lg" placeholder="Email">
+                  <input type="email" class="form-control input-lg" placeholder="E-mail">
                 </div>
 
                 <div class="form-group">
-                  <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                  <input type="tel" class="form-control input-lg" placeholder="Telefone">
+                </div>
+
+                <div class="form-group">
+                  <textarea class="form-control" rows="5" placeholder="Messagem"></textarea>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Send</button>
@@ -35,11 +39,11 @@
             </div>
 
             <div class="col-sm-12 col-md-4">
-              <h4>Information</h4>
+              <h4>Informações</h4>
               <div class="highlighted-block">
                 <dl class="icon-holder">
                   <dt><i class="fa fa-map-marker"></i></dt>
-                  <dd>3652 Seventh Avenue, Los Angeles, CA</dd>
+                  <dd>Endereço</dd>
 
                   <dt><i class="fa fa-phone"></i></dt>
                   <dd>(+1) 987 654 3210</dd>
@@ -48,7 +52,7 @@
                   <dd>(+1) 123 456 7890</dd>
 
                   <dt><i class="fa fa-envelope"></i></dt>
-                  <dd>hi@yoursite.com</dd>
+                  <dd>adm@freejobs.com</dd>
                 </dl>
               </div>
 

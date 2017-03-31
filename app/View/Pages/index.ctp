@@ -3,21 +3,21 @@
       <div class="container">
         <div class="col-xs-12">
           <br><br>
-          <h2>We offer <mark>1,259</mark> job vacancies right now!</h2>
-          <h5 class="font-alt">Find your desire one in a minute</h5>
+          <h2>Nós oferecemos <mark>1,259</mark> vagas de emprego agora!</h2>
+          <h5 class="font-alt">Encontre sua vaga em poucos minutos.</h5>
           <br><br><br>
           <form class="header-job-search">
             <div class="input-keyword">
-              <input type="text" class="form-control" placeholder="Job title, skills, or company">
+              <input type="text" class="form-control" placeholder="Cargo, Habilidades ou Empresa">
             </div>
 
             <div class="input-location">
-              <input type="text" class="form-control" placeholder="City, state or zip">
+              <input type="text" class="form-control" placeholder="Cidade, estado ou CEP">
             </div>
 
             <div class="btn-search">
-              <button class="btn btn-primary" type="submit">Find jobs</button>
-              <a href="job-list.html">Advanced Job Search</a>
+              <button class="btn btn-primary" type="submit">Encontrar Vagas</button>
+              <?php echo $this->html->link('Pesquisa avançada', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Pesquisa avançada')); ?>
             </div>
           </form>
         </div>
@@ -37,7 +37,7 @@
         <div class="container">
           <header class="section-header">
             <span>Latest</span>
-            <h2>Recent jobs</h2>
+            <h2>Vagas Recentes</h2>
           </header>
 
           <div class="row">
@@ -136,12 +136,15 @@
           </div>
 
           <br><br>
-          <p class="text-center"><a class="btn btn-info" href="job-list.html">Browse all jobs</a></p>
+          <p class="text-center">
+            <?php echo $this->html->link('Veja todas as vagas',array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Veja todas as vagas', 'class' => 'btn btn-info'));?>
+            <a class="" href="job-list.html"></a>
+          </p>
         </div>
       </section>
       <!-- END Recent jobs -->
 
-
+      <?php /*
       <section>
         <div class="container">
 
@@ -166,7 +169,7 @@
 
         </div>
       </section>
-
+      */ ?>
       <!-- Newsletter -->
       <section class="bg-img text-center" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-facts.jpg');?>)">
         <div class="container">

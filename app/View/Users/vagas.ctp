@@ -1,8 +1,8 @@
     <!-- Page header -->
     <header class="page-header bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg'); ?>)">
       <div class="container page-name">
-        <h1 class="text-center">Browse jobs</h1>
-        <p class="lead text-center">Use following search box to find jobs that fits you better</p>
+        <h1 class="text-center">Pesquisar Vagas</h1>
+        <p class="lead text-center">Use o filtro de pesquisa para encontrar trabalhos que melhor se adaptem a você.</p>
       </div>
     </header>
     <!-- END Page header -->

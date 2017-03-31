@@ -2,21 +2,20 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema de controle para gerencia de negócios de Delivery.">
+    <meta name="description" content="Encontre suas vagas de empregos no Freejobs, são milhares de empregos nas maiores empresas do país. Ofertas de emprego exclusivas nas melhores agencia de empregos.">
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Sistema Delivery">
-    <meta itemprop="description" content="Sistema de controle para gerencia de negócios de Delivery.">
-    <meta itemprop="image" content="<?php echo $this->Html->url("/marmitex/assets/img/imagem-descricao.png", true); ?>">
+    <meta itemprop="name" content="Freejobs - Vagas de Emprego">
+    <meta itemprop="description" content="Encontre suas vagas de empregos no Freejobs, são milhares de empregos nas maiores empresas do país. Ofertas de emprego exclusivas nas melhores agencia de empregos.">
+    <meta itemprop="image" content="<?php echo $this->Html->url("/template/img/logo-alt.png", true); ?>">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Sistema Delivery">
+    <meta property="og:title" content="Freejobs - Vagas de Emprego">
     <meta property="og:type" content="site">
     <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>">
-    <meta property="og:image" content="<?php echo $this->Html->url("/marmitex/assets/img/imagem-descricao.png", true); ?>">
-    <meta property="og:description" content="Sistema de controle para gerencia de negócios de Delivery.">
-    <meta property="og:site_name" content="Sistema Delivery">
+    <meta property="og:image" content="<?php echo $this->Html->url("/template/img/logo-alt.png", true); ?>">
+    <meta property="og:description" content="Encontre suas vagas de empregos no Freejobs, são milhares de empregos nas maiores empresas do país. Ofertas de emprego exclusivas nas melhores agencia de empregos.">
+    <meta property="og:site_name" content="Freejobs - Vagas de Emprego">
 
     <title><?php echo $title_for_layout?></title>
 
