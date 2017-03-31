@@ -1,5 +1,5 @@
     <!-- Page header -->
-    <header class="page-header bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg'); ?>)">
+    <header class="page-header bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
       <div class="container page-name">
         <h1 class="text-center">Pesquisar Vagas</h1>
         <p class="lead text-center">Use o filtro de pesquisa para encontrar trabalhos que melhor se adaptem a você.</p>
@@ -157,7 +157,7 @@
                 <div class="col-xs-12">
                   <a class="item-block" href="job-detail.htm">
                     <header>
-                      <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => '', 'title' => ''));?>
+                      <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '', 'title' => ''));?>
                       <div class="hgroup">
                         <h4>Senior front-end developer</h4>
                         <h5>Google <span class="label label-success">Full-time</span></h5>
@@ -196,7 +196,7 @@
                 <div class="col-xs-12">
                   <a class="item-block" href="job-detail.htm">
                     <header>
-                      <?php echo $this->html->image('/template/img/logo-linkedin.png', array('alt' => '', 'title' => ''));?>
+                      <?php echo $this->Html->image('/template/img/logo-linkedin.png', array('alt' => '', 'title' => ''));?>
                       <div class="hgroup">
                         <h4>Software Engineer (Entry or Senior)</h4>
                         <h5>Linkedin <span class="label label-warning">Part-time</span></h5>
@@ -235,7 +235,7 @@
                 <div class="col-xs-12">
                   <a class="item-block" href="job-detail.htm">
                     <header>
-                      <?php echo $this->html->image('/template/img/logo-envato.png', array('alt' => '', 'title' => ''));?>
+                      <?php echo $this->Html->image('/template/img/logo-envato.png', array('alt' => '', 'title' => ''));?>
                       <div class="hgroup">
                         <h4>Full Stack Web Developer</h4>
                         <h5>Envato <span class="label label-info">Freelance</span></h5>
@@ -274,7 +274,7 @@
                 <div class="col-xs-12">
                   <a class="item-block" href="job-detail.htm">
                     <header>
-                      <?php echo $this->html->image('/template/img/logo-facebook.png', array('alt' => '', 'title' => ''));?>
+                      <?php echo $this->Html->image('/template/img/logo-facebook.png', array('alt' => '', 'title' => ''));?>
                       <div class="hgroup">
                         <h4>Web Applications Developer</h4>
                         <h5>Facebook <span class="label label-danger">Internship</span></h5>
@@ -313,7 +313,7 @@
                 <div class="col-xs-12">
                   <a class="item-block" href="job-detail.htm">
                     <header>
-                      <?php echo $this->html->image('/template/img/logo-microsoft.jpg', array('alt' => '', 'title' => ''));?>
+                      <?php echo $this->Html->image('/template/img/logo-microsoft.jpg', array('alt' => '', 'title' => ''));?>
                       <div class="hgroup">
                         <h4>Sr. SQL Server Developer</h4>
                         <h5>Microsoft <span class="label label-success">Remote</span></h5>

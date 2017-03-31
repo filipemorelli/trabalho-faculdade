@@ -17,7 +17,7 @@
 
             <div class="btn-search">
               <button class="btn btn-primary" type="submit">Encontrar Vagas</button>
-              <?php echo $this->html->link('Pesquisa avançada', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Pesquisa avançada')); ?>
+              <?php echo $this->Html->link('Pesquisa avançada', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Pesquisa avançada')); ?>
             </div>
           </form>
         </div>
@@ -137,7 +137,7 @@
 
           <br><br>
           <p class="text-center">
-            <?php echo $this->html->link('Veja todas as vagas',array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Veja todas as vagas', 'class' => 'btn btn-info'));?>
+            <?php echo $this->Html->link('Veja todas as vagas',array('controller' => 'users', 'action' => 'vagas'), array('title' => 'Veja todas as vagas', 'class' => 'btn btn-info'));?>
             <a class="" href="job-list.html"></a>
           </p>
         </div>

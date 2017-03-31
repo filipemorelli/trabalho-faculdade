@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-4">
                 <div class="form-group">
-                    <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/avatar.jpg'); ?>" <span class="help-block">Please choose a 4:6 profile picture.</span> </div>
+                    <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/avatar.jpg'); ?>" <span class="help-block">Please choose a 4:6 profile picture.</span> </div>
             </div>
             <div class="col-xs-12 col-sm-8">
                 <div class="form-group">
@@ -128,7 +128,7 @@
                                 /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span>
+                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span>
                                     </div>
                                 </div>
                                 */
@@ -163,7 +163,7 @@
                                 /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
+                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
                                 */
                                 ?>
@@ -209,7 +209,7 @@
                                 /*
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
+                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
                                 */
                                 ?>
@@ -243,7 +243,7 @@
                                 /*    
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
+                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                 </div>
                                 */
                                 ?>
@@ -330,7 +330,7 @@
     </section>
     */
     ?>
-    <section class=" bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-facts.jpg');?>);">
+    <section class=" bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-facts.jpg');?>);">
         <div class="container">
             <header class="section-header"> <span>Are you done?</span>
                 <h2>Submit resume</h2>

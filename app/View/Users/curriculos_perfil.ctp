@@ -1,4 +1,4 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner2.jpg');?>)">
+<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner2.jpg');?>)">
     <div class="container no-shadow">
         <h1 class="text-center">Manage your resumes</h1>
         <p class="lead text-center">Here's the list of your created resumes. You can edit or delete them, or even add a new one.</p>
@@ -14,7 +14,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="resume-detail.htm">John Doe</a></h4>
@@ -31,7 +31,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="resume-detail.htm">John Doe</a></h4>
@@ -48,7 +48,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/avatar.jpg', array('class' => 'resume-avatar', 'alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="resume-detail.htm">John Doe</a></h4>

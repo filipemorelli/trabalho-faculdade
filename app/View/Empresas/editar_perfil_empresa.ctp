@@ -1,5 +1,5 @@
 <?php
-    echo $this->form->create('Empresa', array('type' => 'file'));
+    echo $this->Form->create('Empresa', array('type' => 'file'));
 ?>
 <header class="page-header">
     <div class="container page-name">
@@ -14,14 +14,14 @@
                     <div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="form-group">
                             <?php
-                                echo $this->form->input('Empresa.url_imagem', array(
+                                echo $this->Form->input('Empresa.url_imagem', array(
                                     'label' => false,
                                     'type' => 'file',
                                     'autofocus' => false,
                                     'placeholder' => 'Sua logo aqui.',
                                     'required' => false,
                                     'class' => 'dropify',
-                                    'data-default-file' => isset($this->request->data['Empresa']['url_imagem']) ? $this->html->url('/upload/img/'.$this->data['Empresa']['user_id'].'/'.$this->request->data['Empresa']['url_imagem']) : '',
+                                    'data-default-file' => isset($this->request->data['Empresa']['url_imagem']) ? $this->Html->url('/upload/img/'.$this->data['Empresa']['user_id'].'/'.$this->request->data['Empresa']['url_imagem']) : '',
                                     'accept' => "image/*",
                                     'data-max-file-size' => "2M",
                                     'after' => '<span class="help-block">Sua logo aqui.</span>',
@@ -33,7 +33,7 @@
                     <div class="col-xs-12 col-sm-8 col-lg-9">
                         <div class="form-group">
                             <?php
-                                echo $this->form->input('Empresa.nome', array(
+                                echo $this->Form->input('Empresa.nome', array(
                                     'label' => false,
                                     'autofocus' => true,
                                     'placeholder' => 'Informe o nome da empresa',
@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <?php
-                                echo $this->form->input('Empresa.ramo', array(
+                                echo $this->Form->input('Empresa.ramo', array(
                                     'label' => false,
                                     'autofocus' => false,
                                     'placeholder' => 'Informe o ramo da empresa',
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <?php
-                                echo $this->form->input('Empresa.descricao_rapida', array(
+                                echo $this->Form->input('Empresa.descricao_rapida', array(
                                     'label' => false,
                                     'autofocus' => false,
                                     'type' => 'textarea',
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="form-group col-xs-12 col-md-6">
                         <?php
-                            echo $this->form->input('Empresa.qtde_empregados', array(
+                            echo $this->Form->input('Empresa.qtde_empregados', array(
                                 'label' => false,
                                 'required' => false,
                                 'class' => 'form-control selectpicker',
@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group col-xs-12 col-md-6">  
                         <?php
-                            echo $this->form->input('Empresa.site', array(
+                            echo $this->Form->input('Empresa.site', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -130,7 +130,7 @@
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
                         <?php
-                            echo $this->form->input('Empresa.telefone', array(
+                            echo $this->Form->input('Empresa.telefone', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'tel',
@@ -146,7 +146,7 @@
                     <div class="form-group col-xs-12 col-sm-6 col-md-4">
                         
                         <?php
-                            echo $this->form->input('Empresa.email', array(
+                            echo $this->Form->input('Empresa.email', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'tel',
@@ -185,7 +185,7 @@
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('Empresa.url_facebook', array(
+                            echo $this->Form->input('Empresa.url_facebook', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -200,7 +200,7 @@
                     </div>
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('url_google_plus', array(
+                            echo $this->Form->input('url_google_plus', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -215,7 +215,7 @@
                     </div>
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('Empresa.url_twitter', array(
+                            echo $this->Form->input('Empresa.url_twitter', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -232,7 +232,7 @@
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('Empresa.url_instagram', array(
+                            echo $this->Form->input('Empresa.url_instagram', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -247,7 +247,7 @@
                     </div>
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('url_pinterest', array(
+                            echo $this->Form->input('url_pinterest', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -262,7 +262,7 @@
                     </div>
                     <div class="form-group">
                         <?php
-                            echo $this->form->input('Empresa.url_youtube', array(
+                            echo $this->Form->input('Empresa.url_youtube', array(
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'url',
@@ -286,7 +286,7 @@
                 <p>Escreva sobre sua empresa, cultura, benefícios de trabalhar lá, etc.</p>
             </header>
             <?php
-                echo $this->form->input('Empresa.descricao_completa', array(
+                echo $this->Form->input('Empresa.descricao_completa', array(
                     'label' => false,
                     'autofocus' => false,
                     'type' => 'textarea',

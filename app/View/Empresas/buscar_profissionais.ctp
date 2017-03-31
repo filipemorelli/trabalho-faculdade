@@ -1,4 +1,4 @@
-<header class="page-header bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg');
+<header class="page-header bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg');
 
 ?>)">
     <div class="container page-name">
@@ -135,7 +135,7 @@
                         <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
-                                    <?php echo $this->html->image('/template/img/avatar-1.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
+                                    <?php echo $this->Html->image('/template/img/avatar-1.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
                                     <div class="hgroup">
                                         <h4>Bikesh Soltanian</h4>
                                         <h5>Java developer</h5>
@@ -156,7 +156,7 @@
                         <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
-                                    <?php echo $this->html->image('/template/img/avatar-2.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
+                                    <?php echo $this->Html->image('/template/img/avatar-2.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
                                     <div class="hgroup">
                                         <h4>Chris Hernandeziyan</h4>
                                         <h5>.Net developer</h5> </div>
@@ -176,7 +176,7 @@
                         <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
-                                    <?php echo $this->html->image('/template/img/avatar-3.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
+                                    <?php echo $this->Html->image('/template/img/avatar-3.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
                                     <div class="hgroup">
                                         <h4>Mary Amiri</h4>
                                         <h5>Quality assurance</h5> </div>
@@ -196,7 +196,7 @@
                         <div class="col-md-12">
                             <a class="item-block" href="resume-detail.htm">
                                 <header>
-                                    <?php echo $this->html->image('/template/img/avatar-4.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
+                                    <?php echo $this->Html->image('/template/img/avatar-4.jpg', array('class' => 'resume-avatar', 'alt' => '', 'title' => ''));?>
                                     <div class="hgroup">
                                         <h4>Sarah Luizgarden</h4>
                                         <h5>UI/UX developer</h5> </div>

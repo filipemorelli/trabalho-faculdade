@@ -1,9 +1,9 @@
 <!-- Page header -->
-<header class="page-header bg-img" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg'); ?>)">
+<header class="page-header bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
     <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-4">
-            <?php echo $this->html->image('/template/img/avatar.jpg', array('alt' => '', 'title' => '')); ?>
+            <?php echo $this->Html->image('/template/img/avatar.jpg', array('alt' => '', 'title' => '')); ?>
         </div>
 
         <div class="col-xs-12 col-sm-8 header-detail">
@@ -94,7 +94,7 @@
         <div class="col-xs-12">
             <div class="item-block">
             <header>
-                <?php echo $this->html->image('/template/img/logo-mit.png', array('alt' => '', 'title' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-mit.png', array('alt' => '', 'title' => '')); ?>
                 <div class="hgroup">
                 <h4>Master <small>Computer Science</small></h4>
                 <h5>Massachusetts Institute of Technology</h5>
@@ -110,7 +110,7 @@
         <div class="col-xs-12">
             <div class="item-block">
             <header>
-                <?php echo $this->html->image('/template/img/logo-berkeley.png', array('alt' => '', 'title' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-berkeley.png', array('alt' => '', 'title' => '')); ?>
                 <div class="hgroup">
                 <h4>Bachelor <small>Computer Science</small></h4>
                 <h5>University of California, Berkeley</h5>
@@ -143,7 +143,7 @@
         <div class="col-xs-12">
             <div class="item-block">
             <header>
-                <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => '', 'title' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '', 'title' => '')); ?>
                 <div class="hgroup">
                 <h4>Google</h4>
                 <h5>Senior front-end developer</h5>
@@ -171,7 +171,7 @@
         <div class="col-xs-12">
             <div class="item-block">
             <header>
-                <?php echo $this->html->image('/template/img/logo-facebook.png', array('alt' => '', 'title' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-facebook.png', array('alt' => '', 'title' => '')); ?>
                 <div class="hgroup">
                 <h4>Facebook</h4>
                 <h5>Interface developer</h5>
@@ -197,7 +197,7 @@
         <div class="col-xs-12">
             <div class="item-block">
             <header>
-                <?php echo $this->html->image('/template/img/logo-envato.png', array('alt' => '', 'title' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-envato.png', array('alt' => '', 'title' => '')); ?>
                 <div class="hgroup">
                 <h4>Envato</h4>
                 <h5>Quality assurance engineer</h5>

@@ -23,6 +23,6 @@
 </div>
 
 <div class="login-links">
-    <?php echo $this->html->link(__("Fazer Login?"), array("controller" => "users", "action" => 'login'), array("class" => "pull-left", "escape" => false)); ?>
-    <?php echo $this->html->link(__("Fazer Cadastrar."), array("controller" => "users", "action" => 'add'), array("class" => "pull-right", "escape" => false)); ?>
+    <?php echo $this->Html->link(__("Fazer Login?"), array("controller" => "users", "action" => 'login'), array("class" => "pull-left", "escape" => false)); ?>
+    <?php echo $this->Html->link(__("Fazer Cadastrar."), array("controller" => "users", "action" => 'add'), array("class" => "pull-right", "escape" => false)); ?>
 </div>

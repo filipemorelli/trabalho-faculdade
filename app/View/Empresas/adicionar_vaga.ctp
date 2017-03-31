@@ -1,5 +1,5 @@
 <?php
-    echo $this->form->create('Empresa', array('type' => 'file'));
+    echo $this->Form->create('Empresa', array('type' => 'file'));
 ?>
 <header class="page-header">
     <div class="container page-name">
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="form-group col-xs-12">
                 <?php
-                    echo $this->form->input('nome', array(
+                    echo $this->Form->input('nome', array(
                         'label' => false,
                         'autofocus' => true,
                         'placeholder' => 'Título da vaga. Ex: (Administrador, Desenvolvedor, Pedreiro, etc...)',
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="form-group col-xs-12">
                 <?php
-                    echo $this->form->input('descricao_rapida', array(
+                    echo $this->Form->input('descricao_rapida', array(
                         'label' => false,
                         'type' => 'textarea',
                         'rows' => '3',
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="form-group col-xs-12">
                 <?php
-                    echo $this->form->input('site', array(
+                    echo $this->Form->input('site', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Site da empresa que oferece a vaga.',
@@ -54,7 +54,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('endereco', array(
+                    echo $this->Form->input('endereco', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Endereço do local de trabalho',
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('periodo_trabalho', array(
+                    echo $this->Form->input('periodo_trabalho', array(
                         'label' => false,
                         'required' => false,
                         'class' => 'form-control selectpicker',
@@ -91,7 +91,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('salario', array(
+                    echo $this->Form->input('salario', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 2000,00 - 3000,00)',
@@ -105,7 +105,7 @@
             </div>
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('horario_trabalho', array(
+                    echo $this->Form->input('horario_trabalho', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Horas Semanais de trabalho. Ex: 40, 48, 12/36',
@@ -122,7 +122,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('experiencia', array(
+                    echo $this->Form->input('experiencia', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Experiência. Ex: Indiferente, Sem Experiência, 2 anos, 3 anos, etc.',
@@ -136,7 +136,7 @@
             </div>
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->form->input('periodo_trabalho', array(
+                    echo $this->Form->input('periodo_trabalho', array(
                         'label' => false,
                         'required' => false,
                         'class' => 'form-control selectpicker',
@@ -180,7 +180,7 @@
                 <p>Escreva sobre a empresa, descrição do cargo, habilidades necessárias, benefícios, etc.</p>
             </header>
             <?php
-                echo $this->form->input('Empresa.descricao_completa', array(
+                echo $this->Form->input('Empresa.descricao_completa', array(
                     'label' => false,
                     'autofocus' => false,
                     'type' => 'textarea',

@@ -1,5 +1,5 @@
 <!-- Site header -->
-    <header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner2.jpg');?>)">
+    <header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner2.jpg');?>)">
       <div class="container no-shadow">
         <h1 class="text-center">Entre em contato</h1>
         <p class="lead text-center">Diga oi, solte uma carta e siga-nos em sites de mídia social.</p>

@@ -1,4 +1,4 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg'); ?>)">
+<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
     <div class="container page-name">
         <h1 class="text-center">Job Candidates</h1>
         <p class="lead text-center">Use following search box to find best candidates for your openning position</p>
@@ -7,7 +7,7 @@
         <h5>Applicants for</h5>
         <a class="item-block item-block-flat" href="job-detail.htm">
             <header>
-                <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
+                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
                 <div class="hgroup">
                     <h4>Senior front-end developer</h4>
                     <h5>Google</h5>
@@ -58,7 +58,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar-1.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
+                                <?php echo $this->Html->image('/template/img/avatar-1.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
                             </a>
                             <div class="hgroup">
                                 <h4> <a href="resume-detail.htm">John Doe</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>" selected="">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
@@ -75,7 +75,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar-2.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
+                                <?php echo $this->Html->image('/template/img/avatar-2.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
                             </a>
                             <div class="hgroup">
                                 <h4> <a href="resume-detail.htm">Bikesh Soltanian</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>" selected="">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
@@ -92,7 +92,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar-4.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
+                                <?php echo $this->Html->image('/template/img/avatar-4.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
                             </a>
                             <div class="hgroup">
                                 <h4> <a href="resume-detail.htm">Chris Hernandeziyan</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>" selected="">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
@@ -109,7 +109,7 @@
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.htm">
-                                <?php echo $this->html->image('/template/img/avatar-3.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
+                                <?php echo $this->Html->image('/template/img/avatar-3.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
                             </a>
                             <div class="hgroup">
                                 <h4> <a href="resume-detail.htm">Maryam Amiri</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>" selected="">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>

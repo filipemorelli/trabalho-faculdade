@@ -1,4 +1,4 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg');?>)">
+<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg');?>)">
     <div class="container no-shadow">
         <h1 class="text-center">Manage jobs</h1>
         <p class="lead text-center">Here's the list of your submitted jobs. You can edit or delete them, or even add a new one.</p>
@@ -14,7 +14,7 @@
                     <div class="item-block">
                         <header>
                             <a href="company-detail.htm">
-                                <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="job-detail.htm">Senior front-end developer</a></h4>
@@ -33,7 +33,7 @@
                     <div class="item-block">
                         <header>
                             <a href="company-detail.htm">
-                                <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="job-detail.htm">Software Engineer (Entry or Senior)</a></h4>
@@ -52,7 +52,7 @@
                     <div class="item-block">
                         <header>
                             <a href="company-detail.htm">
-                                <?php echo $this->html->image('/template/img/logo-envato.png', array('alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/logo-envato.png', array('alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="job-detail.htm">Full Stack Web Developer</a></h4>
@@ -71,7 +71,7 @@
                     <div class="item-block">
                         <header>
                             <a href="company-detail.htm">
-                                <?php echo $this->html->image('/template/img/logo-facebook.png', array('alt' => ''));?>
+                                <?php echo $this->Html->image('/template/img/logo-facebook.png', array('alt' => ''));?>
                             </a>
                             <div class="hgroup">
                                 <h4><a href="job-detail.htm">Web Applications Developer</a></h4>

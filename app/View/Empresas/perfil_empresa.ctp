@@ -1,6 +1,6 @@
 <header class="page-header bg-img size-lg">
     <div class="container">
-        <div class="header-detail"> <img class="logo" src="<?php echo $empresa['Empresa']['url_imagem'] != "" ? $this->html->url('/upload/img/'.$empresa['Empresa']['user_id'].'/'.$empresa['Empresa']['url_imagem']) : '' ?>" alt="">
+        <div class="header-detail"> <img class="logo" src="<?php echo $empresa['Empresa']['url_imagem'] != "" ? $this->Html->url('/upload/img/'.$empresa['Empresa']['user_id'].'/'.$empresa['Empresa']['url_imagem']) : '' ?>" alt="">
             <div class="hgroup">
                 <h1><?php echo $empresa['Empresa']['nome']; ?></h1>
                 <h3><?php echo $empresa['Empresa']['ramo']; ?></h3>
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">
-                        <header> <img src="<?php echo $this->html->url('/template/img/logo-google.jpg');?>" alt="">
+                        <header> <img src="<?php echo $this->Html->url('/template/img/logo-google.jpg');?>" alt="">
                             <div class="hgroup">
                                 <h4>Senior front-end developer</h4>
                                 <h5>Google <span class="label label-success">Full-time</span></h5> </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">
-                        <header> <img src="<?php echo $this->html->url('/template/img/logo-google.jpg');?>" alt="">
+                        <header> <img src="<?php echo $this->Html->url('/template/img/logo-google.jpg');?>" alt="">
                             <div class="hgroup">
                                 <h4>Software Engineer (Entry or Senior)</h4>
                                 <h5>Gogle <span class="label label-warning">Part-time</span></h5> </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">
-                        <header> <img src="<?php echo $this->html->url('/template/img/logo-google.jpg');?>" alt="">
+                        <header> <img src="<?php echo $this->Html->url('/template/img/logo-google.jpg');?>" alt="">
                             <div class="hgroup">
                                 <h4>Full Stack Web Developer</h4>
                                 <h5>Google <span class="label label-info">Freelance</span></h5> </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">
-                        <header> <img src="<?php echo $this->html->url('/template/img/logo-google.jpg');?>" alt="">
+                        <header> <img src="<?php echo $this->Html->url('/template/img/logo-google.jpg');?>" alt="">
                             <div class="hgroup">
                                 <h4>Web Applications Developer</h4>
                                 <h5>Google <span class="label label-danger">Internship</span></h5> </div>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-xs-12">
                     <a class="item-block" href="job-detail.html">
-                        <header> <img src="<?php echo $this->html->url('/template/img/logo-google.jpg');?>" alt="">
+                        <header> <img src="<?php echo $this->Html->url('/template/img/logo-google.jpg');?>" alt="">
                             <div class="hgroup">
                                 <h4>Sr. SQL Server Developer</h4>
                                 <h5>Google <span class="label label-success">Remote</span></h5> </div>

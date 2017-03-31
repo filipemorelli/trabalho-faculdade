@@ -1,11 +1,11 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner1.jpg');?>)">
+<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg');?>)">
     <div class="container no-shadow">
         <h1 class="text-center">Apply for the job</h1>
         <p class="lead text-center">Apply with your online resume, create new resume for the job, or make a custom application.</p>
         <hr>
         <a class="item-block item-block-flat" href="job-detail.htm">
             <header>
-                <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
+                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => ''));?>
                 <div class="hgroup">
                     <h4>Senior front-end developer</h4>
                     <h5>Google</h5> </div>
@@ -29,7 +29,7 @@
             <div class="item-block">
                 <header>
                     <a href="resume-detail.htm">
-                        <?php echo $this->html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
+                        <?php echo $this->Html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
                     </a>
                     <div class="hgroup">
                         <h4><a href="resume-detail.htm">John Doe</a></h4>
@@ -44,7 +44,7 @@
             <div class="item-block">
                 <header>
                     <a href="resume-detail.htm">
-                        <?php echo $this->html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
+                        <?php echo $this->Html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
                     </a>
                     <div class="hgroup">
                         <h4><a href="resume-detail.htm">John Doe</a></h4>
@@ -59,7 +59,7 @@
             <div class="item-block">
                 <header>
                     <a href="resume-detail.htm">
-                        <?php echo $this->html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
+                        <?php echo $this->Html->image('/template/img/avatar.jpg', array('alt' => '', 'class' => 'resume-avatar'));?>
                     </a>
                     <div class="hgroup">
                         <h4><a href="resume-detail.htm">John Doe</a></h4>

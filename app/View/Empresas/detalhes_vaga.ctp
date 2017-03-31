@@ -1,7 +1,7 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->html->url('/template/img/bg-banner2.jpg'); ?>)">
+<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner2.jpg'); ?>)">
     <div class="container">
         <div class="header-detail">
-            <?php echo $this->html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
+            <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
             <div class="hgroup">
                 <h1>Senior front-end developer</h1>
                 <h3><a href="#">Google</a></h3> </div>
@@ -30,7 +30,7 @@
                 </ul>
                 <div class="action-buttons">
                     <a class="btn btn-primary" href="#">Apply with linkedin</a>
-                    <?php echo $this->html->link('Candidatar', array('controller' => 'empresas', 'action' => 'candidatarVaga'), array('class' => 'btn btn-success'));?>
+                    <?php echo $this->Html->link('Candidatar', array('controller' => 'empresas', 'action' => 'candidatarVaga'), array('class' => 'btn btn-success'));?>
                 </div>
             </div>
         </div>

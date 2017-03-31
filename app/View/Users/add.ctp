@@ -60,5 +60,5 @@
 </div>
 
 <div class="login-links">
-    <p class="text-center">Já tem uma conta? <?php echo $this->html->link(__("login"), array("controller" => "users", "action" => 'login'), array("class" => "txt-brand", "escape" => false)); ?></p>
+    <p class="text-center">Já tem uma conta? <?php echo $this->Html->link(__("login"), array("controller" => "users", "action" => 'login'), array("class" => "txt-brand", "escape" => false)); ?></p>
 </div>
