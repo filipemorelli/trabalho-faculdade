@@ -21,7 +21,7 @@
                                     'placeholder' => 'Sua logo aqui.',
                                     'required' => false,
                                     'class' => 'dropify',
-                                    'data-default-file' => isset($this->request->data['Empresa']['url_imagem']) ? $this->Html->url('/upload/img/'.$this->data['Empresa']['user_id'].'/'.$this->request->data['Empresa']['url_imagem']) : '',
+                                    'data-default-file' => isset($this->request->data['Empresa']['url_imagem']) ? $this->Html->url('/upload/img/empresa/'.$this->request->data['Empresa']['url_imagem']) : '',
                                     'accept' => "image/*",
                                     'data-max-file-size' => "2M",
                                     'after' => '<span class="help-block">Sua logo aqui.</span>',

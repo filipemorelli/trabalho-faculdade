@@ -1,26 +1,19 @@
 <?php
 App::uses('AuthComponent', 'Controller/Component');
 
-class Empresa extends AppModel {
+class Vaga extends AppModel {
 
     public $displayField = 'nome';
-
-    public $hasMany = array(
-        'Vaga' => array(
-            'className'    => 'Vaga',
-            'conditions'   => array("Vaga.ativo" => 1),
-            'order'        => '',
-        )
-    );
-    
     public $belongsTo = array(
-        'User' => array(
-            'className'    => 'User',
-            'conditions'   => array("User.ativo" => '1'),
+        'Empresa' => array(
+            'className'    => 'Empresa',
+            'conditions'   => array("Empresa.ativo" => '1'),
             'order'        => '',
-            'foreignKey'   => 'user_id'
-        )
+            'foreignKey'   => 'empresa_id'
+        ),
     );
+
+    public $useTable = "vagas_empresa";
 
     public $validate = array(
         'url_imagem' => array(
@@ -167,8 +160,8 @@ class Empresa extends AppModel {
     public $errorMessage = '';
     public function beforeValidate($options = array())
     {
-        if($this->data['Empresa']['url_imagem']['size'] === 0){
-            unset($this->data['Empresa']['url_imagem']);
+        if($this->data['Vaga']['url_imagem']['size'] === 0){
+            unset($this->data['Vaga']['url_imagem']);
         }
     }
 
@@ -178,32 +171,33 @@ class Empresa extends AppModel {
     }
 
     private function salvaEmail(){
-        if(isset($this->data['Empresa']['id'])){
-            $email = $this->findById($this->data['Empresa']['id']);
+        if(isset($this->data['Vaga']['id'])){
+            $email = $this->findById($this->data['Vaga']['id']);
         }
         //se requisicao tiver senha e a senha for diferente da antiga
-        if (isset($this->data['Empresa']['email']) && ($email['Empresa']['email'] != $this->data['Empresa']['email'])) {
+        if (isset($this->data['Vaga']['email']) && ($email['Vaga']['email'] != $this->data['Vaga']['email'])) {
             $passwordHasher = new SimplePasswordHasher();
-            $this->data['Empresa']['senha'] = $passwordHasher->hash(
-                $this->data['Empresa']['senha']
+            $this->data['Vaga']['senha'] = $passwordHasher->hash(
+                $this->data['Vaga']['senha']
             );
         } else {
             //se nao vai receber a senha antiga
-            $this->data['Empresa']['senha'] = $passWrd['Empresa']['senha'];
+            $this->data['Vaga']['senha'] = $passWrd['Vaga']['senha'];
         }
     }
 
     private function uploadAction(){
-        if(!empty($this->data['Empresa']['url_imagem']['name'])) {
-            $this->data['Empresa']['url_imagem'] = $this->upload($this->data['Empresa']['url_imagem']);
+        if(!empty($this->data['Vaga']['url_imagem']['name'])) {
+            $this->data['Vaga']['url_imagem'] = $this->upload($this->data['Vaga']['url_imagem']);
         } else {
-            unset($this->data['Empresa']['url_imagem']);
+            unset($this->data['Vaga']['url_imagem']);
         }
     }
 
     private function upload($imagem = array(), $dir = 'img')
     {
-        $dir = WWW_ROOT.'upload'.DS.$dir.DS.'empresa'.DS;
+        
+        $dir = WWW_ROOT.'upload'.DS.$dir.DS.'vaga'.DS;
 
         if(($imagem['error']!=0) and ($imagem['size']==0)) {
             throw new NotImplementedException('Alguma coisa deu errado, o upload retornou erro '.$imagem['error'].' e tamanho '.$imagem['size']);
@@ -285,13 +279,13 @@ class Empresa extends AppModel {
     public function inativar($Empresa){
         
         // pr(AuthComponent::Empresa('id'));die;
-        if (AuthComponent::Empresa('id') == $Empresa['Empresa']['id']) {
+        if (AuthComponent::Empresa('id') == $Empresa['Vaga']['id']) {
             $this->errorMessage = 'Usuário não pode excluir a si mesmo.';
             return false;
         }
         
-        if (!empty($Empresa) && $Empresa['Empresa']['ativo'] == 1) {
-            $Empresa['Empresa']['ativo'] = 0;
+        if (!empty($Empresa) && $Empresa['Vaga']['ativo'] == 1) {
+            $Empresa['Vaga']['ativo'] = 0;
             if ($this->save($Empresa)) {
                 return true;
             }
@@ -301,8 +295,8 @@ class Empresa extends AppModel {
     }
     
     public function reativar($Empresa){
-        if (!empty($Empresa) && $Empresa['Empresa']['ativo'] == 0) {
-            $Empresa['Empresa']['ativo'] = 1;
+        if (!empty($Empresa) && $Empresa['Vaga']['ativo'] == 0) {
+            $Empresa['Vaga']['ativo'] = 1;
             if ($this->save($Empresa)) {
                 return true;
             }

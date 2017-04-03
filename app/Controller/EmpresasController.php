@@ -17,7 +17,9 @@ class EmpresasController extends AppController
 
     private function ForcaCriarPerfil(){
         if(!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilEmpresa"){
-            $this->Session->setFlash(__('Precisa criar perfil da empresa!'), 'info');
+            if($this->Session->read('Auth.User.tipo') === "empregador"){
+                $this->Session->setFlash(__('Precisa criar perfil da empresa!'), 'info');
+            }
             return $this->redirect(array('action' => 'editarPerfilEmpresa'));
         }
         return true;
@@ -55,8 +57,9 @@ class EmpresasController extends AppController
         $this->set('title_for_layout', __('Vizualizar perfil da Empresa'));
         $empresa = $this->Empresa->find('first', array(
             'conditions' => array(
-                'user_id =' => $this->Session->read('Auth.User.id')
+                'user_id =' => $this->Session->read('Auth.User.id'),
             ),
+            'recursive' => -1
         ));
         unset($empresa['Empresa']['password']);
         $this->set('empresa', $empresa);
@@ -73,8 +76,9 @@ class EmpresasController extends AppController
             $empresaId = $this->Empresa->find('first', array(
                 'fields' => array('id'),
                 'conditions' => array(
-                    'user_id =' => $this->Session->read('Auth.User.id')
-                )
+                    'user_id =' => $this->Session->read('Auth.User.id'),
+                ),
+                'recursive' => -1
             ));
             if(!isset($empresaId['Empresa']['id'])){
                 $this->Empresa->create(); //cria perfil
@@ -96,6 +100,7 @@ class EmpresasController extends AppController
                 'conditions' => array(
                     'user_id =' => $this->Session->read('Auth.User.id')
                 ),
+                'recursive' => -1
             ));
             unset($this->request->data['Empresa']['password']);
         }
@@ -122,7 +127,60 @@ class EmpresasController extends AppController
     }
 */
     public function adicionarVaga(){
+        $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Adicionar vaga'));
+        if ($this->request->is('post')) {
+            //$this->
+            $this->Vaga->create();
+            $empresa_id = $this->Empresa->find('first', array(
+                'fields' => array('id'),
+                'conditions' => array(
+                    'Empresa.user_id' => $this->Session->read('Auth.User.id')
+                ),
+                'recursive' => -1
+            ));
+            $this->request->data['Vaga']['empresa_id'] = $empresa_id['Empresa']['id'];
+            if ($this->Vaga->save($this->request->data)) {
+                $this->Session->setFlash(__('Vaga salvo com sucesso'), 'success');
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(
+                __('Vaga não pode ser salvo.'), 'error'
+            );
+        }
+    }
+
+    public function editarVaga($id = null){
+        $this->loadModel('Vaga');
+
+        $this->Vaga->id = $id;
+        if(!$this->Vaga->exists()){
+            //throw new NotFoundException(__('Vaga Inválida'));
+           return $this->redirect(array('action' => 'listarVagas'));
+        }
+
+        $vaga = $this->Vaga->find('first', array(
+            'conditions' => array(
+                'Vaga.id' => $id,
+                'Empresa.user_id' => $this->Session->read('Auth.User.id')
+            ),
+        ));
+        if(count($vaga) == 0) {
+            return $this->redirect(array('action' => 'listarVagas'));
+        }        
+        
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $this->request->data['Vaga']['empresa_id'] = $vaga['Empresa']['id'];
+            if ($this->Vaga->save($this->request->data)) {
+                $this->Session->setFlash(__('Vaga editado com sucesso'), 'success');
+                return $this->redirect(array('action' => 'listarVagas'));
+            }
+            $this->Session->setFlash(
+                __('Vaga não pode ser editado.'), 'error'
+            );
+        } else {
+            $this->request->data = $vaga;
+        }
     }
 
     public function listarVagas(){

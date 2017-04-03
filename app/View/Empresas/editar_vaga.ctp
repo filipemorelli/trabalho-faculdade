@@ -3,8 +3,7 @@
 ?>
     <header class="page-header">
         <div class="container page-name">
-            <h1 class="text-center">Criar Vaga de Emprego</h1>
-            <p class="lead text-center">Crie uma nova vaga de emprego.</p>
+            <h1 class="text-center">Editar Vaga de Emprego</h1>
         </div>
         <?php
             echo $this->element('Empresas/vagas');
