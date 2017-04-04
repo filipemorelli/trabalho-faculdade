@@ -1,6 +1,6 @@
 <header class="page-header bg-img size-lg">
     <div class="container">
-        <div class="header-detail"> <img class="logo" src="<?php echo $empresa['Empresa']['url_imagem'] != "" ? $this->Html->url('/upload/img/'.$empresa['Empresa']['user_id'].'/'.$empresa['Empresa']['url_imagem']) : '' ?>" alt="">
+        <div class="header-detail"> <img class="logo" src="<?php echo $empresa['Empresa']['url_imagem'] != "" ? $this->Html->url('/upload/img/empresa/'.$empresa['Empresa']['url_imagem']) : '' ?>" alt="">
             <div class="hgroup">
                 <h1><?php echo $empresa['Empresa']['nome']; ?></h1>
                 <h3><?php echo $empresa['Empresa']['ramo']; ?></h3>
