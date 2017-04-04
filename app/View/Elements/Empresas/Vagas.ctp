@@ -1,5 +1,4 @@
     <div class="container">
-
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-lg-3">
                 <div class="form-group">
@@ -11,7 +10,7 @@
                             'placeholder' => 'Sua logo aqui.',
                             'required' => false,
                             'class' => 'dropify',
-                            'data-default-file' => isset($this->request->data['Vaga']['url_imagem']) ? $this->Html->url('/upload/img/vaga/'.$this->request->data['Vaga']['url_imagem']) : '',
+                            'data-default-file' => isset($this->request->data['Vaga']['url_imagem']) && !is_array($this->request->data['Vaga']['url_imagem']) ? $this->Html->url('/upload/img/vaga/'.$this->request->data['Vaga']['url_imagem']) : '',
                             'accept' => "image/*",
                             'data-max-file-size' => "2M",
                             'after' => '<span class="help-block">Sua logo aqui.</span>',

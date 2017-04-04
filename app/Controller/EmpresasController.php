@@ -183,8 +183,24 @@ class EmpresasController extends AppController
         }
     }
 
-    public function listarVagas(){
+    public function listarVagas($page = 1){
+        $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
+        
+        $this->Paginator->settings = array(
+            'fields' => array('Vaga.id', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.modified', 'Empresa.nome'),
+            'conditions' => array(
+                'Empresa.user_id' => $this->Session->read('Auth.User.id')
+            ),
+            'order' => array(
+                'Vaga.modified' => 'DESC',
+                'Vaga.id' => 'DESC'
+            ),
+            'page' => $page,
+            'limit' => 2
+        );
+        $vagas = $this->Paginator->paginate('Vaga');
+        $this->set(compact('vagas'));
     }
 
     public function detalhesVaga(){
