@@ -1,1 +1,7 @@
 .demo-btn-margin .btn{margin-bottom:6px}
+.item-removed header{
+    opacity: 0.2;
+}
+.item-removed footer{
+    opacity: 1;
+}

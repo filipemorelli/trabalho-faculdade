@@ -288,9 +288,9 @@ class Vaga extends AppModel {
     }
     
     public function reativar($vaga){
-        if (!empty($vaga) && $Empresa['vaga']['ativo'] == 0) {
-            $Empresa['vaga']['ativo'] = 1;
-            if ($this->save($Empresa)) {
+        if (!empty($vaga) && $vaga['Vaga']['ativo'] == 0) {
+            $vaga['Vaga']['ativo'] = 1;
+            if ($this->save($vaga)) {
                 return true;
             }
         }

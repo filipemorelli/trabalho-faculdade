@@ -52,6 +52,7 @@
 	Router::connect('/perfil-empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'));
 	Router::connect('/adicionar-vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'));
 	Router::connect('/excluir-vaga/:id', array('controller' => 'empresas', 'action' => 'excluirVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
+	Router::connect('/ativar-vaga/:id', array('controller' => 'empresas', 'action' => 'ativarVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
 	Router::connect('/editar-vaga/:id', array('controller' => 'empresas', 'action' => 'editarVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
 	Router::connect('/editar-perfil-empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'));
 	Router::connect('/nossas-vagas', array('controller' => 'empresas', 'action' => 'listarVagas'));

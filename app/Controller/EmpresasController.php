@@ -188,7 +188,7 @@ class EmpresasController extends AppController
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
         
         $this->Paginator->settings = array(
-            'fields' => array('Vaga.id', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.modified', 'Empresa.nome'),
+            'fields' => array('Vaga.id', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo'),
             'conditions' => array(
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
             ),
@@ -222,6 +222,32 @@ class EmpresasController extends AppController
         }        
         
         if ($this->Vaga->inativar($vaga)) {
+            $this->Session->setFlash(__('Vaga excluida com sucesso'), 'success');
+            return $this->redirect(array('action' => 'listarVagas'));
+        }
+        $this->Session->setFlash(__($this->Vaga->errorMessage), 'error');
+        return $this->redirect(array('action' => 'listarVagas'));
+    }
+
+    public function ativarVaga($id = null){
+        $this->loadModel('Vaga');
+        $this->Vaga->id = $id;
+        if(!$this->Vaga->exists()){
+            //throw new NotFoundException(__('Vaga Inválida'));
+           return $this->redirect(array('action' => 'listarVagas'));
+        }
+
+        $vaga = $this->Vaga->find('first', array(
+            'conditions' => array(
+                'Vaga.id' => $id,
+                'Empresa.user_id' => $this->Session->read('Auth.User.id')
+            ),
+        ));
+        if(count($vaga) == 0) {
+            return $this->redirect(array('action' => 'listarVagas'));
+        }        
+        
+        if ($this->Vaga->reativar($vaga)) {
             $this->Session->setFlash(__('Vaga excluida com sucesso'), 'success');
             return $this->redirect(array('action' => 'listarVagas'));
         }

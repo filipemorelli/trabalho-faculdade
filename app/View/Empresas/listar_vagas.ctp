@@ -28,7 +28,7 @@
                     foreach($vagas as $vaga){
                 ?>
                     <div class="col-xs-12">
-                        <div class="item-block">
+                        <div class="item-block<?php echo $vaga['Vaga']['ativo'] == 0 ? ' item-removed': '' ;?>">
                             <header>
                                 <a href="company-detail.htm">
                                     <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));?>
@@ -45,7 +45,13 @@
                                 <div class="action-btn"> 
                                     <?php echo $this->Html->link('Editar', array('controller' => 'empresas', 'action' => 'editarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-gray', 'title' => 'Editar vaga '. $vaga['Vaga']['nome'])) ?>
                                     &nbsp;
-                                    <?php echo $this->Html->link('Excluir', array('controller' => 'empresas', 'action' => 'excluirVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-danger', 'title' => 'Excluir vaga '. $vaga['Vaga']['nome'])) ?>
+                                    <?php
+                                        if($vaga['Vaga']['ativo'] == 1){
+                                            echo $this->Html->link('Excluir', array('controller' => 'empresas', 'action' => 'excluirVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-danger', 'title' => 'Excluir vaga '. $vaga['Vaga']['nome']));
+                                        } else {
+                                            echo $this->Html->link('Ativar', array('controller' => 'empresas', 'action' => 'ativarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-success', 'title' => 'Ativar vaga '. $vaga['Vaga']['nome']));
+                                        }
+                                    ?>
                                 </div>
                             </footer>
                         </div>
