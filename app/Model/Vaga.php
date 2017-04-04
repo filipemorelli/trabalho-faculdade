@@ -276,27 +276,20 @@ class Vaga extends AppModel {
         $arquivo->close();
     }
 
-    public function inativar($Empresa){
-        
-        // pr(AuthComponent::Empresa('id'));die;
-        if (AuthComponent::Empresa('id') == $Empresa['Vaga']['id']) {
-            $this->errorMessage = 'Usuário não pode excluir a si mesmo.';
-            return false;
-        }
-        
-        if (!empty($Empresa) && $Empresa['Vaga']['ativo'] == 1) {
-            $Empresa['Vaga']['ativo'] = 0;
-            if ($this->save($Empresa)) {
+    public function inativar($vaga){     
+        if (!empty($vaga) && $vaga['Vaga']['ativo'] == 1) {
+            $vaga['Vaga']['ativo'] = 0;
+            if ($this->save($vaga)) {
                 return true;
             }
         }
-        $this->errorMessage = 'Usuário não pode ser removido, tente mais tarde.';
+        $this->errorMessage = 'Vaga não pode ser removida, tente mais tarde.';
         return false;
     }
     
-    public function reativar($Empresa){
-        if (!empty($Empresa) && $Empresa['Vaga']['ativo'] == 0) {
-            $Empresa['Vaga']['ativo'] = 1;
+    public function reativar($vaga){
+        if (!empty($vaga) && $Empresa['vaga']['ativo'] == 0) {
+            $Empresa['vaga']['ativo'] = 1;
             if ($this->save($Empresa)) {
                 return true;
             }

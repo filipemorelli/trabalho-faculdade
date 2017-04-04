@@ -155,6 +155,9 @@ class AppController extends Controller {
                 case 'editarVaga':
                     return true;
                     break;
+                case 'excluirVaga':
+                    return true;
+                    break;
                 case 'listarVagas':
                     return true;
                     break;

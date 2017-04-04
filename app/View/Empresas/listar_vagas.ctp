@@ -7,6 +7,7 @@
 <main>
     <section class="no-padding-top bg-alt">
         <div class="container">
+            <?php echo $this->Session->flash(); ?>
             <div class="row">
                 <div class="col-xs-12 col-sm-8">
                     <h5>
@@ -43,7 +44,8 @@
                                 <p class="status"><strong>Status:</strong> Pending approval</p>
                                 <div class="action-btn"> 
                                     <?php echo $this->Html->link('Editar', array('controller' => 'empresas', 'action' => 'editarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-gray', 'title' => 'Editar vaga '. $vaga['Vaga']['nome'])) ?>
-                                    &nbsp;<a class="btn btn-xs btn-danger" href="#">Delete</a>
+                                    &nbsp;
+                                    <?php echo $this->Html->link('Excluir', array('controller' => 'empresas', 'action' => 'excluirVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-danger', 'title' => 'Excluir vaga '. $vaga['Vaga']['nome'])) ?>
                                 </div>
                             </footer>
                         </div>
