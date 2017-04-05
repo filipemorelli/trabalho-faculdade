@@ -58,8 +58,7 @@ class EmpresasController extends AppController
         $empresa = $this->Empresa->find('first', array(
             'conditions' => array(
                 'user_id =' => $this->Session->read('Auth.User.id'),
-            ),
-            'recursive' => -1
+            )
         ));
         unset($empresa['Empresa']['password']);
         $this->set('empresa', $empresa);
@@ -255,8 +254,26 @@ class EmpresasController extends AppController
         return $this->redirect(array('action' => 'listarVagas'));
     }
 
-    public function detalhesVaga(){
+    public function detalhesVaga($id = null){
         $this->set('title_for_layout', __('Sobre a vaga'));
+        $this->loadModel('Vaga');
+
+        $this->Vaga->id = $id;
+        if(!$this->Vaga->exists()){
+            //throw new NotFoundException(__('Vaga Inválida'));
+           return $this->redirect(array('action' => 'index'));
+        }
+
+        $vaga = $this->Vaga->find('first', array(
+            'conditions' => array(
+                'Vaga.id' => $id
+            ),
+        ));
+        if(count($vaga) == 0) {
+            return $this->redirect(array('action' => 'listarVagas'));
+        }        
+        
+        $this->set('vaga', $vaga);
     }
 
     public function candidatarVaga() {

@@ -51,13 +51,14 @@
 	Router::connect('/profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'));
 	Router::connect('/perfil-empresa', array('controller' => 'empresas', 'action' => 'perfilEmpresa'));
 	Router::connect('/adicionar-vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'));
-	Router::connect('/excluir-vaga/:id', array('controller' => 'empresas', 'action' => 'excluirVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
-	Router::connect('/ativar-vaga/:id', array('controller' => 'empresas', 'action' => 'ativarVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
-	Router::connect('/editar-vaga/:id', array('controller' => 'empresas', 'action' => 'editarVaga'), array('pass' => array('id'), 'id' => '[0-9]+'));
+	Router::connect('/excluir-vaga/:id', array('controller' => 'empresas', 'action' => 'excluirVaga'), array('pass' => array('id')));
+	Router::connect('/ativar-vaga/:id', array('controller' => 'empresas', 'action' => 'ativarVaga'), array('pass' => array('id')));
+	Router::connect('/editar-vaga/:id', array('controller' => 'empresas', 'action' => 'editarVaga'), array('pass' => array('id')));
 	Router::connect('/editar-perfil-empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'));
 	Router::connect('/nossas-vagas', array('controller' => 'empresas', 'action' => 'listarVagas'));
 	Router::connect('/nossas-vagas/:page', array('controller' => 'empresas', 'action' => 'listarVagas'), array('pass' => array('page')));
 	Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
+	Router::connect('/detalhes-vaga/:id', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('pass' => array('id')));
 	Router::connect('/candidatar-vaga', array('controller' => 'empresas', 'action' => 'candidatarVaga'));
 	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
 

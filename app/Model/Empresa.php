@@ -10,6 +10,12 @@ class Empresa extends AppModel {
             'className'    => 'Vaga',
             'conditions'   => array("Vaga.ativo" => 1),
             'order'        => '',
+            'limit'        => 5,
+            'order'        => array(
+                'Vaga.modified' => 'desc',
+                'Vaga.created'  => 'desc',
+                'Vaga.id'       => 'desc'
+            )
         )
     );
     

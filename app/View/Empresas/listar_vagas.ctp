@@ -30,14 +30,14 @@
                     <div class="col-xs-12">
                         <div class="item-block<?php echo $vaga['Vaga']['ativo'] == 0 ? ' item-removed': '' ;?>">
                             <header>
-                                <a href="company-detail.htm">
+                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>">
                                     <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));?>
                                 </a>
                                 <div class="hgroup">
-                                    <h4><a href="job-detail.htm"><?php echo $vaga['Vaga']['nome']; ?></a></h4>
-                                    <h5><a href="company-detail.htm"><?php echo $vaga['Empresa']['nome']; ?></a></h5> </div>
+                                    <h4><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $vaga['Vaga']['nome']; ?></a></h4>
+                                    <h5><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $vaga['Empresa']['nome']; ?></a></h5> </div>
                                 <div class="header-meta"> <span class="location">Menlo park, CA</span>
-                                    <time datetime="<?php echo $vaga['Vaga']['modified']; ?>">34 min ago</time>
+                                    <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?></time>
                                 </div>
                             </header>
                             <footer>
