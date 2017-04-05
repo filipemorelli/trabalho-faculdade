@@ -196,7 +196,7 @@ class EmpresasController extends AppController
                 'Vaga.id' => 'DESC'
             ),
             'page' => $page,
-            'limit' => 2
+            'limit' => 10
         );
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));

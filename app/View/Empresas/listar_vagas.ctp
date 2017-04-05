@@ -1,4 +1,4 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg');?>)">
+<header class="page-header bg-img size-lg">
     <div class="container no-shadow">
         <h1 class="text-center">Nossas Vagas</h1>
         <p class="lead text-center">Aqui está a lista de suas vagas de trabalho. Você pode editá-los ou excluí-los, ou até mesmo adicionar um novo.</p>
@@ -45,6 +45,8 @@
                                 <div class="action-btn"> 
                                     <?php echo $this->Html->link('Editar', array('controller' => 'empresas', 'action' => 'editarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-gray', 'title' => 'Editar vaga '. $vaga['Vaga']['nome'])) ?>
                                     &nbsp;
+                                    <?php echo $this->Html->link('Candidatos', array('controller' => 'empresas', 'action' => 'candidadosAVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-info', 'title' => 'Candidatos vaga '. $vaga['Vaga']['nome'])); ?>
+                                    &nbsp;
                                     <?php
                                         if($vaga['Vaga']['ativo'] == 1){
                                             echo $this->Html->link('Excluir', array('controller' => 'empresas', 'action' => 'excluirVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-danger', 'title' => 'Excluir vaga '. $vaga['Vaga']['nome']));
@@ -62,7 +64,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-12 text-center">
                   <ul class="pagination">
                     <?php
                         $this->Paginator->options['url'] = array('controller' => 'empresas', 'action' => 'listarVagas');

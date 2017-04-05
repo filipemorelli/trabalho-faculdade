@@ -23,7 +23,7 @@
     <?php
         echo $this->Html->meta(
             'favicon.png',
-            '/marmitex/assets/img/favicon.png',
+            '/template/img/favicon.png',
             array('type' => 'icon')
         );
         echo $this->Html->css(array(
@@ -86,9 +86,6 @@
                   </li>
                   <li>
                       <?php echo $this->Html->link('Listar Vagas da Empresa', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
-                  </li>
-                  <li>
-                      <?php echo $this->Html->link('Sobre a vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('title' => 'Sobre a vaga', 'escape' => false));?>
                   </li>
                   <li>
                       <?php echo $this->Html->link('Candidatos à vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('title' => 'Candidatos à vaga', 'escape' => false));?>

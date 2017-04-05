@@ -57,10 +57,11 @@
 	Router::connect('/editar-perfil-empresa', array('controller' => 'empresas', 'action' => 'editarPerfilEmpresa'));
 	Router::connect('/nossas-vagas', array('controller' => 'empresas', 'action' => 'listarVagas'));
 	Router::connect('/nossas-vagas/:page', array('controller' => 'empresas', 'action' => 'listarVagas'), array('pass' => array('page')));
-	Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
+	//Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
 	Router::connect('/detalhes-vaga/:id', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('pass' => array('id')));
 	Router::connect('/candidatar-vaga', array('controller' => 'empresas', 'action' => 'candidatarVaga'));
 	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
+	Router::connect('/candidatos-a-vaga/:id', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id')));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

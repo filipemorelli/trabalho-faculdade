@@ -23,7 +23,7 @@
     <?php
         echo $this->Html->meta(
             'favicon.png',
-            '/marmitex/assets/img/favicon.png',
+            '/template/img/favicon.png',
             array('type' => 'icon')
         );
         echo $this->Html->css(array(

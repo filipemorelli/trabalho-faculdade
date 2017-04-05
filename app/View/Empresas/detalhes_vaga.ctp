@@ -1,13 +1,15 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner2.jpg'); ?>)">
+<header class="page-header bg-img size-lg">
     <div class="container">
-        <div class="header-detail">
-            <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
+        <div class="header-detail descricao-vaga">
+            <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('class' => 'img-vaga', 'alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Vaga']['nome']));?>
             <div class="hgroup">
-                <h1>Senior front-end developer</h1>
-                <h3><a href="#">Google</a></h3> </div>
-            <time datetime="2016-03-03 20:00">2 days ago</time>
+                <h1><?php echo $vaga['Vaga']['nome'] ?></h1>
+                <h3><a href="#"><?php echo $vaga['Empresa']['nome'] ?></a></h3> </div>
+                <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?> </time>
             <hr>
-            <p class="lead">You will help Google build next-generation web applications like Gmail, Google Docs, Google Analytics, and the Google eBookstore and eBook readers. As a Front End Engineer at Google, you will specialize in building responsive and elegant web UIs with AJAX and similar technologies. You may design or work on frameworks for building scalable frontend applications. We are looking for engineers who are passionate about and have experience building leading-edge user experience, including dynamic consumer experiences.</p>
+            <p class="lead">
+                <?php echo $vaga['Vaga']['descricao_rapida'] ?>
+            </p>
             <ul class="details cols-3">
                 <li> <i class="fa fa-map-marker"></i> <span>Menlo Park, CA</span> </li>
                 <li> <i class="fa fa-briefcase"></i> <span>Full time</span> </li>
@@ -29,8 +31,7 @@
                     </li>
                 </ul>
                 <div class="action-buttons">
-                    <a class="btn btn-primary" href="#">Apply with linkedin</a>
-                    <?php echo $this->Html->link('Candidatar', array('controller' => 'empresas', 'action' => 'candidatarVaga'), array('class' => 'btn btn-success'));?>
+                    <?php echo $this->Html->link('Candidatos', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('class' => 'btn btn-info'));?>
                 </div>
             </div>
         </div>
@@ -39,34 +40,7 @@
 <main>
     <section>
         <div class="container">
-            <p>Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to tackle some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From AdWords to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.</p>
-            <br>
-            <h4>Responsibilities</h4>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non.</p>
-            <ul>
-                <li>Build next-generation web applications with a focus on the client side.</li>
-                <li>Redesign UI's, implement new UI's, and pick up Java as necessary.</li>
-                <li>Explore and design dynamic and compelling consumer experiences.</li>
-                <li>Design and build scalable framework for web applications.</li>
-            </ul>
-            <br>
-            <h4>Minimum qualifications</h4>
-            <ul>
-                <li>BA/BS degree in a technical field or equivalent practical experience. </li>
-                <li>2 years of relevant work experience in software development.</li>
-                <li>Programming experience in C, C++ or Java.</li>
-                <li>Experience with AJAX, HTML and CSS.</li>
-            </ul>
-            <br>
-            <h4>Preferred qualifications</h4>
-            <ul>
-                <li>Interest in user interface design.</li>
-                <li>Web application development experience.</li>
-                <li>Experience working on cross-browser platforms.</li>
-                <li>Development experience designing object-oriented JavaScript.</li>
-                <li>Experience with user interface frameworks such as XUL, Flex and XAML.</li>
-                <li>Knowledge of user interface design.</li>
-            </ul>
+            <?php echo $vaga['Vaga']['descricao_completa'] ?>
         </div>
     </section>
 </main>
