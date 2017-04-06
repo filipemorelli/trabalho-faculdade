@@ -51,24 +51,24 @@
             </header>
             <div class="row">
                 <?php
-                    foreach($empresa['Vaga'] as $vaga){
+                    foreach($vagas as $vaga){
                 ?>
                     <div class="col-xs-12">
-                        <div class="item-block<?php echo $vaga['ativo'] == 0 ? ' item-removed': '' ;?>">
+                        <div class="item-block<?php echo $vaga['Vaga']['ativo'] == 0 ? ' item-removed': '' ;?>">
                             <header>
                                 
-                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['id'])); ?>">
-                                    <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['url_imagem'], array('alt' => $vaga['nome']." - ". $empresa['Empresa']['nome'], 'title' => $vaga['nome']." - ". $empresa['Empresa']['nome']));?>
+                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>">
+                                    <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));?>
                                 </a>
                                 <div class="hgroup">
-                                    <h4><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['id'])); ?>"><?php echo $vaga['nome']; ?></a></h4>
-                                    <h5><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['id'])); ?>"><?php echo $empresa['Empresa']['nome']; ?></a></h5> </div>
-                                <div class="header-meta"> <span class="location">Menlo park, CA</span>
-                                    <time datetime="<?php echo $vaga['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['modified'])); ?> </time>
+                                    <h4><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $vaga['Vaga']['nome']; ?></a></h4>
+                                    <h5><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $empresa['Empresa']['nome']; ?></a></h5> </div>
+                                <div class="header-meta"> <span class="location"><?php echo $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span>
+                                    <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?> </time>
                                 </div>
                             </header>
                             <div class="item-body">
-                                <p><?php echo $vaga['descricao_rapida'] ?></p>
+                                <p><?php echo $vaga['Vaga']['descricao_rapida'] ?></p>
                             </div>
                             <footer>
                                 <p class="status"><strong>Status:</strong> Pending approval</p>

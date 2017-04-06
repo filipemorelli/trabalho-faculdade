@@ -60,8 +60,13 @@ class EmpresasController extends AppController
                 'user_id =' => $this->Session->read('Auth.User.id'),
             )
         ));
-        unset($empresa['Empresa']['password']);
+        $vagas = $this->Empresa->Vaga->find('all', array(
+            'conditions' => array(
+                'user_id =' => $this->Session->read('Auth.User.id'),
+            )
+        ));
         $this->set('empresa', $empresa);
+        $this->set('vagas', $vagas);
     }
     /**
     Curriculo visualizado somente pelo usuario e pode ser editado
@@ -185,7 +190,7 @@ class EmpresasController extends AppController
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
         
         $this->Paginator->settings = array(
-            'fields' => array('Vaga.id', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo'),
+            'fields' => array('Vaga.id', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo', 'Endereco.cidade', 'Endereco.estado'),
             'conditions' => array(
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
             ),
