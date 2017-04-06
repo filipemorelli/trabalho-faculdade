@@ -301,10 +301,12 @@ class EmpresasController extends AppController
         $existeEndereco = $this->Empresa->Vaga->Endereco->find('first', array(
             'conditions' => array(
                 'endereco' => $endereco['endereco'],
-                /*'complemento' => $endereco['complemento'],
+                'complemento' => $endereco['complemento'],
                 'bairro' => $endereco['bairro'],
                 'cidade' => $endereco['cidade'],
-                'estado' => $endereco['estado'],*/
+                'estado' => $endereco['estado'],
+                'numero' => $endereco['numero'],
+                'cep' => $endereco['cep'],
             )
         ));
         if (!$existeEndereco) {

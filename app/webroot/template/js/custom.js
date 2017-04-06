@@ -2,6 +2,20 @@
 
 $(function() {
 
+  $(document).on("keyup", ".cep", function(e){
+    e.preventDefault();
+    var valor = $(this).val();
+    if(!isNaN(valor) && valor.length == 8){
+      $.get("http://viacep.com.br/ws/"+valor+"/json/", {}, function(data){
+        $(document).find(".endereco").val(data.logradouro);
+        $(document).find(".bairro").val(data.bairro);
+        $(document).find(".cidade").val(data.localidade);
+        $(document).find(".estado").val(data.uf);
+        $(document).find(".complemento").val(data.complemento);
+        $(document).find(".numero").focus();
+      }, "json");
+    }
+  })
 
 });
 

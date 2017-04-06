@@ -63,14 +63,104 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-6">
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.cep', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Informe o CEP do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control cep',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
                 <?php
                     echo $this->Form->input('Endereco.endereco', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Endereço do local de trabalho',
                         'required' => false,
-                        'class' => 'form-control',
+                        'class' => 'form-control endereco',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.bairro', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Bairro do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control bairro',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.cidade', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Cidade do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control cidade',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.estado', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Estado do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control estado',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.numero', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Número do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control numero',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6">
+                <?php
+                    echo $this->Form->input('Endereco.complemento', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Complemento do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control complemento',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
