@@ -62,9 +62,17 @@
                         </div>
                         <div class="header-meta">
                           <span class="location"><?php echo $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span>
-                          <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho'] ?></span>
+                          <time datetime="<?php echo $vaga['Vaga']['periodo_trabalho'] ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?></time>
                         </div>
                       </header>
+                      <footer>
+                        <div class="text-left">
+                          <p class="status"><strong>Status:</strong> Pending approval</p>
+                        </div>
+                        <div class="text-right">
+                          <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho'] ?></span>
+                        </div>
+                      </footer>
                     </a>
                   </div>
                 <?php
