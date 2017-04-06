@@ -13,7 +13,7 @@
                     <h5>
                     <?php
                         echo $this->Paginator->counter(
-                            'Encontramos <strong>{:count}</strong> de vagas, você está vendo <i>{:page}</i> de <i>{:pages}</i>'
+                            'Encontramos <strong>{:count}</strong> de vagas, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>'
                         );
                     ?>
                 </div>
