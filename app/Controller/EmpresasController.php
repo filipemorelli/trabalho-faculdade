@@ -139,7 +139,7 @@ class EmpresasController extends AppController
                 'recursive' => -1
             ));
             $this->request->data['Vaga']['empresa_id'] = $empresa_id['Empresa']['id'];
-            if ($this->Vaga->save($this->request->data)) {
+            if ($this->salvaRequisicaoVaga($this->request->data)) {
                 $this->Session->setFlash(__('Vaga salvo com sucesso'), 'success');
                 return $this->redirect(array('action' => 'index'));
             }
@@ -150,15 +150,13 @@ class EmpresasController extends AppController
     }
 
     public function editarVaga($id = null){
-        $this->loadModel('Vaga');
-
-        $this->Vaga->id = $id;
-        if(!$this->Vaga->exists()){
+        $this->Empresa->Vaga->id = $id;
+        if(!$this->Empresa->Vaga->exists()){
             //throw new NotFoundException(__('Vaga Inválida'));
            return $this->redirect(array('action' => 'listarVagas'));
         }
 
-        $vaga = $this->Vaga->find('first', array(
+        $vaga = $this->Empresa->Vaga->find('first', array(
             'conditions' => array(
                 'Vaga.id' => $id,
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
@@ -170,7 +168,7 @@ class EmpresasController extends AppController
         
         if ($this->request->is('post') || $this->request->is('put')) {
             $this->request->data['Vaga']['empresa_id'] = $vaga['Empresa']['id'];
-            if ($this->Vaga->save($this->request->data)) {
+            if ($this->salvaRequisicaoVaga($this->request->data)) {
                 $this->Session->setFlash(__('Vaga editado com sucesso'), 'success');
                 return $this->redirect(array('action' => 'listarVagas'));
             }
@@ -283,6 +281,46 @@ class EmpresasController extends AppController
     public function candidadosAVaga(){
         $this->set('title_for_layout', __('Candidatos à vaga'));
     }
+
+    private function salvaRequisicaoVaga($data){
+        $endereco = $data['Endereco'];
+        $vaga = $data['Vaga'];   
+
+        $endereco_id = 0; //mudar para 0 depois dos testes
+             
+        //salvar/atualizar endereco
+        $endereco_id = $this->salvaEndereco($endereco);
+
+        //manipulacao de pedido
+        $vaga['endereco_id'] = $endereco_id;
+        return $this->Empresa->Vaga->save($vaga);
+    }
+
+    private function salvaEndereco($endereco){
+
+        $existeEndereco = $this->Empresa->Vaga->Endereco->find('first', array(
+            'conditions' => array(
+                'endereco' => $endereco['endereco'],
+                /*'complemento' => $endereco['complemento'],
+                'bairro' => $endereco['bairro'],
+                'cidade' => $endereco['cidade'],
+                'estado' => $endereco['estado'],*/
+            )
+        ));
+        if (!$existeEndereco) {
+            $this->Empresa->Vaga->Endereco->create();
+            if ($this->Empresa->Vaga->Endereco->save($endereco)) {
+                return $this->Empresa->Vaga->Endereco->id;
+            } else {
+                //nao chega aqui mas caso chegar
+                 throw new NotFoundException(__('Imposivel cadastro de endereco'));
+            }
+        } else {
+            return $existeEndereco['Endereco']['id'];
+        }
+    }
+
+
 }
 
 ?>

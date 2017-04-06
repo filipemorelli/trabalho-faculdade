@@ -65,7 +65,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <?php
-                    echo $this->Form->input('Vaga.endereco', array(
+                    echo $this->Form->input('Endereco.endereco', array(
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Endereço do local de trabalho',
@@ -151,9 +151,10 @@
                 <?php
                     echo $this->Form->input('Vaga.escolaridade', array(
                         'label' => false,
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control selectpicker',
                         'options' => array(
+                            '0' => 'Indiferente',
                             '1' => 'Ensino Fundamental incompleto',
                             '2' => 'Ensino Fundamental cursando',
                             '3' => 'Ensino Fundamental completo',

@@ -11,6 +11,12 @@ class Vaga extends AppModel {
             'order'        => '',
             'foreignKey'   => 'empresa_id'
         ),
+        'Endereco' => array(
+            'className'    => 'Endereco',
+            'conditions'   => array("Vaga.ativo" => '1'),
+            'order'        => '',
+            'foreignKey'   => 'endereco_id'
+        ),
     );
 
     public $useTable = "vagas_empresa";
@@ -84,6 +90,7 @@ class Vaga extends AppModel {
         'escolaridade' => array(
             'valid' => array(
                 'rule' => array('inList', array(
+                    '0',
                     '1',
                     '2',
                     '3',
