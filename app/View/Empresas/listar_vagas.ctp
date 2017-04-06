@@ -47,7 +47,7 @@
                                 </div>
                             </header>
                             <footer>
-                                <p class="status"><strong>Status:</strong> Pending approval</p>
+                                <p class="status"><strong>Status:</strong> <?php echo $vaga['Vaga']['status']; ?></p>
                                 <div class="action-btn"> 
                                     <?php echo $this->Html->link('Editar', array('controller' => 'empresas', 'action' => 'editarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-gray', 'title' => 'Editar vaga '. $vaga['Vaga']['nome'])) ?>
                                     &nbsp;

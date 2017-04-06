@@ -223,7 +223,7 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-6">
+            <div class="form-group col-xs-12 col-sm-4">
                 <?php
                     echo $this->Form->input('Vaga.experiencia', array(
                         'label' => false,
@@ -237,7 +237,7 @@
                     ));
                 ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
+            <div class="form-group col-xs-12 col-sm-4">
                 <?php
                     echo $this->Form->input('Vaga.escolaridade', array(
                         'label' => false,
@@ -263,6 +263,24 @@
                         ),
                         'empty' => 'Escolaridade',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-certificate"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Vaga.status', array(
+                        'label' => false,
+                        'required' => true,
+                        'class' => 'form-control selectpicker',
+                        'options' => array(
+                            '0' => 'Andamento',
+                            '1' => 'Analise de Curriculos',
+                            '2' => 'Encerrado',
+                        ),
+                        'empty' => 'Escolha o status da Vaga',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-clock-o"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
                     ));

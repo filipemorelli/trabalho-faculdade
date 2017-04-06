@@ -110,6 +110,16 @@ class Vaga extends AppModel {
                 'message' => 'Selecione a quantidade de funcionários',
             )
         ),
+        'status' => array(
+            'valid' => array(
+                'rule' => array('inList', array(
+                    '0' => 'Andamento',
+                    '1' => 'Analise de Curriculos',
+                    '2' => 'Encerrado',
+                )),
+                'message' => 'Selecione o status de andamento da vaga',
+            )
+        ),
         'descricao_completa' => array(
             'regra1' => array(
                 'rule' => array('notBlank'),

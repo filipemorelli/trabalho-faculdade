@@ -1,63 +1,73 @@
-CREATE TABLE `users` (
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`nome` VARCHAR(255) NOT NULL,
-	`senha` VARCHAR(255) NOT NULL,
-	`email` VARCHAR(255) NOT NULL,
-	`tipo` VARCHAR(255) NOT NULL,
-	`created` DATETIME NOT NULL,
-	`modified` DATETIME NOT NULL,
-	`ativo` TINYINT(1) NOT NULL DEFAULT '1',
-	PRIMARY KEY (`id`),
-	UNIQUE INDEX `email` (`email`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+-- Copiando estrutura para tabela job.empresas
+CREATE TABLE IF NOT EXISTS `empresas` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `ramo` varchar(255) NOT NULL,
+  `descricao_rapida` varchar(255) NOT NULL,
+  `qtde_empregados` varchar(255) NOT NULL,
+  `url_imagem` text,
+  `site` text,
+  `aniversario_empresa` date DEFAULT NULL,
+  `telefone` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `url_facebook` varchar(255) DEFAULT NULL,
+  `url_google_plus` varchar(255) DEFAULT NULL,
+  `url_twitter` varchar(255) DEFAULT NULL,
+  `url_github` varchar(255) DEFAULT NULL,
+  `url_instagram` varchar(255) DEFAULT NULL,
+  `url_youtube` varchar(255) DEFAULT NULL,
+  `url_pinterest` varchar(255) DEFAULT NULL,
+  `descricao_completa` text,
+  `user_id` bigint(20) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `FK_empresas_users` (`user_id`),
+  CONSTRAINT `FK_empresas_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `empresas` (
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`nome` VARCHAR(255) NOT NULL,
-	`ramo` VARCHAR(255) NOT NULL,
-	`descricao_rapida` VARCHAR(255) NOT NULL,
-	`qtde_empregados` VARCHAR(255) NOT NULL,
-	`url_imagem` TEXT NULL,
-	`site` TEXT NULL,
-	`aniversario_empresa` DATE NULL DEFAULT NULL,
-	`telefone` VARCHAR(50) NOT NULL,
-	`email` VARCHAR(255) NOT NULL,
-	`url_facebook` VARCHAR(255) NULL DEFAULT NULL,
-	`url_google_plus` VARCHAR(255) NULL DEFAULT NULL,
-	`url_twitter` VARCHAR(255) NULL DEFAULT NULL,
-	`url_github` VARCHAR(255) NULL DEFAULT NULL,
-	`url_instagram` VARCHAR(255) NULL DEFAULT NULL,
-	`url_youtube` VARCHAR(255) NULL DEFAULT NULL,
-	`url_pintrest` VARCHAR(255) NULL DEFAULT NULL,
-	`descricao_completa` TEXT NULL,
-	`created` DATETIME NOT NULL,
-	`modified` DATETIME NOT NULL,
-	`ativo` TINYINT(1) NOT NULL DEFAULT '1',
-	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+-- Exportação de dados foi desmarcado.
 
-CREATE TABLE `enderecos` (
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`bairro` VARCHAR(255) NULL DEFAULT NULL,
-	`cep` VARCHAR(9) NULL DEFAULT NULL,
-	`cidade` VARCHAR(255) NULL DEFAULT NULL,
-	`created` DATETIME NULL,
-	`endereco` VARCHAR(255) NULL DEFAULT NULL,
-	`endereco_completo` VARCHAR(255) NULL DEFAULT NULL,
-	`estado` VARCHAR(2) NULL DEFAULT NULL,
-	`latitude` VARCHAR(255) NULL DEFAULT NULL,
-	`longitude` VARCHAR(255) NULL DEFAULT NULL,
-	`modified` DATETIME NULL,
-	`numero` VARCHAR(255) NULL DEFAULT NULL,
-	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
 
+-- Copiando estrutura para tabela job.enderecos
+CREATE TABLE IF NOT EXISTS `enderecos` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `bairro` varchar(255) DEFAULT NULL,
+  `cep` varchar(9) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `endereco_completo` varchar(255) DEFAULT NULL,
+  `estado` varchar(2) DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportação de dados foi desmarcado.
+
+
+-- Copiando estrutura para tabela job.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportação de dados foi desmarcado.
+
+
+-- Copiando estrutura para tabela job.vagas_empresa
 CREATE TABLE IF NOT EXISTS `vagas_empresa` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
@@ -69,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `vagas_empresa` (
   `horario_trabalho` varchar(50) NOT NULL,
   `experiencia` varchar(50) NOT NULL,
   `escolaridade` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `descricao_completa` text NOT NULL,
   `empresa_id` bigint(20) NOT NULL,
   `created` datetime NOT NULL,

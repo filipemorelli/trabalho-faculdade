@@ -77,7 +77,30 @@
                                 <p><?php echo $vaga['Vaga']['descricao_rapida'] ?></p>
                             </div>
                             <footer>
-                                <p class="status"><strong>Status:</strong> Pending approval</p>
+                                <div class="text-left">
+                                    <p class="status"><strong>Periodo de trabalho:</strong> <?php echo $vaga['Vaga']['periodo_trabalho']; ?></p>
+                                    </div>
+                                    <div class="text-right">
+                                    <?php
+                                        $classCss = '';
+                                        $status = '';
+                                        switch ($vaga['Vaga']['status']) {
+                                        case '0':
+                                            $classCss = 'info';
+                                            $status = "Andamento";
+                                            break;
+                                        case '1':
+                                            $classCss = 'warning';
+                                            $status = "Análise de Currículos";
+                                            break;
+                                        case '2':
+                                            $classCss = 'danger';
+                                            $status = "Encerrado";
+                                            break;
+                                        }
+                                    ?>
+                                    <span class="label label-<?php echo $classCss;?>"><?php echo $status; ?></span>
+                                </div>
                             </footer>
                         </div>
                     </div>
