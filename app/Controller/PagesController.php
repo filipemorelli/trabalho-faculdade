@@ -49,8 +49,21 @@ class PagesController extends AppController {
         }
     }
 
-	public function index(){
+	public function index(){ 
 		$this->set('title_for_layout', __('Bem vindo'));
+        $this->loadModel('Vaga');
+        $vagas = $this->Vaga->find("all", array(
+            'conditions' => array(
+                'Vaga.ativo' => 1,
+            ),
+            'order' => array(
+                'Vaga.modified' => 'desc',
+                'Vaga.created' => 'desc',
+                'Vaga.id' => 'desc'
+            ),
+            'limit' => '10'
+        ));
+        $this->set('vagas', $vagas);
 	}
 
 	public function sobre(){

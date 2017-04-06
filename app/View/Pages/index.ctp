@@ -3,7 +3,7 @@
       <div class="container">
         <div class="col-xs-12">
           <br><br>
-          <h2>Nós oferecemos <mark>1,259</mark> vagas de emprego agora!</h2>
+          <h2>Nós oferecemos <mark><?php echo count($vagas);?></mark> vagas de emprego agora!</h2>
           <h5 class="font-alt">Encontre sua vaga em poucos minutos.</h5>
           <br><br><br>
           <form class="header-job-search">
@@ -36,103 +36,40 @@
       <section>
         <div class="container">
           <header class="section-header">
-            <span>Latest</span>
-            <h2>Vagas Recentes</h2>
+            <span>Vagas</span>
+            <h2>Ultimas Vagas</h2>
           </header>
 
           <div class="row">
 
-            <!-- Job item -->
-            <div class="col-xs-12">
-              <a class="item-block" href="job-detail.htm">
-                <header>
-                  <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => 'Logo Google'));?>
-                  <div class="hgroup">
-                    <h4>Senior front-end developer</h4>
-                    <h5>Google</h5>
-                  </div>
-                  <div class="header-meta">
-                    <span class="location">Menlo park, CA</span>
-                    <span class="label label-success">Full-time</span>
-                  </div>
-                </header>
-              </a>
-            </div>
-            <!-- END Job item -->
+                <?php
+                    foreach($vagas as $vaga){
+                ?>
 
-
-            <!-- Job item -->
-            <div class="col-xs-12">
-              <a class="item-block" href="job-detail.htm">
-                <header>
-                    <?php echo $this->Html->image('/template/img/logo-linkedin.png', array('alt' => 'Logo Linkedin'));?>
-                  <div class="hgroup">
-                    <h4>Software Engineer (Entry or Senior)</h4>
-                    <h5>Linkedin</h5>
+                  <div class="col-xs-12">
+                    <a class="item-block" href="#">
+                      <header>
+                        <?php
+                          if($vaga['Vaga']['url_imagem'] != ""){
+                            echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                          } else{
+                            echo $this->Html->image('/template/img/sem-imagem.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                          }
+                        ?>
+                        <div class="hgroup">
+                          <h4><?php echo $vaga['Vaga']['nome']; ?></h4>
+                          <h5><?php echo $vaga['Empresa']['nome']; ?></h5>
+                        </div>
+                        <div class="header-meta">
+                          <span class="location"><?php echo $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span>
+                          <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho'] ?></span>
+                        </div>
+                      </header>
+                    </a>
                   </div>
-                  <div class="header-meta">
-                    <span class="location">Livermore, CA</span>
-                    <span class="label label-warning">Part-time</span>
-                  </div>
-                </header>
-              </a>
-            </div>
-            <!-- END Job item -->
-
-            <!-- Job item -->
-            <div class="col-xs-12">
-              <a class="item-block" href="job-detail.htm">
-                <header>
-                    <?php echo $this->Html->image('/template/img/logo-envato.png', array('alt' => 'Logo envato'));?>
-                  <div class="hgroup">
-                    <h4>Full Stack Web Developer</h4>
-                    <h5>Envato</h5>
-                  </div>
-                  <div class="header-meta">
-                    <span class="location">San Francisco, CA</span>
-                    <span class="label label-info">Freelance</span>
-                  </div>
-                </header>
-              </a>
-            </div>
-            <!-- END Job item -->
-
-            <!-- Job item -->
-            <div class="col-xs-12">
-              <a class="item-block" href="job-detail.htm">
-                <header>
-                  <?php echo $this->Html->image('/template/img/logo-facebook.png', array('alt' => 'Logo Facebook'));?>
-                  <div class="hgroup">
-                    <h4>Web Applications Developer</h4>
-                    <h5>Facebook</h5>
-                  </div>
-                  <div class="header-meta">
-                    <span class="location">Lexington, MA</span>
-                    <span class="label label-danger">Internship</span>
-                  </div>
-                </header>
-              </a>
-            </div>
-            <!-- END Job item -->
-
-            <!-- Job item -->
-            <div class="col-xs-12">
-              <a class="item-block" href="job-detail.htm">
-                <header>
-                    <?php echo $this->Html->image('/template/img/logo-microsoft.jpg', array('alt' => 'Logo Microsoft'));?>
-                  <div class="hgroup">
-                    <h4>Sr. SQL Server Developer</h4>
-                    <h5>Microsoft</h5>
-                  </div>
-                  <div class="header-meta">
-                    <span class="location">Palo Alto, CA</span>
-                    <span class="label label-success">Remote</span>
-                  </div>
-                </header>
-              </a>
-            </div>
-            <!-- END Job item -->
-
+                <?php
+                    }
+                ?>
           </div>
 
           <br><br>
