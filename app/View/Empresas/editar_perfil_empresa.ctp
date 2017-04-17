@@ -119,7 +119,7 @@
                                 'label' => false,
                                 'autofocus' => false,
                                 'type' => 'customDate',
-                                'placeholder' => 'Informe a data de aniversário da da empresa',
+                                'placeholder' => 'Informe a data de aniversário da empresa',
                                 'required' => false,
                                 'class' => 'form-control',
                                 'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>',

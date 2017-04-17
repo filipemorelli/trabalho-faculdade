@@ -63,15 +63,16 @@ class Trabalhador extends AppModel {
                 'allowEmpty' => true,
             ),
         ),
-        'salario' => array(
-            'rule' => array('money', 'left'),
-            'message' => 'Digite o salário que pretende se quiser.',
-            'allowEmpty' => true,
-        ),
         'telefone' => array(
             'required' => array(
                 'rule' => array('notBlank'),
                 'message' => 'Digite o seu telefone.'
+            )
+        ),
+        'email' => array(
+            'required' => array(
+                'rule' => array('notBlank'),
+                'message' => 'Digite o seu email.'
             )
         ),
         'data_nascimento' => array(

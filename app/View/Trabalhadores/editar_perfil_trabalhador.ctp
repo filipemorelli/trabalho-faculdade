@@ -73,35 +73,190 @@
         <hr class="hr-lg">
         <h6>Informações basicas</h6>
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                    <input type="text" class="form-control" placeholder="Location, e.g. Melon Park, CA"> </div>
+            <div class="form-group col-xs-12 col-sm-3">
+                <?php
+                    echo $this->Form->input('Trabalhadores.telefone', array(
+                        'label' => false,
+                        'type' => 'tel',
+                        'autofocus' => false,
+                        'placeholder' => 'Informe o Telefone para contato',
+                        'required' => false,
+                        'class' => 'form-control cep',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-phone"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                    <input type="text" class="form-control" placeholder="Website address"> </div>
+            <div class="form-group col-xs-12 col-sm-3">
+                <?php
+                    echo $this->Form->input('Trabalhadores.email', array(
+                        'label' => false,
+                        'type' => 'email',
+                        'autofocus' => false,
+                        'placeholder' => 'Informe o Email para contato',
+                        'required' => false,
+                        'class' => 'form-control cep',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-                    <input type="text" class="form-control" placeholder="Salary, e.g. 85"> <span class="input-group-addon">Per hour</span> </div>
+            <div class="form-group col-xs-12 col-sm-3">
+                <?php
+                    echo $this->MyForm->input('Trabalhadores.data_nascimento', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'type' => 'customDate',
+                        'placeholder' => 'Informe sua data de aniversário',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    <input type="text" class="form-control" placeholder="Age"> <span class="input-group-addon">Years old</span> </div>
+            <div class="form-group col-xs-12 col-sm-3">
+                <?php
+                    echo $this->Form->input('Trabalhadores.site', array(
+                        'label' => false,
+                        'type' => 'url',
+                        'autofocus' => false,
+                        'placeholder' => 'Informe o seu site se tiver',
+                        'required' => false,
+                        'class' => 'form-control cep',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-globe"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" class="form-control" placeholder="Phone number"> </div>
+        </div>
+
+        <hr class="hr-lg">
+        <h6>Endereco</h6>
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.cep', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Informe o CEP do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control cep',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
-                <div class="input-group input-group-sm"> <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="text" class="form-control" placeholder="Email address"> </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.endereco', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Endereço do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control endereco',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.bairro', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Bairro do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control bairro',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.cidade', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Cidade do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control cidade',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.estado', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Estado do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control estado',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Endereco.numero', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Número do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control numero',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <?php
+                    echo $this->Form->input('Endereco.complemento', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Complemento do local de trabalho',
+                        'required' => false,
+                        'class' => 'form-control complemento',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
             </div>
         </div>
         <hr class="hr-lg">
-        <h6>Tags list</h6>
+        <h6>Habilidades</h6>
         <div class="form-group">
-            <input type="text" value="HTML,CSS,Javascript" data-role="tagsinput" placeholder="Tag name"> <span class="help-block">Write tag name and press enter</span>
+            <?php
+                echo $this->Form->input('Trabalhadores.habilidades', array(
+                    'label' => false,
+                    'autofocus' => false,
+                    'placeholder' => 'Digite sua Habilidade',
+                    'required' => false,
+                    'data-role' => "tagsinput",
+                    'after' => '<span class="help-block">Digite a habilidade e pressione a tecla Enter</span>',
+                    'error' => array('attributes' => array( 'class' => 'text-danger')),
+                ));
+            ?>
         </div>
         <?php
         /*
@@ -122,52 +277,64 @@
 <main>
     <section>
         <div class="container">
-            <header class="section-header"> <span>Get connected</span>
-                <h2>Social media</h2> </header>
+            <header class="section-header">
+                <h2>Redes Sociais</h2> 
+            </header>
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-4">
                     <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-dribbble"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pinterest"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
+                        <?php
+                            echo $this->Form->input('Trabalhadores.url_linkedin', array(
+                                'label' => false,
+                                'type' => 'url',
+                                'autofocus' => false,
+                                'placeholder' => 'Digite a url do seu linkedin se quiser.',
+                                'required' => false,
+                                'class' => 'form-control',
+                                'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-linkedin"></i></span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-github"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-youtube"></i></span>
-                            <input type="text" class="form-control" placeholder="Profile URL"> </div>
-                    </div>
+                <div class="col-xs-12 col-sm-4">
+                    <?php
+                        echo $this->Form->input('Trabalhadores.url_facebook', array(
+                            'label' => false,
+                            'type' => 'url',
+                            'autofocus' => false,
+                            'placeholder' => 'Digite a url do seu facebook se quiser.',
+                            'required' => false,
+                            'class' => 'form-control',
+                            'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-facebook"></i></span>',
+                            'after' => '</div>',
+                            'error' => array('attributes' => array( 'class' => 'text-danger')),
+                        ));
+                    ?>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <?php
+                        echo $this->Form->input('Trabalhadores.url_google_plus', array(
+                            'label' => false,
+                            'type' => 'url',
+                            'autofocus' => false,
+                            'placeholder' => 'Digite a url do seu Google + se quiser.',
+                            'required' => false,
+                            'class' => 'form-control',
+                            'before' => '<div class="input-group"><span class="input-group-addon"><i class="fa fa-google-plus"></i></span>',
+                            'after' => '</div>',
+                            'error' => array('attributes' => array( 'class' => 'text-danger')),
+                        ));
+                    ?>
                 </div>
             </div>
         </div>
     </section>
     <section class=" bg-alt">
         <div class="container">
-            <header class="section-header"> <span>Latest degrees</span>
-                <h2>Education</h2>
+            <header class="section-header">
+                <h2>Escolaridade</h2>
             </header>
             <div class="row">
                 <div class="col-xs-12">

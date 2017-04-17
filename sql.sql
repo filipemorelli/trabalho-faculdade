@@ -97,7 +97,6 @@ CREATE TABLE `trabalhadores` (
 	`descricao_rapida` VARCHAR(255) NULL DEFAULT NULL,
 	`site` TEXT NULL,
 	`nome` VARCHAR(50) NULL DEFAULT NULL,
-	`salario` VARCHAR(45) NULL DEFAULT NULL,
 	`telefone` VARCHAR(45) NULL DEFAULT NULL,
 	`email` VARCHAR(255) NULL DEFAULT NULL,
 	`data_nascimento` DATE NULL DEFAULT NULL,
