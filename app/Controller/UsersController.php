@@ -56,7 +56,7 @@ class UsersController extends AppController
     /**
     Perfil visualizados por empresas e outros usuarios
     */
-    public function perfil(){
+    public function perfil($id = null){
         $this->set('title_for_layout', __('Vizualizar Perfil'));
     }
     /**
@@ -79,7 +79,6 @@ class UsersController extends AppController
     public function historicoCandidaturas(){
         $this->set('title_for_layout', __('Histórico currículos'));
     }
-
 
     public function edit($id = null)
     {

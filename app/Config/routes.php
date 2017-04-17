@@ -45,6 +45,9 @@
 	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
 	Router::connect('/curriculos', array('controller' => 'users', 'action' => 'curriculosPerfil'));
 	Router::connect('/historico-de-candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'));
+
+	/*Trabalhadores*/
+	Router::connect('/editar-perfil-trabalhador', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'), array('pass' => array('id')));
 	
 
 	/*Recursos para as empresas*/

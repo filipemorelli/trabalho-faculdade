@@ -1,25 +1,26 @@
 <?php
 App::uses('AuthComponent', 'Controller/Component');
 
-class Vaga extends AppModel {
+class Trabalhador extends AppModel {
+    public $name = 'Trabalhadore';
 
-    public $displayField = 'nome';
+    public $displayField = 'profissao';
     public $belongsTo = array(
-        'Empresa' => array(
-            'className'    => 'Empresa',
-            'conditions'   => array("Empresa.ativo" => '1'),
+        'User' => array(
+            'className'    => 'User',
+            'conditions'   => array("User.ativo" => '1'),
             'order'        => '',
-            'foreignKey'   => 'empresa_id'
+            'foreignKey'   => 'user_id'
         ),
         'Endereco' => array(
             'className'    => 'Endereco',
-            'conditions'   => array("Vaga.ativo" => '1'),
+            'conditions'   => array("User.ativo" => '1'),
             'order'        => '',
             'foreignKey'   => 'endereco_id'
         ),
     );
 
-    public $useTable = "vagas_empresa";
+    public $useTable = "trabalhadores";
 
     public $validate = array(
         'url_imagem' => array(
@@ -32,13 +33,19 @@ class Vaga extends AppModel {
         'nome' => array(
             'required' => array(
                 'rule' => array('notBlank'),
-                'message' => 'Digite um nome para o usuário'
+                'message' => 'Digite o seu nome'
+            )
+        ),
+        'profissao' => array(
+            'required' => array(
+                'rule' => array('notBlank'),
+                'message' => 'Digite o nome da sua profissão'
             )
         ),
         'descricao_rapida' => array(
             'regra1' => array(
                 'rule' => array('notBlank'),
-                'message' => 'Digite a descrição de sua empresa!'
+                'message' => 'Digite a descrição de seu perfil!'
             ),
             'regra2' => array(
                 'rule' => array('minLength', 10),
@@ -52,73 +59,55 @@ class Vaga extends AppModel {
         'site' => array(
             'notEmpty' => array(
                 'rule' => array('url'),
+                'message' => 'Digite o seu site se tiver!',
+                'allowEmpty' => true,
+            ),
+        ),
+        'salario' => array(
+            'rule' => array('money', 'left'),
+            'message' => 'Digite o salário que pretende se quiser.',
+            'allowEmpty' => true,
+        ),
+        'telefone' => array(
+            'required' => array(
+                'rule' => array('notBlank'),
+                'message' => 'Digite o seu telefone.'
+            )
+        ),
+        'data_nascimento' => array(
+            'notEmpty' => array(
+                'rule' => array('date'),
+                'allowEmpty' => true,
+                'message' => 'Digite a data de seu nascimento!',
+            ),
+        ),
+        'habilidades' => array(
+            'notEmpty' => array(
+                'rule' => array('date'),
+                'allowEmpty' => true,
+                'message' => 'Digite ao menos 1 habilidade!',
+            ),
+        ),
+        'url_linkedin' => array(
+            'notEmpty' => array(
+                'rule' => array('url'),
                 'message' => 'Digite o site da empresa!',
                 'allowEmpty' => true,
             ),
         ),
-        'periodo_trabalho' => array(
-            'valid' => array(
-                'rule' => array('inList', array(
-                    'integral',
-                    'meio-horário',
-                    'diaria',
-                    'estagio',
-                    'frelancer',
-                    'remoto',
-                    'outro'
-                )),
-                'message' => 'Selecione o periodo de trabalho da vaga',
-            )
+        'url_facebook' => array(
+            'notEmpty' => array(
+                'rule' => array('url'),
+                'message' => 'Digite o site da empresa!',
+                'allowEmpty' => true,
+            ),
         ),
-        'salario' => array(
-            'rule' => array('money', 'left'),
-            'message' => 'Digite o salário do cargo.',
-            'allowEmpty' => true,
-        ),
-        'horario_trabalho' => array(
-            'required' => array(
-                'rule' => array('notBlank'),
-                'message' => 'Digite o horário de trabalho'
-            )
-        ),
-        'experiencia' => array(
-            'required' => array(
-                'rule' => array('notBlank'),
-                'message' => 'Digite o experiência de trabalho'
-            )
-        ),
-        'escolaridade' => array(
-            'valid' => array(
-                'rule' => array('inList', array(
-                    '0',
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                )),
-                'message' => 'Selecione a quantidade de funcionários',
-            )
-        ),
-        'status' => array(
-            'valid' => array(
-                'rule' => array('inList', array(
-                    '0' => 'Andamento',
-                    '1' => 'Analise de Curriculos',
-                    '2' => 'Encerrado',
-                )),
-                'message' => 'Selecione o status de andamento da vaga',
-            )
+        'url_google_plus' => array(
+            'notEmpty' => array(
+                'rule' => array('url'),
+                'message' => 'Digite o site da empresa!',
+                'allowEmpty' => true,
+            ),
         ),
         'descricao_completa' => array(
             'regra1' => array(
@@ -177,7 +166,7 @@ class Vaga extends AppModel {
     private function upload($imagem = array(), $dir = 'img')
     {
         
-        $dir = WWW_ROOT.'upload'.DS.$dir.DS.'vaga'.DS;
+        $dir = WWW_ROOT.'upload'.DS.$dir.DS.'trabalhador'.DS;
 
         if(($imagem['error']!=0) and ($imagem['size']==0)) {
             throw new NotImplementedException('Alguma coisa deu errado, o upload retornou erro '.$imagem['error'].' e tamanho '.$imagem['size']);

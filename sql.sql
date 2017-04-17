@@ -89,3 +89,33 @@ CREATE TABLE IF NOT EXISTS `vagas_empresa` (
   KEY `FK_vagas_empresa_empresas` (`empresa_id`),
   CONSTRAINT `FK_vagas_empresa_empresas` FOREIGN KEY (`empresa_id`) REFERENCES `empresas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `trabalhadores` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`url_imagem` TEXT NULL,
+	`profissao` VARCHAR(45) NULL DEFAULT NULL,
+	`descricao_rapida` VARCHAR(255) NULL DEFAULT NULL,
+	`site` TEXT NULL,
+	`nome` VARCHAR(50) NULL DEFAULT NULL,
+	`salario` VARCHAR(45) NULL DEFAULT NULL,
+	`telefone` VARCHAR(45) NULL DEFAULT NULL,
+	`email` VARCHAR(255) NULL DEFAULT NULL,
+	`data_nascimento` DATE NULL DEFAULT NULL,
+	`habilidades` TEXT NULL,
+	`url_linkedin` TEXT NULL,
+	`url_facebook` TEXT NULL,
+	`url_google_plus` TEXT NULL,
+	`endereco_id` BIGINT(20) NOT NULL,
+	`user_id` BIGINT(20) NOT NULL,
+	`created` DATETIME NOT NULL,
+	`modified` DATETIME NOT NULL,
+	`ativo` TINYINT(1) NULL DEFAULT '1',
+	PRIMARY KEY (`id`),
+	INDEX `FK_trabalhadores_users` (`user_id`),
+	INDEX `FK_trabalhadores_enderecos` (`endereco_id`),
+	CONSTRAINT `FK_trabalhadores_enderecos` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`id`),
+	CONSTRAINT `FK_trabalhadores_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;

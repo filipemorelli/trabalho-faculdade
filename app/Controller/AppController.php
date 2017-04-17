@@ -114,7 +114,7 @@ class AppController extends Controller {
     private function permissaoTrabalhador(){
         $controller = $this->request->params['controller'];
         $action = $this->request->params['action'];
-        if($controller === "users"){
+        if($controller === "trabalhadores"){
             switch ($action) {
                 case 'perfil':
                     return true;
@@ -126,6 +126,9 @@ class AppController extends Controller {
                     return true;
                     break;
                 case 'historicoCandidaturas':
+                    return true;
+                    break;
+                case 'editarPerfilTrabalhador':
                     return true;
                     break;
                 default:
