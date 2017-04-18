@@ -25,6 +25,7 @@ class Trabalhador extends AppModel {
     public $validate = array(
         'url_imagem' => array(
             'regra1_extensao' => array(
+                'on' => 'create',
                 'rule' => array('extension', array('jpg', 'jpeg', 'png', 'gif')),
                 'message' => 'Somente arquivos JPG, PNG e GIF',
                 'allowEmpty' => true

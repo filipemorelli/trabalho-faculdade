@@ -13,7 +13,6 @@ class Vaga extends AppModel {
         ),
         'Endereco' => array(
             'className'    => 'Endereco',
-            'conditions'   => array("Vaga.ativo" => '1'),
             'order'        => '',
             'foreignKey'   => 'endereco_id'
         ),
@@ -24,6 +23,7 @@ class Vaga extends AppModel {
     public $validate = array(
         'url_imagem' => array(
             'regra1_extensao' => array(
+                'on' => 'create',
                 'rule' => array('extension', array('jpg', 'jpeg', 'png', 'gif')),
                 'message' => 'Somente arquivos JPG, PNG e GIF',
                 'allowEmpty' => true
@@ -113,9 +113,9 @@ class Vaga extends AppModel {
         'status' => array(
             'valid' => array(
                 'rule' => array('inList', array(
-                    '0' => 'Andamento',
-                    '1' => 'Analise de Curriculos',
-                    '2' => 'Encerrado',
+                    '0',// => 'Andamento',
+                    '1',// => 'Analise de Curriculos',
+                    '2',// => 'Encerrado',
                 )),
                 'message' => 'Selecione o status de andamento da vaga',
             )
@@ -138,12 +138,6 @@ class Vaga extends AppModel {
     );
     
     public $errorMessage = '';
-    public function beforeValidate($options = array())
-    {
-        if($this->data['Vaga']['url_imagem']['size'] === 0){
-            unset($this->data['Vaga']['url_imagem']);
-        }
-    }
 
     public function beforeSave($options = array())
     {
@@ -256,9 +250,9 @@ class Vaga extends AppModel {
         $arquivo->close();
     }
 
-    public function inativar($vaga){     
+    public function inativar($vaga){
         if (!empty($vaga) && $vaga['Vaga']['ativo'] == 1) {
-            $vaga['Vaga']['ativo'] = 0;
+            $vaga['Vaga']['ativo'] = false;
             if ($this->save($vaga)) {
                 return true;
             }

@@ -40,7 +40,7 @@
                         'autofocus' => false,
                         'placeholder' => 'Rápida descrição sobre vaga',
                         'required' => true,
-                        'maxlength' => 10,
+                        'minLength' => 10,
                         'class' => 'form-control',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
                     ));
@@ -326,6 +326,13 @@
                 <h2>Enviar agora</h2>
                 <p>Revise suas informações mais uma vez e pressione o botão abaixo para colocar sua empresa online.</p>
             </header>
+            <div class="text-center">
+                <?php
+                    echo $this->Form->input('Vaga.ativo', array(
+                        'label' => array('class' => 'small_text','text'=>'Vaga ficará ativa?'),
+                    ));
+                ?>
+            </div>
             <p class="text-center">
                 <button class="btn btn-success btn-xl btn-round"><i class="fa fa-send"></i> Salvar Dados</button>
             </p>
