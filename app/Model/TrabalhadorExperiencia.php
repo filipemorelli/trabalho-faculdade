@@ -1,7 +1,7 @@
 <?php
 App::uses('AuthComponent', 'Controller/Component');
 
-class TrabalhadorEscolaridade extends AppModel {
+class TrabalhadorExperiencia extends AppModel {
 
     public $belongsTo = array(
         'Trabalhadores' => array(
@@ -15,39 +15,16 @@ class TrabalhadorEscolaridade extends AppModel {
     public $useTable = "escolaridade";
 
     public $validate = array(
-        'instituicao' => array(
+        'cargo' => array(
             'required' => array(
                 'rule' => array('notBlank'),
                 'message' => 'Digite a instituição.'
             )
         ),
-        'nivel' => array(
-            'valid' => array(
-                'rule' => array('inList', array(
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                    '13',
-                    '14',
-                    '15',
-                )),
-                'message' => 'Selecione a escolaridade',
-            )
-        ),
-        'curso' => array(
-            'regra1' => array(
+        'instituicao' => array(
+            'required' => array(
                 'rule' => array('notBlank'),
-                'message' => 'Digite o nome do curso.',
-                'allowEmpty' => true,
+                'message' => 'Digite a instituição.'
             )
         ),
         'data_inicio' => array(
@@ -63,7 +40,7 @@ class TrabalhadorEscolaridade extends AppModel {
                 'allowEmpty' => true,
             )
         ),
-        'descricao_rapida' => array(
+        'descricao' => array(
             'regra1' => array(
                 'rule' => array('notBlank'),
                 'message' => 'Digite a descrição de seu perfil!'

@@ -63,6 +63,7 @@
                                     'type' => 'textarea',
                                     'rows' => 3,
                                     'cols' => 30,
+                                    'minLength' => '10',
                                     'placeholder' => 'Descreva sua empresa de forma rápida',
                                     'required' => false,
                                     'class' => 'form-control',

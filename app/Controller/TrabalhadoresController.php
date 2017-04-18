@@ -31,7 +31,7 @@ class TrabalhadoresController extends AppController
     {
         $this->ForcaCriarPerfil();
         if(!parent::isAuth()){
-            $this->redirect(array("controller" => "pages", "action" => "index"));
+            $this->redirect(array("controller" => "pages", "action" => "editarPerfilTrabalhador"));
         }
         $tipoUsuario = $this->Session->read('Auth.User.tipo');
         switch ($tipoUsuario) {
@@ -53,6 +53,40 @@ class TrabalhadoresController extends AppController
     */
     public function editarPerfilTrabalhador(){
         $this->set('title_for_layout', __('Editar Perfil'));
+
+        if ($this->request->is(array('post', 'put'))) {
+            // verifica se existe perfil criado
+
+            $trabalhadorId = $this->Trabalhadores->find('first', array(
+                'fields' => array('id'),
+                'conditions' => array(
+                    'user_id =' => $this->Session->read('Auth.User.id'),
+                ),
+                'recursive' => -1
+            ));
+            if(!isset($trabalhadorId['Trabalhadores']['id'])){
+                $this->Trabalhadores->create(); //cria perfil
+            } else {
+                $this->request->data['Trabalhadores']['id'] = $trabalhadorId['Trabalhadores']['id'];
+            }
+            //coloca o user_id para vincular a conta
+            $this->request->data['Trabalhadores']['user_id'] = $this->Session->read('Auth.User.id');
+            //salva ou atualiza
+            if ($this->Trabalhadores->save($this->request->data)) {
+                $this->Session->setFlash(__('Perfil salvo com sucesso'), 'success');
+                return $this->redirect(array('action' => 'editarPerfilTrabalhador'));
+            }
+            $this->Session->setFlash(
+                __('Perfil não pode ser salvo.'), 'error'
+            );
+        } else {
+            $this->request->data = $this->Trabalhador->find('first', array(
+                'conditions' => array(
+                    'user_id =' => $this->Session->read('Auth.User.id')
+                )
+            ));
+            unset($this->request->data['Trabalhadores']['password']);
+        }
     }
 
 }

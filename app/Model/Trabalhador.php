@@ -12,11 +12,13 @@ class Trabalhador extends AppModel {
             'order'        => '',
             'foreignKey'   => 'user_id'
         ),
-        'Endereco' => array(
-            'className'    => 'Endereco',
-            'conditions'   => array("User.ativo" => '1'),
+    );
+
+    public $hasMany = array(
+        'TrabalhadorEscolaridade' => array(
+            'className'    => 'TrabalhadorEscolaridade',
             'order'        => '',
-            'foreignKey'   => 'endereco_id'
+            'foreignKey'   => 'trabalhador_id'
         ),
     );
 

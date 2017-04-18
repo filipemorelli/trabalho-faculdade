@@ -82,7 +82,7 @@
                       <?php echo $this->Html->link('Currículos', array('controller' => 'users', 'action' => 'curriculosPerfil'), array('title' => 'Currículo', 'escape' => false));?>
                   </li>
                   <li>
-                      <?php echo $this->Html->link('Histórico de candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'), array('title' => 'Currículo', 'escape' => false));?>
+                      <?php echo $this->Html->link('Histórico de candidaturas', array('controller' => 'trabalhadores', 'action' => 'historicoCandidaturas'), array('title' => 'Currículo', 'escape' => false));?>
                   </li>
                   <li>
                       <?php echo $this->Html->link('<i class="fa fa-sign-out"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('title' => 'Sair', 'escape' => false));?>
