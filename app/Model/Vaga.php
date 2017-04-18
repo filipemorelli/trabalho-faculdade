@@ -107,7 +107,7 @@ class Vaga extends AppModel {
                     '14',
                     '15',
                 )),
-                'message' => 'Selecione a quantidade de funcionários',
+                'message' => 'Selecione a escolaridade',
             )
         ),
         'status' => array(
