@@ -64,7 +64,7 @@
             <?php echo $this->Html->link('<i class="fa fa-plus"></i> Add Vaga', array('controller' => 'empresas', 'action' => 'adicionarVaga'), array('title' => 'Add Vaga', 'escape' => false));?>
           </li>
           <li>
-            <?php echo $this->Html->link('<i class="fa fa-search"></i> Nossas Vagas', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
+            <?php echo $this->Html->link('<i class="fa fa-book"></i> Nossas Vagas', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
           </li>
           <li>
             <?php echo $this->Html->link('<i class="fa fa-search"></i> Profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
