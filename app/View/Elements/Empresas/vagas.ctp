@@ -62,6 +62,8 @@
                 ?>
             </div>
         </div>
+        <hr class="hr-lg">
+        <h6>Endereço</h6>
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4">
                 <?php
@@ -153,7 +155,7 @@
         </div>
 
         <div class="row">
-                        <div class="form-group col-xs-12 col-sm-6">
+            <div class="form-group col-xs-12">
                 <?php
                     echo $this->Form->input('Endereco.complemento', array(
                         'label' => false,
@@ -167,7 +169,26 @@
                     ));
                 ?>
             </div>
-            <div class="form-group col-xs-12 col-sm-6">
+        </div>
+
+        <hr class="hr-lg">
+        <h6>Detalhes sobre a Vaga</h6>
+        <div class="row">
+            <div class="form-group col-xs-12 col-sm-4">
+                <?php
+                    echo $this->Form->input('Vaga.salario', array(
+                        'label' => false,
+                        'autofocus' => false,
+                        'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 2000,00 - 3000,00)',
+                        'required' => false,
+                        'class' => 'form-control',
+                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>',
+                        'after' => '</div>',
+                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                    ));
+                ?>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4">
                 <?php
                     echo $this->Form->input('Vaga.periodo_trabalho', array(
                         'label' => false,
@@ -189,24 +210,7 @@
                     ));
                 ?>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-xs-12 col-sm-6">
-                <?php
-                    echo $this->Form->input('Vaga.salario', array(
-                        'label' => false,
-                        'autofocus' => false,
-                        'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 2000,00 - 3000,00)',
-                        'required' => false,
-                        'class' => 'form-control',
-                        'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>',
-                        'after' => '</div>',
-                        'error' => array('attributes' => array( 'class' => 'text-danger')),
-                    ));
-                ?>
-            </div>
-            <div class="form-group col-xs-12 col-sm-6">
+            <div class="form-group col-xs-12 col-sm-4">
                 <?php
                     echo $this->Form->input('Vaga.horario_trabalho', array(
                         'label' => false,
