@@ -38,6 +38,8 @@
 	/*Paginas simples em geral*/
 	Router::connect('/sobre', array('controller' => 'pages', 'action' => 'sobre'));
 	Router::connect('/contato', array('controller' => 'pages', 'action' => 'contato'));
+	Router::connect('/politicas-de-privacidade', array('controller' => 'pages', 'action' => 'politicasDePrivacidade'));
+	Router::connect('/termos-de-uso', array('controller' => 'pages', 'action' => 'termosDeUso'));
 
 	/*Recursos do trabalhador*/
 	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));

@@ -34,7 +34,7 @@ class PagesController extends AppController {
 
     public function beforeFilter()
     {
-		$this->Auth->allow(array('index', 'sobre', 'contato'));
+		$this->Auth->allow(array('index', 'sobre', 'contato', 'politicasDePrivacidade', 'termosDeUso'));
         $tipoUsuario = $this->Session->read('Auth.User.tipo');
         switch ($tipoUsuario) {
             case 'trabalhador':
@@ -73,4 +73,12 @@ class PagesController extends AppController {
 	public function contato(){
 		$this->set('title_for_layout', __('Contato'));		
 	}
+
+    public function politicasDePrivacidade(){
+        $this->set('title_for_layout', __('Políticas de Privacidade - FreeJobs'));
+    }
+
+    public function termosDeUso(){
+        $this->set('title_for_layout', __('Políticas de Privacidade - FreeJobs'));
+    }
 }

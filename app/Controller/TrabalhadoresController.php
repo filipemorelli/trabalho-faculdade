@@ -85,7 +85,13 @@ class TrabalhadoresController extends AppController
                     'user_id =' => $this->Session->read('Auth.User.id')
                 )
             ));
-            unset($this->request->data['Trabalhadores']['password']);
+            if(!isset($this->request->data['Trabalhador']['nome'])){
+                $this->request->data['Trabalhador']['nome'] = $this->Session->read('Auth.User.nome');
+            }
+            if(!isset($this->request->data['Trabalhador']['email'])){
+                $this->request->data['Trabalhador']['email'] = $this->Session->read('Auth.User.email');
+            }
+            unset($this->request->data['Trabalhador']['password']);
         }
     }
 
