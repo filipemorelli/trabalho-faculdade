@@ -43,8 +43,6 @@
 
         <!-- Logo -->
         <div class="pull-left">
-          <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
-
           <div class="logo-wrapper">
             <?php 
                 echo $this->Html->link($this->Html->image('/template/img/logo.png', array('alt' => 'logo', 'class' => 'logo')), array('controller' => 'pages', 'action' => 'index'), array('title' => 'logo em texto', 'escape' => false));
@@ -60,23 +58,6 @@
           <?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-sm btn-primary', 'title' => 'login')); ?> ou <?php echo $this->Html->link('Cadastrar', array('controller' => 'users', 'action' => 'add'), array('class' => 'btn btn-sm btn-success', 'title' => 'login')); ?>
         </div>
         <!-- END User account -->
-
-        <!-- Navigation menu -->
-        <ul class="nav-menu">
-          <li>
-            <?php echo $this->Html->link('Início', array('controller' => 'pages', 'action' => 'index'), array('title' => 'Início'));?>
-          </li>
-          <li>
-            <?php echo $this->Html->link('Sobre', array('controller' => 'pages', 'action' => 'sobre'), array('title' => 'sobre'));?>
-          </li>
-          <li>
-            <?php echo $this->Html->link('Contato', array('controller' => 'pages', 'action' => 'contato'), array('title' => 'contato'));?>
-          </li>
-          <li>
-            <?php echo $this->Html->link('<i class="fa fa-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>
-          </li>
-        </ul>
-        <!-- END Navigation menu -->
 
       </div>
     </nav>
