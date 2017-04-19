@@ -337,7 +337,7 @@
             <header class="section-header">
                 <h2>Formação / Escolaridade</h2>
             </header>
-            <div class="row">
+            <div class="row escolaridade">
                 <div class="col-xs-12">
                     <div class="item-block">
                         <div class="item-form">
@@ -584,7 +584,7 @@
                 </div>
                 <div class="col-xs-12 text-center">
                     <br>
-                    <button class="btn btn-primary btn-duplicator">Adicionar Formação / Escolaridade</button>
+                    <button class="btn btn-primary btn-more">Adicionar Formação / Escolaridade</button>
                 </div>
             </div>
         </div>
@@ -780,7 +780,7 @@
                 </div>
                 <div class="col-xs-12 text-center">
                     <br>
-                    <button class="btn btn-primary btn-duplicator">Add experience</button>
+                    <button class="btn btn-primary btn-more">Adicionar Experiência de Trabalho</button>
                 </div>
             </div>
         </div>
