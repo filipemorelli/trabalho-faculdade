@@ -49,7 +49,7 @@
 	//Router::connect('/historico-de-candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'));
 
 	/*Trabalhadores*/
-	Router::connect('/editar-perfil-trabalhador', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'));
+	Router::connect('/editar-perfil', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'));
 	Router::connect('/historico-de-candidaturas', array('controller' => 'trabalhadores', 'action' => 'historicoCandidaturas'));
 	
 
