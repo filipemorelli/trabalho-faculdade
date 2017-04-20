@@ -57,22 +57,22 @@ class TrabalhadoresController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             // verifica se existe perfil criado
 
-            $trabalhadorId = $this->Trabalhadores->find('first', array(
+            $trabalhadorId = $this->Trabalhador->find('first', array(
                 'fields' => array('id'),
                 'conditions' => array(
                     'user_id =' => $this->Session->read('Auth.User.id'),
                 ),
                 'recursive' => -1
             ));
-            if(!isset($trabalhadorId['Trabalhadores']['id'])){
-                $this->Trabalhadores->create(); //cria perfil
+            if(!isset($trabalhadorId['Trabalhador']['id'])){
+                $this->Trabalhador->create(); //cria perfil
             } else {
-                $this->request->data['Trabalhadores']['id'] = $trabalhadorId['Trabalhadores']['id'];
+                $this->request->data['Trabalhador']['id'] = $trabalhadorId['Trabalhador']['id'];
             }
             //coloca o user_id para vincular a conta
-            $this->request->data['Trabalhadores']['user_id'] = $this->Session->read('Auth.User.id');
+            $this->request->data['Trabalhador']['user_id'] = $this->Session->read('Auth.User.id');
             //salva ou atualiza
-            if ($this->Trabalhadores->save($this->request->data)) {
+            if ($this->salvaRequisicaoTrabalhador($this->request->data)) {
                 $this->Session->setFlash(__('Perfil salvo com sucesso'), 'success');
                 return $this->redirect(array('action' => 'editarPerfilTrabalhador'));
             }
@@ -93,6 +93,108 @@ class TrabalhadoresController extends AppController
             }
             unset($this->request->data['Trabalhador']['password']);
         }
+    }
+
+    private function salvaRequisicaoTrabalhador($data){
+        $endereco = $data['Endereco'];
+        $trabalhador = $data['Trabalhador'];
+        $trabalhadorEscolaridade = $data['TrabalhadorEscolaridade'];
+        $trabalhadorExperiencia = $data['TrabalhadorExperiencia'];
+
+        $endereco_id = 0; //mudar para 0 depois dos testes
+             
+        //salvar/atualizar endereco
+        $endereco_id = $this->salvaEndereco($endereco);
+
+        //manipulacao de pedido
+        $trabalhador['endereco_id'] = $endereco_id;
+        $trabalhador_id = $this->salvaTrabalhador($trabalhador);
+        $this->salvaTrabalhadorEscolaridade($trabalhadorEscolaridade, $trabalhador_id);
+        return $this->salvaTrabalhadorExperiencia($trabalhadorExperiencia, $trabalhador_id);
+
+    }
+
+    private function salvaEndereco($endereco){
+
+        $existeEndereco = $this->Trabalhador->Endereco->find('first', array(
+            'conditions' => array(
+                'endereco' => $endereco['endereco'],
+                'complemento' => $endereco['complemento'],
+                'bairro' => $endereco['bairro'],
+                'cidade' => $endereco['cidade'],
+                'estado' => $endereco['estado'],
+                'numero' => $endereco['numero'],
+                'cep' => $endereco['cep'],
+            )
+        ));
+        if (!$existeEndereco) {
+            $this->Empresa->Vaga->Endereco->create();
+            if ($this->Empresa->Vaga->Endereco->save($endereco)) {
+                return $this->Empresa->Vaga->Endereco->id;
+            } else {
+                //nao chega aqui mas caso chegar
+                 throw new NotFoundException(__('Imposivel cadastro de endereco'));
+            }
+        } else {
+            return $existeEndereco['Endereco']['id'];
+        }
+    }
+
+    private function salvaTrabalhador($trabalhador){
+        $id = $trabalhador['id'];
+        $this->Trabalhador->id = $id;
+        if (!$this->Trabalhador->exists()) {
+            $this->Trabalhador->create();
+            if ($this->Trabalhador->save($trabalhador)) {
+                return $this->Trabalhador->id;
+            } else {
+                //nao chega aqui mas caso chegar
+                 throw new NotFoundException(__('Imposivel cadastro de trabalhador'));
+            }
+        } else if ($this->Trabalhador->save($trabalhador)) {
+            return $this->Trabalhador->id;
+        } else {
+            throw new NotFoundException(__('Imposivel cadastro/edicao de trabalhador'));
+        }
+    }
+
+    private function salvaTrabalhadorEscolaridade($trabalhadorEscolaridades, $trabalhador_id){
+
+        //limpa dados que existem na tabela
+        $this->limpaTrabalhadorEscolaridade($trabalhador_id);
+
+        foreach ($trabalhadorEscolaridades as $escolaridade) {
+            $escolaridade['TrabalhadorEscolaridade'] = $escolaridade;
+            $escolaridade['TrabalhadorEscolaridade']['trabalhador_id'] = $trabalhador_id;
+            if (!$this->Trabalhador->TrabalhadorEscolaridade->saveAll($escolaridade)) {
+                throw new NotFoundException(__('Imposivel cadastro de Escolaridade'));
+            }
+        }
+        return true;
+    }
+
+    private function limpaTrabalhadorEscolaridade($trabalhador_id){
+        return $this->Trabalhador->TrabalhadorEscolaridade->query("DELETE FROM escolaridade WHERE trabalhador_id = $trabalhador_id");
+    }
+
+    private function salvaTrabalhadorExperiencia($trabalhadorExperiencia, $trabalhador_id){
+
+        //limpa dados que existem na tabela
+        $this->limpaTrabalhadorExperiencia($trabalhador_id);
+
+        foreach ($trabalhadorExperiencia as $experiencia) {
+            $experiencia['TrabalhadorExperiencia'] = $experiencia;
+            $experiencia['TrabalhadorExperiencia']['trabalhador_id'] = $trabalhador_id;
+            $this->Trabalhador->TrabalhadorExperiencia->create();
+            if (!$this->Trabalhador->TrabalhadorExperiencia->save($experiencia)) {
+                throw new NotFoundException(__('Imposivel cadastro de Experiência'));
+            }
+        }
+        return true;
+    }
+
+    private function limpaTrabalhadorExperiencia($trabalhador_id){
+        return $this->Trabalhador->TrabalhadorExperiencia->query("DELETE FROM experiencia WHERE trabalhador_id = $trabalhador_id");
     }
 
 }

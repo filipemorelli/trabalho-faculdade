@@ -81,7 +81,7 @@
                         'autofocus' => false,
                         'placeholder' => 'Informe o Telefone para contato',
                         'required' => false,
-                        'class' => 'form-control cep',
+                        'class' => 'form-control',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-phone"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -96,7 +96,7 @@
                         'autofocus' => false,
                         'placeholder' => 'Informe o Email para contato',
                         'required' => false,
-                        'class' => 'form-control cep',
+                        'class' => 'form-control',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -126,7 +126,7 @@
                         'autofocus' => false,
                         'placeholder' => 'Informe o seu site se tiver',
                         'required' => false,
-                        'class' => 'form-control cep',
+                        'class' => 'form-control',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-globe"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -338,130 +338,132 @@
                 <h2>Formação / Escolaridade</h2>
             </header>
             <div class="row escolaridade">
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <div class="item-form">
-                            <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
-                            </button>
-                            <div class="row">
-                                <?php
-                                /*
-                                <div class="col-xs-12 col-sm-4">
-                                    <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span>
+                <?php
+                    $i = 0;
+                    // para que em produtos possa rodar pelo menos 1 linha para criacao
+                    $logic = count($this->request->data['TrabalhadorEscolaridade']) > 0;
+                    $trabalhadorEscolaridades = isset($this->request->data['TrabalhadorEscolaridade']) && $logic ? $this->request->data['TrabalhadorEscolaridade'] : array(array());
+                    foreach($trabalhadorEscolaridades as $escolaridade){
+                ?>
+                    <div class="col-xs-12">
+                        <div class="item-block">
+                            <div class="item-form">
+                                <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
+                                </button>
+                                <div class="row">
+                                    <?php
+                                    /*
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="form-group">
+                                            <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span>
+                                        </div>
                                     </div>
-                                </div>
-                                */
-                                ?>
-                                <?php
-                                    $i = 0;
-                                    // para que em produtos possa rodar pelo menos 1 linha para criacao
-                                    $trabalhadorEscolaridades = isset($this->request->data['TrabalhadorEscolaridade']) ? $this->request->data['TrabalhadorEscolaridade'] : array(array());
-                                    foreach($trabalhadorEscolaridades as $escolaridade){
-                                ?>
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <?php
-                                                echo $this->Form->input("TrabalhadorEscolaridade.$i.nivel", array(
-                                                    'label' => false,
-                                                    'required' => false,
-                                                    'class' => 'form-control selectpicker',
-                                                    'options' => array(
-                                                        '1' => 'Ensino Fundamental incompleto',
-                                                        '2' => 'Ensino Fundamental cursando',
-                                                        '3' => 'Ensino Fundamental completo',
-                                                        '4' => 'Ensino Médio incompleto',
-                                                        '5' => 'Ensino Médio cursando',
-                                                        '6' => 'Ensino Médio completo',
-                                                        '7' => 'Ensino Médio completo Profissionalizante cursando',
-                                                        '8' => 'Ensino Médio completo Profissionalizante completo',
-                                                        '9' => 'Ensino Superior incompleto',
-                                                        '10' => 'Ensino Superior cursando',
-                                                        '11' => 'Ensino Superior completo',
-                                                        '12' => 'Pos-graduação',
-                                                        '13' => 'Mestrado',
-                                                        '14' => 'Doutorado',
-                                                        '15' => 'Ph.D.',
-                                                    ),
-                                                    'empty' => 'Escolaridade',
-                                                    'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
-                                                ));
-                                            ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <?php
-                                                echo $this->Form->input("TrabalhadorEscolaridade.$i.curso", array(
-                                                    'label' => false,
-                                                    'autofocus' => false,
-                                                    'placeholder' => 'Digite o curso.',
-                                                    'required' => false,
-                                                    'class' => 'form-control',
-                                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                                ));
-                                            ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <?php
-                                                echo $this->Form->input("TrabalhadorEscolaridade.$i.instituicao", array(
-                                                    'label' => false,
-                                                    'autofocus' => false,
-                                                    'placeholder' => 'Digite o nome da instituição.',
-                                                    'required' => false,
-                                                    'class' => 'form-control',
-                                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                                ));
-                                            ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
+                                    */
+                                    ?>
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
                                                 <?php
-                                                    echo $this->MyForm->input("TrabalhadorEscolaridade.$i.data_inicio", array(
+                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.nivel", array(
                                                         'label' => false,
-                                                        'div' => false,
-                                                        'type' => 'customDate',
-                                                        'autofocus' => false,
-                                                        'placeholder' => 'Digite a data de início.',
                                                         'required' => false,
-                                                        'before' => '<span class="input-group-addon">Data Início</span>',
+                                                        'class' => 'form-control selectpicker',
+                                                        'options' => array(
+                                                            '1' => 'Ensino Fundamental incompleto',
+                                                            '2' => 'Ensino Fundamental cursando',
+                                                            '3' => 'Ensino Fundamental completo',
+                                                            '4' => 'Ensino Médio incompleto',
+                                                            '5' => 'Ensino Médio cursando',
+                                                            '6' => 'Ensino Médio completo',
+                                                            '7' => 'Ensino Médio completo Profissionalizante cursando',
+                                                            '8' => 'Ensino Médio completo Profissionalizante completo',
+                                                            '9' => 'Ensino Superior incompleto',
+                                                            '10' => 'Ensino Superior cursando',
+                                                            '11' => 'Ensino Superior completo',
+                                                            '12' => 'Pos-graduação',
+                                                            '13' => 'Mestrado',
+                                                            '14' => 'Doutorado',
+                                                            '15' => 'Ph.D.',
+                                                        ),
+                                                        'empty' => 'Escolaridade',
+                                                        'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                                                    ));
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <?php
+                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.curso", array(
+                                                        'label' => false,
+                                                        'autofocus' => false,
+                                                        'placeholder' => 'Digite o curso.',
+                                                        'required' => false,
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
                                                     ));
-                                                    echo $this->MyForm->input("TrabalhadorEscolaridade.$i.data_fim", array(
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <?php
+                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.instituicao", array(
                                                         'label' => false,
-                                                        'div' => false,
-                                                        'type' => 'customDate',
                                                         'autofocus' => false,
-                                                        'placeholder' => 'Digite a data de fim caso tenha finalizado.',
+                                                        'placeholder' => 'Digite o nome da instituição.',
                                                         'required' => false,
-                                                        'before' => '<span class="input-group-addon">Data Fim</span>',
+                                                        'class' => 'form-control',
+                                                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                                    ));
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <?php
+                                                        echo $this->MyForm->input("TrabalhadorEscolaridade.$i.data_inicio", array(
+                                                            'label' => false,
+                                                            'div' => false,
+                                                            'type' => 'customDate',
+                                                            'autofocus' => false,
+                                                            'placeholder' => 'Digite a data de início.',
+                                                            'required' => false,
+                                                            'before' => '<span class="input-group-addon">Data Início</span>',
+                                                            'class' => 'form-control',
+                                                            'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                                        ));
+                                                        echo $this->MyForm->input("TrabalhadorEscolaridade.$i.data_fim", array(
+                                                            'label' => false,
+                                                            'div' => false,
+                                                            'type' => 'customDate',
+                                                            'autofocus' => false,
+                                                            'placeholder' => 'Digite a data de fim caso tenha finalizado.',
+                                                            'required' => false,
+                                                            'before' => '<span class="input-group-addon">Data Fim</span>',
+                                                            'class' => 'form-control',
+                                                            'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                                        ));
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <?php
+                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.descricao", array(
+                                                        'label' => false,
+                                                        'type' => 'textarea',
+                                                        'rows' => "3",
+                                                        'autofocus' => false,
+                                                        'placeholder' => 'Descrição do curso caso queira.',
+                                                        'required' => false,
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
                                                     ));
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <?php
-                                                echo $this->Form->input("TrabalhadorEscolaridade.$i.descricao_rapida", array(
-                                                    'label' => false,
-                                                    'type' => 'textarea',
-                                                    'rows' => "3",
-                                                    'autofocus' => false,
-                                                    'placeholder' => 'Descrição do curso caso queira.',
-                                                    'required' => false,
-                                                    'class' => 'form-control',
-                                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                                ));
-                                            ?>
-                                        </div>
-                                    </div>
-                                <?php
-                                    }
-                                ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php
+                    $i++;
+                    }
+                ?>
                 <div class="col-xs-12 duplicateable-content">
                     <div class="item-block">
                         <div class="item-form">
@@ -564,7 +566,7 @@
                                     </div>
                                     <div class="form-group">
                                         <?php
-                                            echo $this->Form->input('TrabalhadorEscolaridade.descricao_rapida', array(
+                                            echo $this->Form->input('TrabalhadorEscolaridade.descricao', array(
                                                 'label' => false,
                                                 'disabled' => true,
                                                 'type' => 'textarea',
@@ -596,67 +598,92 @@
                 <h2>Experiência de Trabalho</h2>
             </header>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <div class="item-form">
-                            <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
-                            </button>
-                            <div class="row">
-                                <?php
-                                /*
-                                <div class="col-xs-12 col-sm-4">
-                                    <div class="form-group">
-                                        <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
-                                </div>
-                                */
-                                ?>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
+                <?php
+                    $j = 0;
+                    // para que em produtos possa rodar pelo menos 1 linha para criacao
+                    $logic = count($this->request->data['TrabalhadorExperiencia']) > 0;
+                    $TrabalhadorExperiencias = isset($this->request->data['TrabalhadorExperiencia']) && $logic ? $this->request->data['TrabalhadorExperiencia'] : array(array());
+                    foreach($TrabalhadorExperiencias as $experiencia){
+                ?>
+                    <div class="col-xs-12">
+                        <div class="item-block">
+                            <div class="item-form">
+                                <button class="btn btn-danger btn-float btn-remove"><i class="ti-close"></i>
+                                </button>
+                                <div class="row">
                                     <?php
-                                        echo $this->Form->input('TrabalhadorExperiencia.cargo', array(
-                                            'label' => false,
-                                            'autofocus' => false,
-                                            'placeholder' => 'Digite o cargo ocupado.',
-                                            'required' => false,
-                                            'class' => 'form-control',
-                                            'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                        ));
-                                    ?>
+                                    /*
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="form-group">
+                                            <input type="file" class="dropify" data-default-file="<?php echo $this->Html->url('/template/img/logo-default.png');?>"> <span class="help-block">Please choose a square logo</span> </div>
                                     </div>
-                                    <div class="form-group">
-                                    <?php
-                                        echo $this->Form->input('TrabalhadorExperiencia.instituicao', array(
-                                            'label' => false,
-                                            'autofocus' => false,
-                                            'placeholder' => 'Digite o nome da empresa.',
-                                            'required' => false,
-                                            'class' => 'form-control',
-                                            'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                        ));
+                                    */
                                     ?>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                        <?php
+                                            echo $this->Form->input("TrabalhadorExperiencia.$j.cargo", array(
+                                                'label' => false,
+                                                'autofocus' => false,
+                                                'placeholder' => 'Digite o cargo ocupado.',
+                                                'required' => false,
+                                                'class' => 'form-control',
+                                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                            ));
+                                        ?>
+                                        </div>
+                                        <div class="form-group">
+                                        <?php
+                                            echo $this->Form->input("TrabalhadorExperiencia.$j.instituicao", array(
+                                                'label' => false,
+                                                'autofocus' => false,
+                                                'placeholder' => 'Digite o nome da empresa.',
+                                                'required' => false,
+                                                'class' => 'form-control',
+                                                'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                            ));
+                                        ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group"> 
+                                                <?php
+                                                    echo $this->MyForm->input("TrabalhadorExperiencia.$j.data_inicio", array(
+                                                        'label' => false,
+                                                        'div' => false,
+                                                        'type' => 'customDate',
+                                                        'autofocus' => false,
+                                                        'placeholder' => 'Digite o nome da instituição.',
+                                                        'required' => false,
+                                                        'before' => '<span class="input-group-addon">Data Início</span>',
+                                                        'class' => 'form-control',
+                                                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                                    ));
+                                                    echo $this->MyForm->input("TrabalhadorExperiencia.$j.data_fim", array(
+                                                        'label' => false,
+                                                        'div' => false,
+                                                        'type' => 'customDate',
+                                                        'empty' => true,
+                                                        'autofocus' => false,
+                                                        'placeholder' => 'Digite o nome da instituição.',
+                                                        'required' => false,
+                                                        'before' => '<span class="input-group-addon">Data Fim</span>',
+                                                        'class' => 'form-control',
+                                                        'error' => array('attributes' => array( 'class' => 'text-danger')),
+                                                    ));
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group"> 
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
                                             <?php
-                                                echo $this->MyForm->input('TrabalhadorExperiencia.data_inicio', array(
+                                                echo $this->Form->input("TrabalhadorExperiencia.$j.descricao", array(
                                                     'label' => false,
-                                                    'div' => false,
-                                                    'type' => 'customDate',
+                                                    'type' => 'textarea',
                                                     'autofocus' => false,
-                                                    'placeholder' => 'Digite o nome da instituição.',
+                                                    'placeholder' => 'Digite a descrição de seu cargo caso queira.',
                                                     'required' => false,
-                                                    'before' => '<span class="input-group-addon">Data Início</span>',
-                                                    'class' => 'form-control',
-                                                    'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                                ));
-                                                echo $this->MyForm->input('TrabalhadorExperiencia.data_fim', array(
-                                                    'label' => false,
-                                                    'div' => false,
-                                                    'type' => 'customDate',
-                                                    'autofocus' => false,
-                                                    'placeholder' => 'Digite o nome da instituição.',
-                                                    'required' => false,
-                                                    'before' => '<span class="input-group-addon">Data Fim</span>',
+                                                    'minLength' => 10,
                                                     'class' => 'form-control',
                                                     'error' => array('attributes' => array( 'class' => 'text-danger')),
                                                 ));
@@ -664,26 +691,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <?php
-                                            echo $this->Form->input('TrabalhadorExperiencia.descricao', array(
-                                                'label' => false,
-                                                'type' => 'textarea',
-                                                'autofocus' => false,
-                                                'placeholder' => 'Digite a descrição de seu cargo caso queira.',
-                                                'required' => false,
-                                                'minLength' => 10,
-                                                'class' => 'form-control',
-                                                'error' => array('attributes' => array( 'class' => 'text-danger')),
-                                            ));
-                                        ?>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php
+                    $j++;
+                    }
+                ?>
                 <div class="col-xs-12 duplicateable-content">
                     <div class="item-block">
                         <div class="item-form">

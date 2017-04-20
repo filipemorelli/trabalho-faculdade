@@ -12,11 +12,21 @@ class Trabalhador extends AppModel {
             'order'        => '',
             'foreignKey'   => 'user_id'
         ),
+        'Endereco' => array(
+            'className'    => 'Endereco',
+            'order'        => '',
+            'foreignKey'   => 'endereco_id'
+        ),
     );
 
     public $hasMany = array(
         'TrabalhadorEscolaridade' => array(
             'className'    => 'TrabalhadorEscolaridade',
+            'order'        => '',
+            'foreignKey'   => 'trabalhador_id',
+        ),
+        'TrabalhadorExperiencia' => array(
+            'className'    => 'TrabalhadorExperiencia',
             'order'        => '',
             'foreignKey'   => 'trabalhador_id'
         ),
@@ -87,8 +97,7 @@ class Trabalhador extends AppModel {
         ),
         'habilidades' => array(
             'notEmpty' => array(
-                'rule' => array('date'),
-                'allowEmpty' => true,
+                'rule' => array('notBlank'),
                 'message' => 'Digite ao menos 1 habilidade!',
             ),
         ),
@@ -133,8 +142,8 @@ class Trabalhador extends AppModel {
     public $errorMessage = '';
     public function beforeValidate($options = array())
     {
-        if($this->data['Vaga']['url_imagem']['size'] === 0){
-            unset($this->data['Vaga']['url_imagem']);
+        if($this->data['Trabalhador']['url_imagem']['size'] === 0){
+            unset($this->data['Trabalhador']['url_imagem']);
         }
     }
 
@@ -144,26 +153,26 @@ class Trabalhador extends AppModel {
     }
 
     private function salvaEmail(){
-        if(isset($this->data['Vaga']['id'])){
-            $email = $this->findById($this->data['Vaga']['id']);
+        if(isset($this->data['Trabalhador']['id'])){
+            $email = $this->findById($this->data['Trabalhador']['id']);
         }
         //se requisicao tiver senha e a senha for diferente da antiga
-        if (isset($this->data['Vaga']['email']) && ($email['Vaga']['email'] != $this->data['Vaga']['email'])) {
+        if (isset($this->data['Trabalhador']['email']) && ($email['Trabalhador']['email'] != $this->data['Trabalhador']['email'])) {
             $passwordHasher = new SimplePasswordHasher();
-            $this->data['Vaga']['senha'] = $passwordHasher->hash(
-                $this->data['Vaga']['senha']
+            $this->data['Trabalhador']['senha'] = $passwordHasher->hash(
+                $this->data['Trabalhador']['senha']
             );
         } else {
             //se nao vai receber a senha antiga
-            $this->data['Vaga']['senha'] = $passWrd['Vaga']['senha'];
+            $this->data['Trabalhador']['senha'] = $passWrd['Trabalhador']['senha'];
         }
     }
 
     private function uploadAction(){
-        if(!empty($this->data['Vaga']['url_imagem']['name'])) {
-            $this->data['Vaga']['url_imagem'] = $this->upload($this->data['Vaga']['url_imagem']);
+        if(!empty($this->data['Trabalhador']['url_imagem']['name'])) {
+            $this->data['Trabalhador']['url_imagem'] = $this->upload($this->data['Trabalhador']['url_imagem']);
         } else {
-            unset($this->data['Vaga']['url_imagem']);
+            unset($this->data['Trabalhador']['url_imagem']);
         }
     }
 
@@ -250,8 +259,8 @@ class Trabalhador extends AppModel {
     }
 
     public function inativar($vaga){     
-        if (!empty($vaga) && $vaga['Vaga']['ativo'] == 1) {
-            $vaga['Vaga']['ativo'] = 0;
+        if (!empty($vaga) && $vaga['Trabalhador']['ativo'] == 1) {
+            $vaga['Trabalhador']['ativo'] = 0;
             if ($this->save($vaga)) {
                 return true;
             }
@@ -261,8 +270,8 @@ class Trabalhador extends AppModel {
     }
     
     public function reativar($vaga){
-        if (!empty($vaga) && $vaga['Vaga']['ativo'] == 0) {
-            $vaga['Vaga']['ativo'] = 1;
+        if (!empty($vaga) && $vaga['Trabalhador']['ativo'] == 0) {
+            $vaga['Trabalhador']['ativo'] = 1;
             if ($this->save($vaga)) {
                 return true;
             }

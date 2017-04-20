@@ -12,7 +12,7 @@ class TrabalhadorExperiencia extends AppModel {
         ),
     );
 
-    public $useTable = "escolaridade";
+    public $useTable = "experiencia";
 
     public $validate = array(
         'cargo' => array(
@@ -38,6 +38,7 @@ class TrabalhadorExperiencia extends AppModel {
                 'rule' => array('date'),
                 'message' => 'Digite a data de fim.',
                 'allowEmpty' => true,
+                'required' => false
             )
         ),
         'descricao' => array(
