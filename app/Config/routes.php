@@ -46,6 +46,8 @@
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
 	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
 	Router::connect('/curriculos', array('controller' => 'users', 'action' => 'curriculosPerfil'));
+	Router::connect('/endereco-rapido', array('controller' => 'users', 'action' => 'enderecoRapido'));
+
 	//Router::connect('/historico-de-candidaturas', array('controller' => 'users', 'action' => 'historicoCandidaturas'));
 
 	/*Trabalhadores*/

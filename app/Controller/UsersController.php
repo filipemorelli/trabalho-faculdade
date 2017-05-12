@@ -9,7 +9,7 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login', 'enderecoRapido'));
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
@@ -288,6 +288,19 @@ class UsersController extends AppController
         );
 
         return json_encode($resultDataTables);
+    }
+
+    //Busca Endereco rapido
+    public function enderecoRapido(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        if ($this->request->is('ajax')) {
+            return json_encode(
+                array(
+                    "options" => array("Minas Gerais", "São Paulo", "Rio de Janeiro")
+                )
+            );
+        }
     }
 
 }

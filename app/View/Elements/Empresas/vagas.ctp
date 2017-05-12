@@ -179,7 +179,7 @@
                     echo $this->Form->input('Vaga.salario', array(
                         'label' => false,
                         'autofocus' => false,
-                        'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 2000,00 - 3000,00)',
+                        'placeholder' => 'Digite o salário Ex: (R$ 2000,00 ou R$ 3000,00)',
                         'required' => false,
                         'class' => 'form-control',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>',
@@ -334,6 +334,7 @@
                 <?php
                     echo $this->Form->input('Vaga.ativo', array(
                         'label' => array('class' => 'small_text','text'=>'Vaga ficará ativa?'),
+                        'checked' => 'true'
                     ));
                 ?>
             </div>

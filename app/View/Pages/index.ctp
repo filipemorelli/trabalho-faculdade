@@ -6,13 +6,29 @@
           <h2>Nós oferecemos <mark><?php echo count($vagas);?></mark> vagas de emprego agora!</h2>
           <h5 class="font-alt">Encontre sua vaga em poucos minutos.</h5>
           <br><br><br>
-          <form class="header-job-search">
+          <?php
+              echo $this->Form->create('Users', array('method' => 'get', 'class' => 'header-job-search'));
+          ?>
             <div class="input-keyword">
-              <input type="text" class="form-control" placeholder="Cargo, Habilidades ou Empresa">
+              <?php
+                  echo $this->Form->input('keyword', array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Cargo, Habilidades ou Empresa',
+                    'label' => false,
+                    'div' => false
+                  ));
+              ?>
             </div>
 
             <div class="input-location">
-              <input type="text" class="form-control" placeholder="Cidade, estado ou CEP">
+              <?php
+                  echo $this->Form->input('keyword', array(
+                    'class' => 'form-control endereco-rapido',
+                    'placeholder' => 'Cidade, estado ou CEP',
+                    'label' => false,
+                    'div' => false
+                  ));
+              ?>
             </div>
 
             <div class="btn-search">

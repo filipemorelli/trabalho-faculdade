@@ -25,6 +25,7 @@ class TradutortempoHelper extends AppHelper {
         $texto = str_replace('second', 'segundo' , $texto);
 
         $texto = str_replace('ago', 'atrás' , $texto);
+        $texto = str_replace('just now', 'agora' , $texto);
         return $texto; // Replace your word
     }
 }
