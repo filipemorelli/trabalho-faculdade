@@ -295,9 +295,18 @@ class UsersController extends AppController
         $this->layout = 'ajax';
         $this->autoRender = false;
         if ($this->request->is('ajax')) {
+            $this->loadModel('Vaga');
+            //adicionar limitadores
+            $result = $this->Vaga->find('all', array(
+                "fields" => array("Endereco.*"),
+                "conditions" => array(
+
+                ),
+                "limit" => 10
+            ));
             return json_encode(
                 array(
-                    "options" => array("Minas Gerais", "São Paulo", "Rio de Janeiro")
+                    "options" => $result
                 )
             );
         }

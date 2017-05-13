@@ -50,7 +50,32 @@ $(function () {
 				b.remove()
 			});
 		});
-	})
+	});
+
+	$(".endereco-rapido").autocomplete({
+	    minLength: 2,
+	    source: function( request, response ) {
+	        $.ajax({
+	            url: "endereco-rapido",
+	            dataType: "json",
+	            data: {
+	            	q: $(".endereco-rapido").val()
+	            },
+	            success: function(data) {
+					var dados = $.map(data.options, function (i, el) {
+                        return {
+                            value: el.value
+                        };
+                    });
+                    return response(dados);
+	            }
+	        });
+	    },
+	    focus: function( event, ui ) {
+	    },
+	    select: function( event, ui ) {
+	    }
+    })
 });
 
 
