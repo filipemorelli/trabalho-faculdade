@@ -26,7 +26,8 @@ class Vaga extends AppModel {
                 'on' => 'create',
                 'rule' => array('extension', array('jpg', 'jpeg', 'png', 'gif')),
                 'message' => 'Somente arquivos JPG, PNG e GIF',
-                'allowEmpty' => true
+                'allowEmpty' => true,
+                'notBlank' => false
             )
         ),
         'nome' => array(
@@ -138,6 +139,13 @@ class Vaga extends AppModel {
     );
     
     public $errorMessage = '';
+
+    public function beforeValidate($options = array())
+    {
+        if($this->data['Vaga']['url_imagem']['size'] === 0){
+            unset($this->data['Vaga']['url_imagem']);
+        }
+    }
 
     public function beforeSave($options = array())
     {

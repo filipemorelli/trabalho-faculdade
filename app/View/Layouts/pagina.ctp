@@ -28,10 +28,10 @@
         );
         echo $this->Html->css(array(
             "/template/css/app.min.css",
-            "/template/css/custom.css",
-            "/template/vendors/summernote/summernote.css",
             "/template/vendors/jqueryui/jqueryui-1.12.1.min.css",
-            "http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700"
+            "/template/vendors/summernote/summernote.css",
+            "http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700",
+            "/template/css/custom.css",
         ));
     ?>
   </head>
@@ -73,10 +73,10 @@
     <!-- Scripts -->
     <?php
         echo $this->Html->script(array(
-        "/template/js/app.min.js",
-        "/template/vendors/summernote/summernote.min.js",
-        "/template/vendors/jqueryui/jqueryui-1.12.1.min.js",
-        "/template/js/custom.js",
+          "/template/js/app.min.js",
+          "/template/vendors/summernote/summernote.min.js",
+          "/template/vendors/jqueryui/jqueryui-1.12.1.min.js",
+          "/template/js/custom.js",
         ));
     ?>
 

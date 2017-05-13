@@ -62,9 +62,9 @@ $(function () {
 	            	q: $(".endereco-rapido").val()
 	            },
 	            success: function(data) {
-					var dados = $.map(data.options, function (i, el) {
+					var dados = $.map(data.options, function (el, i) {
                         return {
-                            value: el.value
+                            value: el.Endereco.cidade + ', ' + el.Endereco.estado
                         };
                     });
                     return response(dados);

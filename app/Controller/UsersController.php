@@ -298,15 +298,17 @@ class UsersController extends AppController
             $this->loadModel('Vaga');
             $query = $this->params->query['q'];
             $result = $this->Vaga->find('all', array(
-                "fields" => array("Endereco.*"),
+                "fields" => array("Endereco.bairro, Endereco.estado, Endereco.cidade"),
                 "conditions" => array(
                     'OR' => array(
+                        'Endereco.bairro LIKE' => "%$query%",
                         'Endereco.estado LIKE' => "%$query%",
                         'Endereco.cidade LIKE' => "%$query%",
                         'Endereco.cep LIKE' => "%$query%",
                     )
                 ),
-                "limit" => 10
+                "limit" => 10,
+                "group" => array("Endereco.estado", "Endereco.cidade", "Endereco.bairro")
             ));
             return json_encode(
                 array(
