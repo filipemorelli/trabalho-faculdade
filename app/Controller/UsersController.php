@@ -296,11 +296,15 @@ class UsersController extends AppController
         $this->autoRender = false;
         if ($this->request->is('ajax')) {
             $this->loadModel('Vaga');
-            //adicionar limitadores
+            $query = $this->params->query['q'];
             $result = $this->Vaga->find('all', array(
                 "fields" => array("Endereco.*"),
                 "conditions" => array(
-
+                    'OR' => array(
+                        'Endereco.estado LIKE' => "%$query%",
+                        'Endereco.cidade LIKE' => "%$query%",
+                        'Endereco.cep LIKE' => "%$query%",
+                    )
                 ),
                 "limit" => 10
             ));
