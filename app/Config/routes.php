@@ -34,6 +34,8 @@
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 	Router::connect('/esqueceu-a-senha', array('controller' => 'users', 'action' => 'forgot'));
 	Router::connect('/cadastrar', array('controller' => 'users', 'action' => 'add'));
+	Router::connect('/endereco-rapido', array('controller' => 'users', 'action' => 'enderecoRapido'));
+	Router::connect('/titulo-vagas-rapido', array('controller' => 'users', 'action' => 'tituloVagasRapido'));
 
 	/*Paginas simples em geral*/
 	Router::connect('/sobre', array('controller' => 'pages', 'action' => 'sobre'));

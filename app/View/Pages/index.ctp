@@ -7,13 +7,14 @@
           <h5 class="font-alt">Encontre sua vaga em poucos minutos.</h5>
           <br><br><br>
           <?php
-              echo $this->Form->create('Users', array('method' => 'get', 'class' => 'header-job-search'));
+              echo $this->Form->create('Users', array('method' => 'get', 'class' => 'header-job-search', 'url' => array('controller' => 'users', 'action' => 'vagas')));
           ?>
             <div class="input-keyword">
               <?php
-                  echo $this->Form->input('keyword', array(
-                    'class' => 'form-control',
+                  echo $this->Form->input('titulo', array(
+                    'class' => 'form-control titulo-vagas-rapido',
                     'placeholder' => 'Cargo, Habilidades ou Empresa',
+                    'required' => true,
                     'label' => false,
                     'div' => false
                   ));
@@ -22,9 +23,10 @@
 
             <div class="input-location">
               <?php
-                  echo $this->Form->input('keyword', array(
+                  echo $this->Form->input('endereco', array(
                     'class' => 'form-control endereco-rapido',
                     'placeholder' => 'Cidade, estado ou CEP',
+                    'required' => true,
                     'label' => false,
                     'div' => false
                   ));

@@ -107,6 +107,9 @@ class AppController extends Controller {
                 case 'enderecoRapido':
                     return true;
                     break;
+                case 'tituloVagasRapido':
+                    return true;
+                    break;
                 default:
                     return false;
                     break;

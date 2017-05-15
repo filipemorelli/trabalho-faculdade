@@ -9,7 +9,7 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login', 'enderecoRapido'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login', 'enderecoRapido', 'tituloVagasRapido'));
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
@@ -309,6 +309,32 @@ class UsersController extends AppController
                 ),
                 "limit" => 10,
                 "group" => array("Endereco.estado", "Endereco.cidade", "Endereco.bairro")
+            ));
+            return json_encode(
+                array(
+                    "options" => $result
+                )
+            );
+        }
+    }
+
+    //Busca Endereco rapido
+    public function tituloVagasRapido(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        if ($this->request->is('ajax')) {
+            $this->loadModel('Vaga');
+            $query = $this->params->query['q'];
+            $result = $this->Vaga->find('all', array(
+                "fields" => array("Vaga.nome"),
+                "conditions" => array(
+                    'OR' => array(
+                        'Vaga.nome LIKE' => "%$query%"
+                    )
+                ),
+                "limit" => 10,
+                "group" => array("Vaga.nome"),
+                "recursive" => -1
             ));
             return json_encode(
                 array(

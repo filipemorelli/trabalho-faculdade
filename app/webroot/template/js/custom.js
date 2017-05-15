@@ -2,6 +2,10 @@
 
 $(function () {
 
+	String.prototype.capitalize = function(){
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	}
+
 	$(document).on("keyup", ".cep", function (e) {
 		e.preventDefault();
 		var valor = $(this).val();
@@ -70,12 +74,29 @@ $(function () {
                     return response(dados);
 	            }
 	        });
-	    },
-	    focus: function( event, ui ) {
-	    },
-	    select: function( event, ui ) {
 	    }
-    })
+    });
+
+	$(".titulo-vagas-rapido").autocomplete({
+	    minLength: 2,
+	    source: function( request, response ) {
+	        $.ajax({
+	            url: "titulo-vagas-rapido",
+	            dataType: "json",
+	            data: {
+	            	q: $(".titulo-vagas-rapido").val()
+	            },
+	            success: function(data) {
+					var dados = $.map(data.options, function (el, i) {
+                        return {
+                            value: el.Vaga.nome.capitalize()
+                        };
+                    });
+                    return response(dados);
+	            }
+	        });
+	    }
+    });
 });
 
 
