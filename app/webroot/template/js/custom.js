@@ -68,13 +68,19 @@ $(function () {
 	            success: function(data) {
 					var dados = $.map(data.options, function (el, i) {
                         return {
-                            value: el.Endereco.cidade + ', ' + el.Endereco.estado
+                            value: el.Endereco.cidade + ', ' + el.Endereco.estado,
+							cidade: el.Endereco.cidade,
+							estado: el.Endereco.estado
                         };
                     });
                     return response(dados);
 	            }
 	        });
-	    }
+	    },
+		select: function( event, ui ) {
+			$(".cidade").val(ui.item.cidade);
+			$(".estado").val(ui.item.estado);
+		}
     });
 
 	$(".titulo-vagas-rapido").autocomplete({

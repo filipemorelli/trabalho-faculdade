@@ -30,6 +30,16 @@
                     'label' => false,
                     'div' => false
                   ));
+                  echo $this->Form->input('cidade', array(
+                    'class' => 'cidade',
+                    'required' => true,
+                    'type' => 'hidden',
+                  ));
+                  echo $this->Form->input('estado', array(
+                    'class' => 'estado',
+                    'required' => true,
+                    'type' => 'hidden',
+                  ));
               ?>
             </div>
 
