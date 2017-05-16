@@ -16,7 +16,13 @@
 
             <div class="col-xs-12">
               <br>
-              <h5>We found <strong>357</strong> matches, you're watching <i>10</i> to <i>20</i></h5>
+              <h5>
+              <?php
+                  echo $this->Paginator->counter(
+                      'Encontramos <strong>{:count}</strong> de vagas, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>'
+                  );
+              ?>
+              </h5>
             </div>
 
 
@@ -153,221 +159,73 @@
 
             <div class="col-md-8">
               <div class="row">
-                <!-- Job item -->
-                <div class="col-xs-12">
-                  <a class="item-block" href="job-detail.htm">
-                    <header>
-                      <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '', 'title' => ''));?>
-                      <div class="hgroup">
-                        <h4>Senior front-end developer</h4>
-                        <h5>Google <span class="label label-success">Full-time</span></h5>
+
+                <?php
+
+                    foreach ($vagas as $vaga) {
+                ?>
+                  <!-- Job item -->
+                  <div class="col-xs-12">
+                    <a class="item-block" href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>">
+                      <header>
+                        <?php
+                            if($vaga['Vaga']['url_imagem'] != ""){
+                                echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                            } else{
+                                echo $this->Html->image('/template/img/sem-imagem.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                            }
+                        ?>
+                        <div class="hgroup">
+                          <h4><?php echo ucfirst($vaga['Vaga']['nome']); ?></h4>
+                          <h5><?php echo ucfirst($vaga['Empresa']['nome']); ?> <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho']?></span></h5>
+                        </div>
+                        <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?></time>
+                      </header>
+
+                      <div class="item-body">
+                        <p><?php echo $vaga['Vaga']['descricao_rapida']; ?></p>
                       </div>
-                      <time datetime="2016-03-10 20:00">34 min ago</time>
-                    </header>
 
-                    <div class="item-body">
-                      <p>A rapidly growing, well established marketing firm is looking for an experienced web developer for a full-time position. In this role, you will develop websites, apps, emails and other forms of digital electronic media, all while maintaining brand standards across design projects and other marketing communication materials.</p>
-                    </div>
+                      <footer>
+                        <ul class="details cols-3">
+                          <li>
+                            <i class="fa fa-map-marker"></i>
+                            <span><?php echo $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span>
+                          </li>
 
-                    <footer>
-                      <ul class="details cols-3">
-                        <li>
-                          <i class="fa fa-map-marker"></i>
-                          <span>Menlo Park, CA</span>
-                        </li>
+                          <li>
+                            <i class="fa fa-money"></i>
+                            <span>R$ <?php echo str_replace(".", ",", $vaga['Vaga']['salario']); ?></span>
+                          </li>
 
-                        <li>
-                          <i class="fa fa-money"></i>
-                          <span>$90,000 - $110,000 / year</span>
-                        </li>
+                          <li>
+                            <i class="fa fa-certificate"></i>
+                            <span><?php echo $vaga['Vaga']['experiencia']; ?></span>
+                          </li>
+                        </ul>
+                      </footer>
+                    </a>
+                  </div>
+                  <!-- END Job item -->
+                <?
+                    }
 
-                        <li>
-                          <i class="fa fa-certificate"></i>
-                          <span>Master or Bachelor</span>
-                        </li>
-                      </ul>
-                    </footer>
-                  </a>
-                </div>
-                <!-- END Job item -->
-
-
-                <!-- Job item -->
-                <div class="col-xs-12">
-                  <a class="item-block" href="job-detail.htm">
-                    <header>
-                      <?php echo $this->Html->image('/template/img/logo-linkedin.png', array('alt' => '', 'title' => ''));?>
-                      <div class="hgroup">
-                        <h4>Software Engineer (Entry or Senior)</h4>
-                        <h5>Linkedin <span class="label label-warning">Part-time</span></h5>
-                      </div>
-                      <time datetime="2016-03-10 20:00">8 hours ago</time>
-                    </header>
-
-                    <div class="item-body">
-                      <p>The Special Programs Department II is seeking to hire a Computer Scientist to augment our software development team. Members of the software development team are expected to follow established software engineering principles to methodically deliver mission application software.</p>
-                    </div>
-
-                    <footer>
-                      <ul class="details cols-3">
-                        <li>
-                          <i class="fa fa-map-marker"></i>
-                          <span>Livermore, CA</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-money"></i>
-                          <span>$60,000 - $75,000 / year</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-certificate"></i>
-                          <span>Master or Bachelor</span>
-                        </li>
-                      </ul>
-                    </footer>
-                  </a>
-                </div>
-                <!-- END Job item -->
-
-
-                <!-- Job item -->
-                <div class="col-xs-12">
-                  <a class="item-block" href="job-detail.htm">
-                    <header>
-                      <?php echo $this->Html->image('/template/img/logo-envato.png', array('alt' => '', 'title' => ''));?>
-                      <div class="hgroup">
-                        <h4>Full Stack Web Developer</h4>
-                        <h5>Envato <span class="label label-info">Freelance</span></h5>
-                      </div>
-                      <time datetime="2016-03-10 20:00">2 days ago</time>
-                    </header>
-
-                    <div class="item-body">
-                      <p>We're seeing a driven, curious, passionate full-stack web developer to help change how people learn creative skills and effortlessly create the images they imagine. You’ll be part of a new rapid prototyping and development team helping to apply lean startup development methodologies and modern web technologies to shape the future of Creative Cloud.</p>
-                    </div>
-
-                    <footer>
-                      <ul class="details cols-3">
-                        <li>
-                          <i class="fa fa-map-marker"></i>
-                          <span>San Francisco, CA</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-money"></i>
-                          <span>$105,000 / year</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-certificate"></i>
-                          <span>Master</span>
-                        </li>
-                      </ul>
-                    </footer>
-                  </a>
-                </div>
-                <!-- END Job item -->
-
-
-                <!-- Job item -->
-                <div class="col-xs-12">
-                  <a class="item-block" href="job-detail.htm">
-                    <header>
-                      <?php echo $this->Html->image('/template/img/logo-facebook.png', array('alt' => '', 'title' => ''));?>
-                      <div class="hgroup">
-                        <h4>Web Applications Developer</h4>
-                        <h5>Facebook <span class="label label-danger">Internship</span></h5>
-                      </div>
-                      <time datetime="2016-03-10 20:00">Feb 26, 2016</time>
-                    </header>
-
-                    <div class="item-body">
-                      <p>Client needs a back-end Java developer who has worked mainly on Java, J2EE, Spring, Web Services, and other Java related technologies.</p>
-                    </div>
-
-                    <footer>
-                      <ul class="details cols-3">
-                        <li>
-                          <i class="fa fa-map-marker"></i>
-                          <span>Lexington, MA</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-money"></i>
-                          <span>$130,000 - $150,000 / year</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-certificate"></i>
-                          <span>Ph.D. or Master</span>
-                        </li>
-                      </ul>
-                    </footer>
-                  </a>
-                </div>
-                <!-- END Job item -->
-
-
-                <!-- Job item -->
-                <div class="col-xs-12">
-                  <a class="item-block" href="job-detail.htm">
-                    <header>
-                      <?php echo $this->Html->image('/template/img/logo-microsoft.jpg', array('alt' => '', 'title' => ''));?>
-                      <div class="hgroup">
-                        <h4>Sr. SQL Server Developer</h4>
-                        <h5>Microsoft <span class="label label-success">Remote</span></h5>
-                      </div>
-                      <time datetime="2016-03-10 20:00">Feb 16, 2016</time>
-                    </header>
-
-                    <div class="item-body">
-                      <p>Understand and model complex business requirements into database schemas and work with existing databases in SQL and NOSQL data stores. Develop high performance stored procedures, triggers and other database level code to provide data services to other teams.</p>
-                    </div>
-
-                    <footer>
-                      <ul class="details cols-3">
-                        <li>
-                          <i class="fa fa-map-marker"></i>
-                          <span>Palo Alto, CA</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-money"></i>
-                          <span>$125,000 - $140,000 / year</span>
-                        </li>
-
-                        <li>
-                          <i class="fa fa-certificate"></i>
-                          <span>Ph.D. or Master</span>
-                        </li>
-                      </ul>
-                    </footer>
-                  </a>
-                </div>
-                <!-- END Job item -->
-
-                
-                <div class="col-xs-12">
-                  <ul class="pagination">
-                    <li>
-                      <a href="#" aria-label="Previous">
-                        <i class="ti-angle-left"></i>
-                      </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li>
-                      <a href="#" aria-label="Next">
-                        <i class="ti-angle-right"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                ?>
 
               </div>
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <ul class="pagination">
+                    <?php
+                        $this->Paginator->options['url'] = array('controller' => 'empresas', 'action' => 'listarVagas');
+                        echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                        echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
+                        echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                    ?>
+                  </ul>
+                </div>
+              </div>
+
             </div>
 
           </div>

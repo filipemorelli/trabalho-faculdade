@@ -16,6 +16,7 @@
                             'Encontramos <strong>{:count}</strong> de vagas, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>'
                         );
                     ?>
+                    </h5>
                 </div>
                 <div class="col-xs-12 col-sm-4 text-right">
                     <br>

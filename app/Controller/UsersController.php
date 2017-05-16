@@ -32,9 +32,24 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Usuários'));
     }
 
-    public function vagas(){
+    public function vagas($page = 1){
         //vagas está em empresa
+        $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Vagas de Trabalho'));
+        $this->Paginator->settings = array(
+            'fields' => array('Vaga.id', 'Vaga.descricao_rapida', 'Vaga.periodo_trabalho', 'Vaga.experiencia', 'Vaga.salario', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.status', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo', 'Endereco.cidade', 'Endereco.estado'),
+            'conditions' => array(
+                
+            ),
+            'order' => array(
+                'Vaga.modified' => 'DESC',
+                'Vaga.id' => 'DESC'
+            ),
+            'page' => $page,
+            'limit' => 10
+        );
+        $vagas = $this->Paginator->paginate('Vaga');
+        $this->set(compact('vagas'));
     }
 
     public function add()
