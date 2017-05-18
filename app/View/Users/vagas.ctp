@@ -214,7 +214,6 @@
                   <!-- END Job item -->
                 <?php
                     }
-
                 ?>
 
               </div>
