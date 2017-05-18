@@ -207,7 +207,7 @@
                     </a>
                   </div>
                   <!-- END Job item -->
-                <?
+                <?php
                     }
 
                 ?>
