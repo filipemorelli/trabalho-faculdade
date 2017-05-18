@@ -11,7 +11,7 @@
           ?>
             <div class="input-keyword">
               <?php
-                  echo $this->Form->input('titulo', array(
+                  echo $this->Form->input('cargo', array(
                     'class' => 'form-control titulo-vagas-rapido',
                     'placeholder' => 'Cargo, Habilidades ou Empresa',
                     'required' => true,

@@ -11,7 +11,17 @@
         margin-right: 30px;
     }
 }
-
+.vaga-cargo, .vaga-estado, .vaga-escolaridade, .vaga-tipo, .vaga-horas{
+    font-family: Oswald,sans-serif;
+    letter-spacing: 1px;
+    margin: 16px 0;
+    line-height: 1.4;
+    font-size: 17px;
+    font-weight: 500;
+}
+.page-vaga{
+    margin-bottom: 0px !important; 
+}
 /* Jquery UI*/
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
     border: 1px solid #38b0fe;

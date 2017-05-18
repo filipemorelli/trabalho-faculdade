@@ -1,5 +1,5 @@
     <!-- Page header -->
-    <header class="page-header bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
+    <header class="page-header page-vaga bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
       <div class="container page-name">
         <h1 class="text-center">Pesquisar Vagas</h1>
         <p class="lead text-center">Use o filtro de pesquisa para encontrar trabalhos que melhor se adaptem a você.</p>
@@ -28,129 +28,134 @@
 
             <div class="col-md-4">
 
-                <form style="margin-top: 30px" action="#">
+                <?php
+                    echo $this->Form->create('Users', array('method' => 'get', "style" => "margin-top: 30px"));
+                ?>
                   <div class="row">
                     <div class="form-group col-xs-12">
-                      <input type="text" class="form-control" placeholder="Keyword: job title, skills, or company">
+                      <?php 
+                        echo $this->Form->input("cargo", array(
+                            'label' => array('text' => 'Cargo, Habilidades, etc.', 'class' => 'vaga-cargo'),
+                            'div' => false,
+                            'class' => 'form-control',
+                            'placeholder' => 'Cargo, Habilidades, etc.',
+                            'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                        ));
+                      ?>
                     </div>
 
                     <div class="form-group col-xs-12">
-                      <input type="text" class="form-control" placeholder="Location: city, state or zip">
+                        <?php
+                            echo $this->Form->input('endereco', array(
+                                'class' => 'form-control endereco-rapido',
+                                'placeholder' => 'Cidade, estado ou CEP',
+                                'required' => true,
+                                'label' => array('text' => 'Endereço', 'class' => 'vaga-estado'),
+                                'div' => false
+                            ));
+                            echo $this->Form->input('cidade', array(
+                                'class' => 'cidade',
+                                'required' => true,
+                                'type' => 'hidden',
+                            ));
+                            echo $this->Form->input('estado', array(
+                                'class' => 'estado',
+                                'required' => true,
+                                'type' => 'hidden',
+                            ));
+                        ?>
                     </div>
 
                     <div class="form-group col-xs-12">
-                      <select class="form-control selectpicker" multiple="">
-                        <option selected="">All categories</option>
-                        <option>Developer</option>
-                        <option>Designer</option>
-                        <option>Customer service</option>
-                        <option>Finance</option>
-                        <option>Healthcare</option>
-                        <option>Sale</option>
-                        <option>Marketing</option>
-                        <option>Information technology</option>
-                        <option>Others</option>
-                      </select>
+                        <?php
+                            echo $this->Form->input('salario', array(
+                                'class' => 'form-control',
+                                'placeholder' => 'Salário',
+                                'required' => true,
+                                'label' => array('text' => 'Salário', 'class' => 'vaga-estado'),
+                                'type' => 'number',
+                                'default' => '0.00',
+                                'step' => '0.01',
+                                'min' => '0.00',
+                                'div' => false,
+                                'before' => '<div class="input-group input-group-sm"><span class="input-group-addon">R$</span>',
+                                'after' => '</div>',
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                                'format' => array('label', 'before', 'input', 'between', 'after', 'error')
+                            ));
+                        ?>
                     </div>
 
-
                     <div class="form-group col-xs-12">
-                      <h6>Contract</h6>
-                      <div class="checkall-group">
-                        <div class="checkbox">
-                          <input type="checkbox" id="contract1" name="contract" checked="">
-                          <label for="contract1">All types</label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="contract2" name="contract">
-                          <label for="contract2">Full-time <small>(354)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="contract3" name="contract">
-                          <label for="contract3">Part-time <small>(284)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="contract4" name="contract">
-                          <label for="contract4">Internship <small>(169)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="contract5" name="contract">
-                          <label for="contract5">Freelance <small>(480)</small></label>
-                        </div>
-                      </div>
+                        <?php
+                            echo $this->Form->input('escolaridade', array(
+                                'label' => array('text' => 'Escolaridade', 'class' => 'vaga-escolaridade'),
+                                'required' => true,
+                                'class' => 'form-control selectpicker',
+                                'title' => 'selecione a escolaridade',
+                                'options' => array(
+                                    '0' => 'Indiferente',
+                                    '1' => 'Ensino Fundamental incompleto',
+                                    '2' => 'Ensino Fundamental cursando',
+                                    '3' => 'Ensino Fundamental completo',
+                                    '4' => 'Ensino Médio incompleto',
+                                    '5' => 'Ensino Médio cursando',
+                                    '6' => 'Ensino Médio completo',
+                                    '7' => 'Ensino Médio completo Profissionalizante cursando',
+                                    '8' => 'Ensino Médio completo Profissionalizante completo',
+                                    '9' => 'Ensino Superior incompleto',
+                                    '10' => 'Ensino Superior cursando',
+                                    '11' => 'Ensino Superior completo',
+                                    '12' => 'Pos-graduação',
+                                    '13' => 'Mestrado',
+                                    '14' => 'Doutorado',
+                                    '15' => 'Ph.D.',
+                                ),
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
 
-
                     <div class="form-group col-xs-12">
-                      <h6>Hourly rate</h6>
-                      <div class="checkall-group">
-                        <div class="checkbox">
-                          <input type="checkbox" id="rate1" name="rate" checked="">
-                          <label for="rate1">All rates</label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="rate2" name="rate">
-                          <label for="rate2">$0 - $50 <small>(364)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="rate3" name="rate">
-                          <label for="rate3">$50 - $100 <small>(684)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="rate4" name="rate">
-                          <label for="rate4">$100 - $200 <small>(195)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="rate5" name="rate">
-                          <label for="rate5">$200+ <small>(39)</small></label>
-                        </div>
-                      </div>
+                        <?php
+                            echo $this->Form->input('periodo_trabalho', array(
+                                'label' => array('text' => 'Jornada de Trabalho', 'class' => 'vaga-tipo'),
+                                'required' => true,
+                                'class' => 'form-control selectpicker',
+                                'options' => array(
+                                    'integral' => 'Tempo Integral',
+                                    'meio-horário' => 'Meio Horario',
+                                    'diaria' => 'Diaria',
+                                    'estagio' => 'Estágio',
+                                    'frelancer' => 'Freelancer',
+                                    'remoto' => 'Remote',
+                                    'outro' => 'Outro'
+                                ),
+                                'empty' => 'Jornada de Trabalho',
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
 
-
                     <div class="form-group col-xs-12">
-                      <h6>Academic degree</h6>
-                      <div class="checkall-group">
-                        <div class="checkbox">
-                          <input type="checkbox" id="degree1" name="degree" checked="">
-                          <label for="degree1">All degrees</label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="degree2" name="degree">
-                          <label for="degree2">Associate degree <small>(216)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="degree3" name="degree">
-                          <label for="degree3">Bachelor's degree <small>(569)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="degree4" name="degree">
-                          <label for="degree4">Master's degree <small>(439)</small></label>
-                        </div>
-
-                        <div class="checkbox">
-                          <input type="checkbox" id="degree5" name="degree">
-                          <label for="degree5">Doctoral degree <small>(84)</small></label>
-                        </div>
-                      </div>
+                        <?php
+                            echo $this->Form->input('horas', array(
+                                'label' => array('text' => 'Horas Semanais', 'class' => 'vaga-horas'),
+                                'required' => true,
+                                'multiple' => 'checkbox',
+                                'type' => 'select',
+                                'options' => $horasSemanais,
+                                'title' => 'Horas Semanais',
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                            ));
+                        ?>
                     </div>
 
                   </div>
 
                   <div class="button-group">
                     <div class="action-buttons">
-                      <button class="btn btn-primary">Apply filter</button>
+                      <button class="btn btn-primary btn-block">Aplicar Filtros</button>
                     </div>
                   </div>
 
@@ -200,7 +205,7 @@
 
                           <li>
                             <i class="fa fa-certificate"></i>
-                            <span><?php echo $vaga['Vaga']['experiencia']; ?></span>
+                            <span>Experiência: <?php echo $vaga['Vaga']['experiencia']; ?></span>
                           </li>
                         </ul>
                       </footer>

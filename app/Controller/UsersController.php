@@ -48,8 +48,15 @@ class UsersController extends AppController
             'page' => $page,
             'limit' => 10
         );
+
+        $horasSemanais = $this->Vaga->find('list', array(
+            'fields' => array('Vaga.horasSemanaisExtenso'),
+            'group' => array('Vaga.horario_trabalho')
+        ));
+
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));
+        $this->set(compact('horasSemanais'));
     }
 
     public function add()

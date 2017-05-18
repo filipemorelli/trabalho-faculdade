@@ -18,6 +18,10 @@ class Vaga extends AppModel {
         ),
     );
 
+    public $virtualFields = array(
+        'horasSemanaisExtenso' => "CONCAT(Vaga.horario_trabalho, '/h')"
+    );
+
     public $useTable = "vagas_empresa";
 
     public $validate = array(
