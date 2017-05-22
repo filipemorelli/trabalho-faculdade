@@ -36,10 +36,38 @@ class UsersController extends AppController
         //vagas está em empresa
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Vagas de Trabalho'));
+
+        $horasSemanais = $this->Vaga->find('list', array(
+            'fields' => array('Vaga.horario_trabalho'),
+            'group' => array('Vaga.horario_trabalho')
+        ));
+
+        $nomeVaga = $this->request->data['Users']['cargo']; //pesquisa qualquer
+        $cidadeVaga = $this->request->data['Users']['cidade'];
+        $estadoVaga = $this->request->data['Users']['estado'];
+        $salarioVaga = !is_null($this->request->data['Users']['salario']) ? $this->request->data['Users']['salario'] : 0;
+        $salarioOperador = !isset($this->request->data['Users']['salario-operador']) ? $this->request->data['salario-operador'] : '>=';
+        $escolaridadeVaga = !is_null($this->request->data['Users']['escolaridade']) ? $this->request->data['Users']['escolaridade'] : 0;
+        $peridoTrabalhoVaga = $this->request->data['Users']['periodo_trabalho'];
+        $horasVagas = is_array($this->request->data['Users']['horas']) ? $this->request->data['Users']['horas'] : $horasSemanais;
+
         $this->Paginator->settings = array(
             'fields' => array('Vaga.id', 'Vaga.descricao_rapida', 'Vaga.periodo_trabalho', 'Vaga.experiencia', 'Vaga.salario', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.status', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo', 'Endereco.cidade', 'Endereco.estado'),
             'conditions' => array(
-                
+                'OR' => array(
+                    'Vaga.nome LIKE' => "%$nomeVaga%",
+                    'Vaga.descricao_rapida LIKE' => "%$nomeVaga%",
+                    'Vaga.descricao_completa LIKE' => "%$nomeVaga%",
+                    'Empresa.nome LIKE' => "%$nomeVaga%",
+                    'Empresa.descricao_rapida LIKE' => "%$nomeVaga%",
+                    'Empresa.descricao_completa LIKE' => "%$nomeVaga%",
+                ),
+                'Endereco.cidade' => $cidadeVaga,
+                'Endereco.estado' => $estadoVaga,
+                "Vaga.salario $salarioOperador" => $salarioVaga,
+                'Vaga.escolaridade >= ' => $escolaridadeVaga,
+                'Vaga.periodo_trabalho LIKE ' => "%$peridoTrabalhoVaga%",
+                'Vaga.horario_trabalho' => $horasVagas
             ),
             'order' => array(
                 'Vaga.modified' => 'DESC',
@@ -50,7 +78,7 @@ class UsersController extends AppController
         );
 
         $horasSemanais = $this->Vaga->find('list', array(
-            'fields' => array('Vaga.horasSemanaisExtenso'),
+            'fields' => array('Vaga.horario_trabalho', 'Vaga.horasSemanaisExtenso'),
             'group' => array('Vaga.horario_trabalho')
         ));
 

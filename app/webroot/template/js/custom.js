@@ -58,6 +58,7 @@ $(function () {
 
 	$(".endereco-rapido").autocomplete({
 	    minLength: 2,
+		selectFirst: true,
 	    source: function( request, response ) {
 	        $.ajax({
 	            url: "endereco-rapido",
@@ -80,6 +81,12 @@ $(function () {
 		select: function( event, ui ) {
 			$(".cidade").val(ui.item.cidade);
 			$(".estado").val(ui.item.estado);
+		},
+		change: function(event, ui){
+			if (ui.item == null){ 
+			//here is null if entered value is not match in suggestion list
+				$(this).val((ui.item ? ui.item.id : ""));
+			}
 		}
     });
 

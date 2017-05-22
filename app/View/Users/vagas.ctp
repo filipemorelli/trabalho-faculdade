@@ -49,18 +49,18 @@
                             echo $this->Form->input('endereco', array(
                                 'class' => 'form-control endereco-rapido',
                                 'placeholder' => 'Cidade, estado ou CEP',
-                                'required' => true,
+                                //'required' => true,
                                 'label' => array('text' => 'Endereço', 'class' => 'vaga-estado'),
                                 'div' => false
                             ));
                             echo $this->Form->input('cidade', array(
                                 'class' => 'cidade',
-                                'required' => true,
+                                //'required' => true,
                                 'type' => 'hidden',
                             ));
                             echo $this->Form->input('estado', array(
                                 'class' => 'estado',
-                                'required' => true,
+                                //'required' => true,
                                 'type' => 'hidden',
                             ));
                         ?>
@@ -71,7 +71,7 @@
                             echo $this->Form->input('salario', array(
                                 'class' => 'form-control',
                                 'placeholder' => 'Salário',
-                                'required' => true,
+                                //'required' => true,
                                 'label' => array('text' => 'Salário', 'class' => 'vaga-estado'),
                                 'type' => 'number',
                                 'default' => '0.00',
@@ -79,7 +79,19 @@
                                 'min' => '0.00',
                                 'div' => false,
                                 'before' => '<div class="input-group input-group-sm"><span class="input-group-addon">R$</span>',
-                                'after' => '</div>',
+                                'after' => $this->Form->input('salario-operador', array(
+                                    "class" => "btn btn-info",
+                                    'type' => 'select',
+                                    'label' => false,
+                                    'div' => false,
+                                    'before' => '<span class="input-group-btn">',
+                                    'after' => '</span>',
+                                    'options' => array(
+                                        '>=' => 'Maior ou Igual',
+                                        '=' => 'Igual',
+                                        '<=' => 'Menor ou Igual',
+                                    )
+                                )).'</div>',
                                 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
                                 'format' => array('label', 'before', 'input', 'between', 'after', 'error')
                             ));
@@ -90,9 +102,10 @@
                         <?php
                             echo $this->Form->input('escolaridade', array(
                                 'label' => array('text' => 'Escolaridade', 'class' => 'vaga-escolaridade'),
-                                'required' => true,
+                                //'required' => true,
                                 'class' => 'form-control selectpicker',
                                 'title' => 'selecione a escolaridade',
+                                'default' => '0',
                                 'options' => array(
                                     '0' => 'Indiferente',
                                     '1' => 'Ensino Fundamental incompleto',
@@ -120,7 +133,7 @@
                         <?php
                             echo $this->Form->input('periodo_trabalho', array(
                                 'label' => array('text' => 'Jornada de Trabalho', 'class' => 'vaga-tipo'),
-                                'required' => true,
+                                //'required' => true,
                                 'class' => 'form-control selectpicker',
                                 'options' => array(
                                     'integral' => 'Tempo Integral',
@@ -141,7 +154,7 @@
                         <?php
                             echo $this->Form->input('horas', array(
                                 'label' => array('text' => 'Horas Semanais', 'class' => 'vaga-horas'),
-                                'required' => true,
+                                //'required' => true,
                                 'multiple' => 'checkbox',
                                 'type' => 'select',
                                 'options' => $horasSemanais,
