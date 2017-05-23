@@ -37,38 +37,11 @@ class UsersController extends AppController
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Vagas de Trabalho'));
 
-        $horasSemanais = $this->Vaga->find('list', array(
-            'fields' => array('Vaga.horario_trabalho'),
-            'group' => array('Vaga.horario_trabalho')
-        ));
-
-        $nomeVaga = $this->request->data['Users']['cargo']; //pesquisa qualquer
-        $cidadeVaga = $this->request->data['Users']['cidade'];
-        $estadoVaga = $this->request->data['Users']['estado'];
-        $salarioVaga = !is_null($this->request->data['Users']['salario']) ? $this->request->data['Users']['salario'] : 0;
-        $salarioOperador = !isset($this->request->data['Users']['salario-operador']) ? $this->request->data['salario-operador'] : '>=';
-        $escolaridadeVaga = !is_null($this->request->data['Users']['escolaridade']) ? $this->request->data['Users']['escolaridade'] : 0;
-        $peridoTrabalhoVaga = $this->request->data['Users']['periodo_trabalho'];
-        $horasVagas = is_array($this->request->data['Users']['horas']) ? $this->request->data['Users']['horas'] : $horasSemanais;
+        $conditions = $this->paginationConditionQuery($this->request->data);
 
         $this->Paginator->settings = array(
             'fields' => array('Vaga.id', 'Vaga.descricao_rapida', 'Vaga.periodo_trabalho', 'Vaga.experiencia', 'Vaga.salario', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.status', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo', 'Endereco.cidade', 'Endereco.estado'),
-            'conditions' => array(
-                'OR' => array(
-                    'Vaga.nome LIKE' => "%$nomeVaga%",
-                    'Vaga.descricao_rapida LIKE' => "%$nomeVaga%",
-                    'Vaga.descricao_completa LIKE' => "%$nomeVaga%",
-                    'Empresa.nome LIKE' => "%$nomeVaga%",
-                    'Empresa.descricao_rapida LIKE' => "%$nomeVaga%",
-                    'Empresa.descricao_completa LIKE' => "%$nomeVaga%",
-                ),
-                'Endereco.cidade' => $cidadeVaga,
-                'Endereco.estado' => $estadoVaga,
-                "Vaga.salario $salarioOperador" => $salarioVaga,
-                'Vaga.escolaridade >= ' => $escolaridadeVaga,
-                'Vaga.periodo_trabalho LIKE ' => "%$peridoTrabalhoVaga%",
-                'Vaga.horario_trabalho' => $horasVagas
-            ),
+            'conditions' => $conditions,
             'order' => array(
                 'Vaga.modified' => 'DESC',
                 'Vaga.id' => 'DESC'
@@ -85,6 +58,52 @@ class UsersController extends AppController
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));
         $this->set(compact('horasSemanais'));
+    }
+
+    private function paginationConditionQuery($data){
+
+        $conditions = array();
+
+        if(isset($data['Users']['cargo']) && strlen($data['Users']['cargo']) > 0){
+            $nomeVaga = $data['Users']['cargo'];
+            $conditions['OR'] = array(
+                'Vaga.nome LIKE' => "%$nomeVaga%",
+                'Vaga.descricao_rapida LIKE' => "%$nomeVaga%",
+                'Vaga.descricao_completa LIKE' => "%$nomeVaga%",
+                'Empresa.nome LIKE' => "%$nomeVaga%",
+                'Empresa.descricao_rapida LIKE' => "%$nomeVaga%",
+                'Empresa.descricao_completa LIKE' => "%$nomeVaga%"
+            );
+        }
+
+        if(isset($data['Users']['cidade']) && strlen($data['Users']['cidade']) > 0){
+            $conditions['Endereco.cidade'] = $data['Users']['cidade'];
+        }
+
+        if(isset($data['Users']['estado']) && strlen($data['Users']['estado']) > 0){
+            $conditions['Endereco.estado'] = $data['Users']['estado'];
+        }
+
+        if(isset($data['Users']['salario']) && $data['Users']['estado'] >= 0){
+            $salarioOperador = isset($data['Users']['salario-operador']) ? $data['Users']['salario-operador'] : '>=';
+            $conditions["Vaga.salario $salarioOperador"] = $data['Users']['salario'];
+        }
+
+        if(isset($data['Users']['escolaridade']) && $data['Users']['escolaridade'] >= 0){
+            $conditions['Vaga.escolaridade >='] = $data['Users']['escolaridade'];
+        }
+
+        if(isset($data['Users']['periodo_trabalho']) && strlen($data['Users']['periodo_trabalho']) > 0){
+            var_dump(isset($data['Users']['periodo_trabalho']) && strlen($data['Users']['periodo_trabalho']) > 0);
+            echo "oi";
+            $conditions['Vaga.periodo_trabalho'] = $data['Users']['periodo_trabalho'];
+        }
+
+        if(isset($data['Users']['horas']) && is_array($data['Users']['horas'])){
+            $conditions['Vaga.horario_trabalho'] = $data['Users']['horas'];
+        }
+
+        return $conditions;
     }
 
     public function add()

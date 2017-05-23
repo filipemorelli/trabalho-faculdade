@@ -84,11 +84,14 @@ $(function () {
 		},
 		change: function(event, ui){
 			if (ui.item == null){ 
-			//here is null if entered value is not match in suggestion list
 				$(this).val((ui.item ? ui.item.id : ""));
 			}
 		}
-    });
+    }).keyup(function(e){
+		if ($(this).val() == ""){ 
+			$(".cidade, .estado").val("");
+		}
+	});
 
 	$(".titulo-vagas-rapido").autocomplete({
 	    minLength: 2,
