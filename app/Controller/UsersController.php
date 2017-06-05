@@ -44,7 +44,7 @@ class UsersController extends AppController
             'conditions' => $conditions,
             'order' => array(
                 'Vaga.modified' => 'DESC',
-                'Vaga.id' => 'DESC'
+                'Vaga.id1' => 'DESC'
             ),
             'page' => $page,
             'limit' => 10
@@ -94,13 +94,27 @@ class UsersController extends AppController
         }
 
         if(isset($data['Users']['periodo_trabalho']) && strlen($data['Users']['periodo_trabalho']) > 0){
-            var_dump(isset($data['Users']['periodo_trabalho']) && strlen($data['Users']['periodo_trabalho']) > 0);
-            echo "oi";
             $conditions['Vaga.periodo_trabalho'] = $data['Users']['periodo_trabalho'];
         }
 
         if(isset($data['Users']['horas']) && is_array($data['Users']['horas'])){
             $conditions['Vaga.horario_trabalho'] = $data['Users']['horas'];
+        }
+
+        if(isset($data['Users']['tempo_vaga']) && strlen($data['Users']['tempo_vaga'])){
+            switch ($data['Users']['tempo_vaga']) {
+                case 'hoje':
+                    $conditions['Vaga.modified = '] = date('Y-m-d');
+                    break;
+                case '3 dias':
+                    $conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+            //$conditions['Vaga.horario_trabalho'] = '';
         }
 
         return $conditions;

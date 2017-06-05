@@ -1,7 +1,13 @@
 <header class="page-header bg-img size-lg">
     <div class="container">
         <div class="header-detail descricao-vaga">
-            <?php echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('class' => 'img-vaga', 'alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Vaga']['nome']));?>
+            <?php 
+                if(isset($vaga['Vaga']['url_imagem']) || $vaga['Vaga']['url_imagem'] == ''){
+                    echo $this->Html->image('/template/img/logo.png', array('class' => 'img-vaga', 'alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Vaga']['nome']));
+                } else {
+                    echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('class' => 'img-vaga', 'alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Vaga']['nome']));
+                }
+            ?>
             <div class="hgroup">
                 <h1><?php echo $vaga['Vaga']['nome'] ?></h1>
                 <h3><a href="#"><?php echo $vaga['Empresa']['nome'] ?></a></h3> </div>

@@ -152,6 +152,31 @@
 
                     <div class="form-group col-xs-12">
                         <?php
+                            echo $this->Form->input('tempo_vaga', array(
+                                'label' => array('text' => 'Tempo da vaga', 'class' => 'vaga-horas'),
+                                //'required' => true,
+                                'class' => 'form-control selectpicker',
+                                'type' => 'select',
+                                'options' => array(
+                                    'hoje' => 'Hoje',
+                                    '3 dias' => 'até 3 dias',
+                                    '1 semana' => 'até 1 semana',
+                                    '2 semanas' => 'até 2 semana',
+                                    '3 semanas' => 'até 3 semana',
+                                    '1 mes' => 'até 1 mês',
+                                    '2 meses' => 'até 2 mês',
+                                    '3 meses' => 'até 3 mês',
+                                    '6 meses' => 'até 6 mês',
+                                    'todas' => 'todas'
+                                ),
+                                'title' => 'Tempo da vaga',
+                                'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
+                            ));
+                        ?>
+                    </div>
+
+                    <div class="form-group col-xs-12">
+                        <?php
                             echo $this->Form->input('horas', array(
                                 'label' => array('text' => 'Horas Semanais', 'class' => 'vaga-horas'),
                                 //'required' => true,
