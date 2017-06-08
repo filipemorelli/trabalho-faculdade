@@ -48,7 +48,25 @@
                                 </div>
                             </header>
                             <footer>
-                                <p class="status"><strong>Status:</strong> <?php echo $vaga['Vaga']['status']; ?></p>
+                                <?php
+                                    $classCss = '';
+                                    $status = '';
+                                    switch ($vaga['Vaga']['status']) {
+                                    case '0':
+                                        $classCss = 'success';
+                                        $status = "Andamento";
+                                        break;
+                                    case '1':
+                                        $classCss = 'warning';
+                                        $status = "Análise de Currículos";
+                                        break;
+                                    case '2':
+                                        $classCss = 'danger';
+                                        $status = "Encerrado";
+                                        break;
+                                    }
+                                ?>
+                                <span class="label label-<?php echo $classCss;?>"><?php echo $status; ?></span>
                                 <div class="action-btn"> 
                                     <?php echo $this->Html->link('Editar', array('controller' => 'empresas', 'action' => 'editarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-xs btn-gray', 'title' => 'Editar vaga '. $vaga['Vaga']['nome'])) ?>
                                     &nbsp;
