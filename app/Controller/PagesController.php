@@ -64,6 +64,14 @@ class PagesController extends AppController {
             ),
             'limit' => '10'
         ));
+        $qtdeVagas = $this->Vaga->find("count", array(
+            'conditions' => array(
+                'Vaga.ativo' => 1,
+                'Vaga.status !=' => 2
+            )
+        ));
+
+        $this->set('qtdeVagas', $qtdeVagas);
         $this->set('vagas', $vagas);
 	}
 

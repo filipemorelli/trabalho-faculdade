@@ -215,7 +215,7 @@
                             if($vaga['Vaga']['url_imagem'] != ""){
                                 echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
                             } else{
-                                echo $this->Html->image('/template/img/sem-imagem.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                                echo $this->Html->image('/template/img/logo.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
                             }
                         ?>
                         <div class="hgroup">

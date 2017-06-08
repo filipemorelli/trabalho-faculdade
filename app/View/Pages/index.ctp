@@ -3,7 +3,7 @@
       <div class="container">
         <div class="col-xs-12">
           <br><br>
-          <h2>Nós oferecemos <mark><?php echo count($vagas);?></mark> vagas de emprego agora!</h2>
+          <h2>Nós oferecemos <mark><?php echo $qtdeVagas;?></mark> vagas de emprego agora!</h2>
           <h5 class="font-alt">Encontre sua vaga em poucos minutos.</h5>
           <br><br><br>
           <?php
@@ -81,7 +81,7 @@
                           if($vaga['Vaga']['url_imagem'] != ""){
                             echo $this->Html->image('/upload/img/vaga/'.$vaga['Vaga']['url_imagem'], array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
                           } else{
-                            echo $this->Html->image('/template/img/sem-imagem.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
+                            echo $this->Html->image('/template/img/logo.png', array('alt' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome'], 'title' => $vaga['Vaga']['nome']." - ". $vaga['Empresa']['nome']));
                           }
                         ?>
                         <div class="hgroup">
