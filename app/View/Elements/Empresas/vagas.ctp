@@ -196,7 +196,7 @@
                         'class' => 'form-control selectpicker',
                         'options' => array(
                             'integral' => 'Tempo Integral',
-                            'meio-horário' => 'Meio Horario',
+                            'meio-horário' => 'Meio Horário',
                             'diaria' => 'Diaria',
                             'estagio' => 'Estágio',
                             'frelancer' => 'Freelancer',

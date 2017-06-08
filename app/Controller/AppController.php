@@ -101,6 +101,9 @@ class AppController extends Controller {
                 case 'logout':
                     return true;
                     break;
+                case 'vaga':
+                    return true;
+                    break;
                 case 'vagas':
                     return true;
                     break;

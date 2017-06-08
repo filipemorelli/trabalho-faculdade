@@ -2,6 +2,8 @@
 
 App::uses('AuthComponent', 'Controller/Component');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+App::uses('CakeTime', 'Utility');
+
 
 class UsersController extends AppController
 {
@@ -9,7 +11,7 @@ class UsersController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'login', 'enderecoRapido', 'tituloVagasRapido'));
+        $this->Auth->allow(array('logout', 'forgot', 'add', 'vagas', 'vaga', 'login', 'enderecoRapido', 'tituloVagasRapido'));
         if(!parent::isAuth()){
             $this->redirect(array("controller" => "pages", "action" => "index"));
         }
@@ -32,19 +34,47 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Usuários'));
     }
 
+    public function vaga($id = null){
+        if(is_null($id)){
+            $this->redirect(array("controller" => "pages", "action" => "index"));
+        } else {
+            $this->set('title_for_layout', __('Sobre a vaga'));
+            $this->loadModel('Vaga');
+
+            $this->Vaga->id = $id;
+            if(!$this->Vaga->exists()){
+                //throw new NotFoundException(__('Vaga Inválida'));
+            return $this->redirect(array('action' => 'index'));
+            }
+
+            $vaga = $this->Vaga->find('first', array(
+                'conditions' => array(
+                    'Vaga.id' => $id
+                ),
+            ));
+            if(count($vaga) == 0) {
+                $this->redirect(array("controller" => "pages", "action" => "index"));
+            }        
+            
+            $this->set('vaga', $vaga);
+        }
+
+    }
+
     public function vagas($page = 1){
         //vagas está em empresa
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Vagas de Trabalho'));
 
         $conditions = $this->paginationConditionQuery($this->request->data);
+        $conditions['Vaga.status !='] = 2;
 
         $this->Paginator->settings = array(
             'fields' => array('Vaga.id', 'Vaga.descricao_rapida', 'Vaga.periodo_trabalho', 'Vaga.experiencia', 'Vaga.salario', 'Vaga.nome', 'Vaga.url_imagem', 'Vaga.status', 'Vaga.modified', 'Empresa.nome', 'Vaga.ativo', 'Endereco.cidade', 'Endereco.estado'),
             'conditions' => $conditions,
             'order' => array(
                 'Vaga.modified' => 'DESC',
-                'Vaga.id1' => 'DESC'
+                'Vaga.id' => 'DESC'
             ),
             'page' => $page,
             'limit' => 10
@@ -58,6 +88,8 @@ class UsersController extends AppController
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));
         $this->set(compact('horasSemanais'));
+
+
     }
 
     private function paginationConditionQuery($data){
@@ -104,10 +136,39 @@ class UsersController extends AppController
         if(isset($data['Users']['tempo_vaga']) && strlen($data['Users']['tempo_vaga'])){
             switch ($data['Users']['tempo_vaga']) {
                 case 'hoje':
-                    $conditions['Vaga.modified = '] = date('Y-m-d');
+                    $conditions['Vaga.modified = '] = CakeTime::format(time(), '%Y-%m-%d');
                     break;
                 case '3 dias':
-                    $conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('-3 days', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '1 semana':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('1 week ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '2 semanas':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('2 weeks ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '3 semanas':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('3 weeks ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '1 mes':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('1 month ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '2 meses':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('2 month ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '3 meses':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('3 month ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
+                    break;
+                case '6 meses':
+                    $conditions['Vaga.modified BETWEEN ? and ?'] = array(CakeTime::format('6 month ago', '%Y-%m-%d'), CakeTime::format(time(), '%Y-%m-%d'));
+                    //$conditions['Vaga.modi1fied'] = 'BETWEEN now() AND now() - INTERVAL 3 DAY';
                     break;
 
                 default:

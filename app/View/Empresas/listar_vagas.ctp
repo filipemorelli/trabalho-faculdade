@@ -44,7 +44,7 @@
                                     <h4><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $vaga['Vaga']['nome']; ?></a></h4>
                                     <h5><a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>"><?php echo $vaga['Empresa']['nome']; ?></a></h5> </div>
                                 <div class="header-meta"> <span class="location"><?php echo $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span>
-                                    <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?></time>
+                                    <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified']))); ?></time>
                                 </div>
                             </header>
                             <footer>

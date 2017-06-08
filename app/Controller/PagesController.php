@@ -55,6 +55,7 @@ class PagesController extends AppController {
         $vagas = $this->Vaga->find("all", array(
             'conditions' => array(
                 'Vaga.ativo' => 1,
+                'Vaga.status !=' => 2
             ),
             'order' => array(
                 'Vaga.modified' => 'desc',

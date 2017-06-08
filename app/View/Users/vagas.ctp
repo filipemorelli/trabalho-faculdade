@@ -141,7 +141,7 @@
                                     'diaria' => 'Diaria',
                                     'estagio' => 'Estágio',
                                     'frelancer' => 'Freelancer',
-                                    'remoto' => 'Remote',
+                                    'remoto' => 'Remoto',
                                     'outro' => 'Outro'
                                 ),
                                 'empty' => 'Jornada de Trabalho',
@@ -167,7 +167,7 @@
                                     '2 meses' => 'até 2 mês',
                                     '3 meses' => 'até 3 mês',
                                     '6 meses' => 'até 6 mês',
-                                    'todas' => 'todas'
+                                    'todas' => 'Todo o tempo'
                                 ),
                                 'title' => 'Tempo da vaga',
                                 'error' => array('attributes' => array('wrap' => 'span', 'class' => 'text-danger')),
@@ -209,7 +209,7 @@
                 ?>
                   <!-- Job item -->
                   <div class="col-xs-12">
-                    <a class="item-block" href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'detalhesVaga', 'id' => $vaga['Vaga']['id'])); ?>">
+                    <a class="item-block" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'vaga', 'id' => $vaga['Vaga']['id'])); ?>">
                       <header>
                         <?php
                             if($vaga['Vaga']['url_imagem'] != ""){
@@ -220,9 +220,31 @@
                         ?>
                         <div class="hgroup">
                           <h4><?php echo ucfirst($vaga['Vaga']['nome']); ?></h4>
-                          <h5><?php echo ucfirst($vaga['Empresa']['nome']); ?> <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho']?></span></h5>
+                          <h5>
+                            <?php echo ucfirst($vaga['Empresa']['nome']); ?> 
+                            <span class="label label-info"><?php echo $vaga['Vaga']['periodo_trabalho']?></span>
+                            <?php
+                                $classCss = '';
+                                $status = '';
+                                switch ($vaga['Vaga']['status']) {
+                                case '0':
+                                    $classCss = 'success';
+                                    $status = "Andamento";
+                                    break;
+                                case '1':
+                                    $classCss = 'warning';
+                                    $status = "Análise de Currículos";
+                                    break;
+                                case '2':
+                                    $classCss = 'danger';
+                                    $status = "Encerrado";
+                                    break;
+                                }
+                            ?>
+                            <span class="label label-<?php echo $classCss;?>"><?php echo $status; ?></span>
+                          </h5>
                         </div>
-                        <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo $this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified'])); ?></time>
+                        <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified']))); ?></time>
                       </header>
 
                       <div class="item-body">
@@ -259,7 +281,7 @@
                 <div class="col-xs-12 text-center">
                   <ul class="pagination">
                     <?php
-                        $this->Paginator->options['url'] = array('controller' => 'empresas', 'action' => 'listarVagas');
+                        $this->Paginator->options['url'] = array('controller' => 'users', 'action' => 'vagas', 'sort' => 1, 'direction' => 1);
                         echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
                         echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
                         echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));

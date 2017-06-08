@@ -37,7 +37,13 @@
                     </li>
                 </ul>
                 <div class="action-buttons">
-                    <?php echo $this->Html->link('Candidatos', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('class' => 'btn btn-info'));?>
+                    <?php
+                        if($this->Session->read('Auth.user.id') !== ""){
+                            echo $this->Html->link('Candidatos', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-info'));
+                        } else {
+                            echo $this->Html->link('Candidatos', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('class' => 'btn btn-info'));
+                        }
+                    ?>
                 </div>
             </div>
         </div>
