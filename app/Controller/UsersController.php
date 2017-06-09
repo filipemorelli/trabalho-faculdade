@@ -66,6 +66,12 @@ class UsersController extends AppController
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Vagas de Trabalho'));
 
+        if($this->request->is('post')){
+            $this->Session->write('FormularioPesquisaVaga', $this->request->data);
+        } else {
+            $this->request->data = $this->Session->read('FormularioPesquisaVaga');
+        }
+
         $conditions = $this->paginationConditionQuery($this->request->data);
         $conditions['Vaga.status !='] = 2;
 
