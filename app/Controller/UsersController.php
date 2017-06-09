@@ -68,6 +68,9 @@ class UsersController extends AppController
 
         if($this->request->is('post')){
             $this->Session->write('FormularioPesquisaVaga', $this->request->data);
+            if($page != 1){
+                $this->redirect(array("controller" => "users", "action" => "vagas"));
+            }
         } else {
             $this->request->data = $this->Session->read('FormularioPesquisaVaga');
         }
