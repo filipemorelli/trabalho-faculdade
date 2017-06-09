@@ -45,7 +45,7 @@
 
 	/*Recursos do trabalhador*/
 	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));
-	Router::connect('/vagas/:page', array('controller' => 'users', 'action' => 'vagas'), array('pass' => array('pass')));
+	Router::connect('/vagas/:page', array('controller' => 'users', 'action' => 'vagas'), array('pass' => array('page')));
 	Router::connect('/vaga', array('controller' => 'users', 'action' => 'vaga'));
 	Router::connect('/vaga/:id', array('controller' => 'users', 'action' => 'vaga'), array('pass' => array('id')));
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
