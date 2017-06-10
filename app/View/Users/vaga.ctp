@@ -22,7 +22,7 @@
                 <li> <i class="fa fa-money"></i> <span>$90,000 - $110,000 / year</span> </li>
                 <li> <i class="fa fa-clock-o"></i> <span>40h / week</span> </li>
                 <li> <i class="fa fa-flask"></i> <span>2+ years experience</span> </li>
-                <li> <i class="fa fa-certificate"></i> <a href="#">Master or Bachelor</a> </li>
+                <li> <i class="fa fa-certificate"></i> Master or Bachelor</li>
             </ul>
             <div class="button-group">
                 <ul class="social-icons">
@@ -38,10 +38,10 @@
                 </ul>
                 <div class="action-buttons">
                     <?php
-                        if($this->Session->read('Auth.user.id') !== ""){
+                        if($this->Session->read('Auth.User.tipo') !== "trabalhador"){
                             echo $this->Html->link('Candidatos', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-info'));
                         } else {
-                            echo $this->Html->link('Candidatos', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Candidatos', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-info'));
                         }
                     ?>
                 </div>

@@ -140,6 +140,9 @@ class AppController extends Controller {
                 case 'editarPerfilTrabalhador':
                     return true;
                     break;
+                case 'candidatarVaga':
+                    return true;
+                    break;
                 default:
                     return false;
                     break;
@@ -177,9 +180,6 @@ class AppController extends Controller {
                     return true;
                     break;
                 case 'detalhesVaga':
-                    return true;
-                    break;
-                case 'candidatarVaga':
                     return true;
                     break;
                 case 'candidadosAVaga':

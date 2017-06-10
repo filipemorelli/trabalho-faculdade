@@ -281,7 +281,7 @@
                 <div class="col-xs-12 text-center">
                   <ul class="pagination">
                     <?php
-                        $this->Paginator->options['url'] = array('controller' => 'users', 'action' => 'vagas', 'sort' => 1, 'direction' => 1);
+                        $this->Paginator->options['url'] = array('controller' => 'users', 'action' => 'vagas');
                         echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
                         echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
                         echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));

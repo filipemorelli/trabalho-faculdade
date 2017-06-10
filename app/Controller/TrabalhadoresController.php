@@ -95,6 +95,16 @@ class TrabalhadoresController extends AppController
         }
     }
 
+
+    /**
+        Candidatar a vaga
+    */
+    public function candidatarVaga($id = null) {
+        $this->set('title_for_layout', __('Candidatar a vaga'));
+        var_dump($id);
+        exit();
+	}
+
     private function salvaRequisicaoTrabalhador($data){
         $endereco = $data['Endereco'];
         $trabalhador = $data['Trabalhador'];

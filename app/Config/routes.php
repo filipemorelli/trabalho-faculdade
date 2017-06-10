@@ -58,6 +58,7 @@
 	/*Trabalhadores*/
 	Router::connect('/editar-perfil', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'));
 	Router::connect('/historico-de-candidaturas', array('controller' => 'trabalhadores', 'action' => 'historicoCandidaturas'));
+	Router::connect('/candidatar-a-vaga/:id', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga'), array('pass' => array('id')));
 	
 
 	/*Recursos para as empresas*/
@@ -72,7 +73,6 @@
 	Router::connect('/nossas-vagas/:page', array('controller' => 'empresas', 'action' => 'listarVagas'), array('pass' => array('page')));
 	//Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
 	Router::connect('/detalhes-vaga/:id', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('pass' => array('id')));
-	Router::connect('/candidatar-vaga', array('controller' => 'empresas', 'action' => 'candidatarVaga'));
 	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
 	Router::connect('/candidatos-a-vaga/:id', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id')));
 

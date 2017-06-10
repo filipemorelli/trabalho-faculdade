@@ -341,7 +341,12 @@
                 <?php
                     $i = 0;
                     // para que em produtos possa rodar pelo menos 1 linha para criacao
-                    $logic = count($this->request->data['TrabalhadorEscolaridade']) > 0;
+                    if(isset($this->request->data['TrabalhadorEscolaridade'])){
+                        $logic = count($this->request->data['TrabalhadorEscolaridade']) > 0;
+                    } else {
+                        $logic = 0;
+                    }
+                    
                     $trabalhadorEscolaridades = isset($this->request->data['TrabalhadorEscolaridade']) && $logic ? $this->request->data['TrabalhadorEscolaridade'] : array(array());
                     foreach($trabalhadorEscolaridades as $escolaridade){
                 ?>
@@ -601,7 +606,11 @@
                 <?php
                     $j = 0;
                     // para que em produtos possa rodar pelo menos 1 linha para criacao
-                    $logic = count($this->request->data['TrabalhadorExperiencia']) > 0;
+                    if(isset($this->request->data['TrabalhadorExperiencia'])){
+                        $logic = count($this->request->data['TrabalhadorExperiencia']) > 0;
+                    } else {
+                        $logic = 0;
+                    }
                     $TrabalhadorExperiencias = isset($this->request->data['TrabalhadorExperiencia']) && $logic ? $this->request->data['TrabalhadorExperiencia'] : array(array());
                     foreach($TrabalhadorExperiencias as $experiencia){
                 ?>
