@@ -44,15 +44,16 @@ class UsersController extends AppController
             $this->Vaga->id = $id;
             if(!$this->Vaga->exists()){
                 //throw new NotFoundException(__('Vaga Inválida'));
-            return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'index'));
             }
-
+            
             $vaga = $this->Vaga->find('first', array(
                 'conditions' => array(
                     'Vaga.id' => $id
                 ),
             ));
-            if(count($vaga) == 0) {
+            
+            if(count($vaga) == 0 || $vaga['Vaga']['status'] == 3) {
                 $this->redirect(array("controller" => "pages", "action" => "index"));
             }        
             

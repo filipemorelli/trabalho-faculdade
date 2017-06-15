@@ -33,3 +33,27 @@
     position: relative;
     padding: 6px 12px;
 }
+
+.btn-candidatar{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.btn-candidatar:hover {
+    background-color: #7ec855!important;
+    border-color: #7ec855!important;
+}
+
+.btn-candidatar:hover::after {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f054";
+    margin-left: 5px;
+}

@@ -17,31 +17,31 @@
                 <?php echo $vaga['Vaga']['descricao_rapida'] ?>
             </p>
             <ul class="details cols-3">
-                <li> <i class="fa fa-map-marker"></i> <span>Menlo Park, CA</span> </li>
-                <li> <i class="fa fa-briefcase"></i> <span>Full time</span> </li>
-                <li> <i class="fa fa-money"></i> <span>$90,000 - $110,000 / year</span> </li>
-                <li> <i class="fa fa-clock-o"></i> <span>40h / week</span> </li>
-                <li> <i class="fa fa-flask"></i> <span>2+ years experience</span> </li>
-                <li> <i class="fa fa-certificate"></i> Master or Bachelor</li>
+                <li> <i class="fa fa-map-marker"></i> <span><?php echo $vaga['Endereco']['bairro'] . ', '. $vaga['Endereco']['cidade'] . ', '. $vaga['Endereco']['estado']; ?></span> </li>
+                <li> <i class="fa fa-briefcase"></i> <span><?php echo ucfirst($vaga['Vaga']['periodo_trabalho']); ?></span> </li>
+                <li> <i class="fa fa-money"></i> <span>R$ <?php echo str_replace(".", ",", $vaga['Vaga']['salario']); ?></span> </li>
+                <li> <i class="fa fa-clock-o"></i> <span><?php echo $vaga['Vaga']['horario_trabalho']; ?>/h</span> </li>
+                <li> <i class="fa fa-graduation-cap"></i>Escolaridade: <span><?php echo $this->Escolaridade->escolaridadeTexto($vaga['Vaga']['escolaridade']) ?></span> </li>
+                <li> <i class="fa fa-certificate"></i>Experiência: <?php echo $vaga['Vaga']['experiencia'] ?></li>
             </ul>
             <div class="button-group">
                 <ul class="social-icons">
-                    <li class="title">Share on</li>
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <li class="title">Compartilhe: </li>
+                    <li><a class="facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
                     </li>
-                    <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                    <li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=<?php echo Router::url( $this->here, true ); ?> "><i class="fa fa-google-plus"></i></a>
                     </li>
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                    <li><a class="twitter" target="_blank" href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome']. " - Freejobs link: " . Router::url( $this->here, true ); ?>"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                    <li><a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo Router::url( $this->here, true ); ?> &title=<?php echo "Vaga de ".$vaga['Vaga']['nome'] ." - Freejobs"; ?>"><i class="fa fa-linkedin"></i></a>
                     </li>
                 </ul>
                 <div class="action-buttons">
                     <?php
                         if($this->Session->read('Auth.User.tipo') !== "trabalhador"){
-                            echo $this->Html->link('Candidatos', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Candidatar', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-info', 'target' => '_blank'));
                         } else {
-                            echo $this->Html->link('Candidatos', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Candidatar', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-info btn-candidatar'));
                         }
                     ?>
                 </div>
