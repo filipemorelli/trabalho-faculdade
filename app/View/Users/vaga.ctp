@@ -31,15 +31,15 @@
                     </li>
                     <li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=<?php echo Router::url( $this->here, true ); ?> "><i class="fa fa-google-plus"></i></a>
                     </li>
-                    <li><a class="twitter" target="_blank" href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome']. " - Freejobs link: " . Router::url( $this->here, true ); ?>"><i class="fa fa-twitter"></i></a>
+                    <li><a class="twitter" target="_blank" href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome']. " - Freejobs link: " . $this->Html->url(array('controller' => $this->params->controller, 'action' => $this->params->action, 'id' => $this->params->id), true); ?>"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li><a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo Router::url( $this->here, true ); ?> &title=<?php echo "Vaga de ".$vaga['Vaga']['nome'] ." - Freejobs"; ?>"><i class="fa fa-linkedin"></i></a>
+                    <li><a class="linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $this->Html->url(array('controller' => $this->params->controller, 'action' => $this->params->action, 'id' => $this->params->id), true); ?> &title=<?php echo "Vaga de ".$vaga['Vaga']['nome'] ." - Freejobs"; ?>"><i class="fa fa-linkedin"></i></a>
                     </li>
                 </ul>
                 <div class="action-buttons">
                     <?php
                         if($this->Session->read('Auth.User.tipo') !== "trabalhador"){
-                            echo $this->Html->link('Candidatar', array('controller' => 'users', 'action' => 'login'), array('class' => 'btn btn-info', 'target' => '_blank'));
+                            echo $this->Html->link('Candidatar', array('controller' => 'users', 'action' => 'login', '?' => array("redirect" => $this->Html->url(array('controller' => $this->params->controller, 'action' => $this->params->action, 'id' => $this->params->id), true))), array('class' => 'btn btn-info', 'target' => '_blank'));
                         } else {
                             echo $this->Html->link('Candidatar', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-info btn-candidatar'));
                         }

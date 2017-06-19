@@ -278,7 +278,9 @@ class UsersController extends AppController
         $this->layout = 'login';
         $this->set('title_for_layout', __('Login'));
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
+            if ($this->Auth->login() && $this->request->query['redirect'] != "") {
+                return $this->redirect($this->request->query['redirect']);
+            } else if ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirect());
             }
             $this->Session->setFlash(__('Usuário ou senha inválida'), 'error');
