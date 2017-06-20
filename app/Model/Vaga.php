@@ -18,6 +18,15 @@ class Vaga extends AppModel {
         ),
     );
 
+    public $hasAndBelongsToMany = array(
+        'Trabalhador'  => array(
+            'className'    => 'Trabalhador',
+            'joinTable' => 'trabalhador_vaga',
+            'foreignKey' => 'trabalhador_id',
+            'associationForeignKey' => 'trabalhador_id',
+        ),
+    );
+
     public $virtualFields = array(
         'horasSemanaisExtenso' => "CONCAT(Vaga.horario_trabalho, '/h')"
     );

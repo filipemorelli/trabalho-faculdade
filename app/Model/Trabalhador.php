@@ -32,6 +32,15 @@ class Trabalhador extends AppModel {
         ),
     );
 
+    public $hasAndBelongsToMany = array(
+        'Vaga'  => array(
+            'className'    => 'TrabalhadorVaga',
+            'joinTable' => 'trabalhador_vaga',
+            'foreignKey' => 'vaga_id',
+            'associationForeignKey' => 'vaga_id',
+        ),
+    );
+
     public $useTable = "trabalhadores";
 
     public $validate = array(
