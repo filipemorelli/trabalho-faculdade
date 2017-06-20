@@ -98,12 +98,30 @@ class TrabalhadoresController extends AppController
 
     /**
         Candidatar a vaga
+        @params $id integer id da vaga 
     */
     public function candidatarVaga($id = null) {
         $this->set('title_for_layout', __('Candidatar a vaga'));
         if(!is_null($id)){
-            var_dump($id);
-            exit();
+            $trabalhador = $this->Trabalhador->find('first', array(
+                'conditions' => array(
+                    'user_id' => $this->Session->read('Auth.User.id'),
+                ),
+                'recursive' => -1
+            ));
+            $candidatoVaga = array(
+                'TrabalhadorVaga' => array(
+                    'trabalhador_id' => $trabalhador['Trabalhador']['id'],
+                    'vaga_id'        => $id
+                )   
+            );
+            if($this->Trabalhador->TrabalhadorVaga->save($candidatoVaga)){
+                $this->Session->setFlash(__('Candidatado com sucesso'), 'success');
+                return $this->redirect(array('controller' => 'users', 'action' => 'vaga', 'id' => $id));
+            }
+            $this->Session->setFlash(
+                __('Não pode candidatar a vaga.'), 'error'
+            );
         } else {
             $this->redirect(array("controller" => "users", "action" => "vagas"));
         }

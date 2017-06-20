@@ -1,5 +1,6 @@
 <header class="page-header bg-img size-lg">
     <div class="container">
+        <?php echo $this->Session->flash(); ?>
         <div class="header-detail descricao-vaga">
             <?php 
                 if(isset($vaga['Vaga']['url_imagem']) || $vaga['Vaga']['url_imagem'] == ''){

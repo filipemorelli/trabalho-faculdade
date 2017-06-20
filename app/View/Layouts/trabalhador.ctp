@@ -89,8 +89,8 @@
     <!-- END Navigation bar -->
 
     <?php
-      echo $this->fetch('content');
-      echo $this->element('Geral/footer');
+		echo $this->fetch('content');
+		echo $this->element('Geral/footer');
     ?> 
 
     <!-- Scripts -->
