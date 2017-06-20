@@ -99,6 +99,7 @@
           "/template/js/app.min.js",
           "/template/vendors/summernote/summernote.min.js",
           "/template/vendors/jqueryui/jqueryui-1.12.1.min.js",
+          "/template/vendors/mask/jquery.mask.min.js",
           "/template/js/custom.js",
         ));
     ?>

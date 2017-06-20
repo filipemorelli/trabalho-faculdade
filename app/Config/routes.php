@@ -58,6 +58,7 @@
 	/*Trabalhadores*/
 	Router::connect('/editar-perfil', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'));
 	Router::connect('/historico-de-candidaturas', array('controller' => 'trabalhadores', 'action' => 'historicoCandidaturas'));
+	Router::connect('/candidatar-a-vaga/', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga'));
 	Router::connect('/candidatar-a-vaga/:id', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga'), array('pass' => array('id')));
 	
 

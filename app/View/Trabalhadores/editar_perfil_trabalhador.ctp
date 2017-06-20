@@ -1,10 +1,10 @@
 <?php
-    echo $this->Form->create('Trabalhadores', array('type' => 'file'));
+    echo $this->Form->create('Trabalhadores', array('type' => 'file', 'class' => 'editarPerfilTrabalhadoresForm'));
 ?>
 <header class="page-header">
     <div class="container page-name">
-        <h1 class="text-center">Add your resume</h1>
-        <p class="lead text-center">Create your resume and put it online.</p>
+        <h1 class="text-center">Seu perfil profissional</h1>
+        <p class="lead text-center">Crie seu currículo e coloque na internet.</p>
     </div>
     <div class="container">
         <?php echo $this->Session->flash(); ?>
@@ -19,6 +19,7 @@
                             'placeholder' => 'Por favor escolha uma foto para seu perfil.',
                             'required' => false,
                             'class' => 'dropify',
+                            'data-allowed-file-extensions' => 'png jpg jpeg gif',
                             'data-default-file' => isset($this->request->data['Trabalhadores']['url_imagem']) && !is_array($this->request->data['Trabalhadores']['url_imagem'])? $this->Html->url('/upload/img/trabalhador/'.$this->request->data['Trabalhadores']['url_imagem']) : '',
                             'accept' => "image/*",
                             'data-max-file-size' => "2M",
@@ -35,7 +36,7 @@
                             'label' => false,
                             'autofocus' => true,
                             'placeholder' => 'Informe o seu nome',
-                            'required' => false,
+                            'required' => true,
                             'class' => 'form-control input-lg',
                             'error' => array('attributes' => array( 'class' => 'text-danger')),
                         ));
@@ -47,7 +48,7 @@
                             'label' => false,
                             'autofocus' => true,
                             'placeholder' => 'Informe a seu profissão.',
-                            'required' => false,
+                            'required' => true,
                             'class' => 'form-control input-lg',
                             'error' => array('attributes' => array( 'class' => 'text-danger')),
                         ));
@@ -61,8 +62,9 @@
                             'type' => 'textarea',
                             'rows' => 3,
                             'cols' => 30,
+                            'minLength' => 10,
                             'placeholder' => 'Descreva você de uma forma rápida.',
-                            'required' => false,
+                            'required' => true,
                             'class' => 'form-control',
                             'error' => array('attributes' => array( 'class' => 'text-danger')),
                         ));
@@ -80,8 +82,8 @@
                         'type' => 'tel',
                         'autofocus' => false,
                         'placeholder' => 'Informe o Telefone para contato',
-                        'required' => false,
-                        'class' => 'form-control',
+                        'required' => true,
+                        'class' => 'form-control telefone',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-phone"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -95,8 +97,8 @@
                         'type' => 'email',
                         'autofocus' => false,
                         'placeholder' => 'Informe o Email para contato',
-                        'required' => false,
-                        'class' => 'form-control',
+                        'required' => true,
+                        'class' => 'form-control email',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>',
                         'after' => '</div>',
                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -110,7 +112,7 @@
                         'autofocus' => false,
                         'type' => 'customDate',
                         'placeholder' => 'Informe sua data de aniversário',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>',
                         'after' => '</div>',
@@ -144,7 +146,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Informe o CEP do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control cep',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -158,7 +160,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Endereço do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control endereco',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -172,7 +174,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Bairro do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control bairro',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -189,7 +191,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Cidade do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control cidade',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -203,7 +205,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Estado do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control estado',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -217,7 +219,7 @@
                         'label' => false,
                         'autofocus' => false,
                         'placeholder' => 'Número do local de trabalho',
-                        'required' => false,
+                        'required' => true,
                         'class' => 'form-control numero',
                         'before' => '<div class="input-group input-group-sm"><span class="input-group-addon"><i class="fa fa-map-marker"></i></span>',
                         'after' => '</div>',
@@ -252,7 +254,8 @@
                     'type' => 'text',
                     'autofocus' => false,
                     'placeholder' => 'Digite sua Habilidade',
-                    'required' => false,
+                    'required' => false, //porque submit nao funciona
+                    'class' => 'habilidades',
                     'data-role' => "tagsinput",
                     'after' => '<span class="help-block">Digite a habilidade e pressione a tecla Enter</span>',
                     'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -370,7 +373,7 @@
                                                 <?php
                                                     echo $this->Form->input("TrabalhadorEscolaridade.$i.nivel", array(
                                                         'label' => false,
-                                                        'required' => false,
+                                                        'required' => true,
                                                         'class' => 'form-control selectpicker',
                                                         'options' => array(
                                                             '1' => 'Ensino Fundamental incompleto',
@@ -399,7 +402,7 @@
                                                     echo $this->Form->input("TrabalhadorEscolaridade.$i.curso", array(
                                                         'label' => false,
                                                         'autofocus' => false,
-                                                        'placeholder' => 'Digite o curso.',
+                                                        'placeholder' => 'Digite o curso. (Caso não seja curso superior basta repetir)',
                                                         'required' => false,
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -412,7 +415,7 @@
                                                         'label' => false,
                                                         'autofocus' => false,
                                                         'placeholder' => 'Digite o nome da instituição.',
-                                                        'required' => false,
+                                                        'required' => true,
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
                                                     ));
@@ -427,7 +430,7 @@
                                                             'type' => 'customDate',
                                                             'autofocus' => false,
                                                             'placeholder' => 'Digite a data de início.',
-                                                            'required' => false,
+                                                            'required' => true,
                                                             'before' => '<span class="input-group-addon">Data Início</span>',
                                                             'class' => 'form-control',
                                                             'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -439,6 +442,7 @@
                                                             'autofocus' => false,
                                                             'placeholder' => 'Digite a data de fim caso tenha finalizado.',
                                                             'required' => false,
+                                                            'title' => 'Caso não saiba o fim não precisa digitar nada',
                                                             'before' => '<span class="input-group-addon">Data Fim</span>',
                                                             'class' => 'form-control',
                                                             'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -448,13 +452,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <?php
-                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.descricao", array(
+                                                    echo $this->Form->input("TrabalhadorEscolaridade.$i.descricao_rapida", array(
                                                         'label' => false,
                                                         'type' => 'textarea',
                                                         'rows' => "3",
                                                         'autofocus' => false,
                                                         'placeholder' => 'Descrição do curso caso queira.',
-                                                        'required' => false,
+                                                        'required' => true,
+                                                        'minLength' => '10',
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
                                                     ));
@@ -488,7 +493,7 @@
                                         <?php
                                             echo $this->Form->input('TrabalhadorEscolaridade.nivel', array(
                                                 'label' => false,
-                                                'required' => false,
+                                                'required' => true,
                                                 'disabled' => true,
                                                 'class' => 'form-control selectpicker',
                                                 'options' => array(
@@ -533,7 +538,7 @@
                                                 'disabled' => true,
                                                 'autofocus' => false,
                                                 'placeholder' => 'Digite o nome da instituição.',
-                                                'required' => false,
+                                                'required' => true,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
                                             ));
@@ -549,7 +554,7 @@
                                                     'type' => 'customDate',
                                                     'autofocus' => false,
                                                     'placeholder' => 'Digite a data de início.',
-                                                    'required' => false,
+                                                    'required' => true,
                                                     'before' => '<span class="input-group-addon">Data Início</span>',
                                                     'class' => 'form-control',
                                                     'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -578,7 +583,8 @@
                                                 'rows' => "3",
                                                 'autofocus' => false,
                                                 'placeholder' => 'Descrição do curso caso queira.',
-                                                'required' => false,
+                                                'minLength' => 10,
+                                                'required' => true,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
                                             ));
@@ -635,7 +641,7 @@
                                                 'label' => false,
                                                 'autofocus' => false,
                                                 'placeholder' => 'Digite o cargo ocupado.',
-                                                'required' => false,
+                                                'required' => true,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
                                             ));
@@ -647,7 +653,7 @@
                                                 'label' => false,
                                                 'autofocus' => false,
                                                 'placeholder' => 'Digite o nome da empresa.',
-                                                'required' => false,
+                                                'required' => true,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
                                             ));
@@ -662,7 +668,7 @@
                                                         'type' => 'customDate',
                                                         'autofocus' => false,
                                                         'placeholder' => 'Digite o nome da instituição.',
-                                                        'required' => false,
+                                                        'required' => true,
                                                         'before' => '<span class="input-group-addon">Data Início</span>',
                                                         'class' => 'form-control',
                                                         'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -691,7 +697,7 @@
                                                     'type' => 'textarea',
                                                     'autofocus' => false,
                                                     'placeholder' => 'Digite a descrição de seu cargo caso queira.',
-                                                    'required' => false,
+                                                    'required' => true,
                                                     'minLength' => 10,
                                                     'class' => 'form-control',
                                                     'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -729,7 +735,7 @@
                                             'disabled' => 'disabled',
                                             'autofocus' => false,
                                             'placeholder' => 'Digite o cargo ocupado.',
-                                            'required' => false,
+                                            'required' => true,
                                             'class' => 'form-control',
                                             'error' => array('attributes' => array( 'class' => 'text-danger')),
                                         ));
@@ -742,7 +748,7 @@
                                                 'disabled' => 'disabled',
                                                 'autofocus' => false,
                                                 'placeholder' => 'Digite o nome da empresa.',
-                                                'required' => false,
+                                                'required' => true,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
                                             ));
@@ -758,7 +764,7 @@
                                                     'type' => 'customDate',
                                                     'autofocus' => false,
                                                     'placeholder' => 'Digite o nome da instituição.',
-                                                    'required' => false,
+                                                    'required' => true,
                                                     'before' => '<span class="input-group-addon">Data Início</span>',
                                                     'class' => 'form-control',
                                                     'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -789,7 +795,7 @@
                                                 'rows' => '3',
                                                 'autofocus' => false,
                                                 'placeholder' => 'Digite a descrição de seu cargo caso queira.',
-                                                'required' => false,
+                                                'required' => true,
                                                 'minLength' => 10,
                                                 'class' => 'form-control',
                                                 'error' => array('attributes' => array( 'class' => 'text-danger')),
@@ -866,12 +872,13 @@
     ?>
     <section class=" bg-img" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-facts.jpg');?>);">
         <div class="container">
-            <header class="section-header"> <span>Are you done?</span>
-                <h2>Submit resume</h2>
-                <p>Please review your information once more and press the below button to put your resume online.</p>
+            <header class="section-header"> <span>Você terminou?</span>
+                <h2>Salve agora</h2>
+                <p>Por favor, reveja suas informações mais uma vez e pressione o botão abaixo para colocar seu currículo on-line.</p>
+                <p>Você poderá alterar sempre que quiser.</p>
             </header>
             <p class="text-center">
-                <button class="btn btn-success btn-xl btn-round">Submit your resume</button>
+                <button class="btn btn-success btn-xl btn-round">Salvar agora!</button>
             </p>
         </div>
     </section>

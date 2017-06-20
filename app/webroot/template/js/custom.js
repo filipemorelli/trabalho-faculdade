@@ -2,6 +2,9 @@
 
 $(function () {
 
+	$(".cep").mask("99.999-999");
+	$('.telefone').mask(SPMaskBehavior, spOptions);
+
 	String.prototype.capitalize = function(){
 		return this.charAt(0).toUpperCase() + this.slice(1);
 	}
@@ -25,7 +28,7 @@ $(function () {
 		e.preventDefault();
 		var b = $(this).parent().siblings(".duplicateable-content");
 		var clone = b.clone();
-		var qtde = $(this).parent().parent().children().not(".duplicateable-content").find(".item-form").length;
+		var qtde = $(this).parent().parent().children().not(".text-center .duplicateable-content").find(".item-form").length;
 		clone.find('input, textarea, select, button').each(function () {
 			$(this).attr("disabled", false).removeClass("disabled");
 			if ($(this)[0].hasAttribute("name")) {
@@ -113,33 +116,45 @@ $(function () {
 	        });
 	    }
     });
+
+	$('.dropify').dropify({
+		messages: {
+			'default': 'Arraste e solte seu arquivo aqui ou clique aqui',
+			'replace': 'Arraste e solte ou clique para substituir',
+			'remove':  'Remover',
+			'error':   'Opa, Algo errado aconteceu, tente novamente.'
+		},
+		error: {
+			'fileSize': 'O tamanho do arquivo é muito grande ({{ value }} máx).',
+			'minWidth': 'A largura da imagem é muito pequena ({{ value }}}px min).',
+			'maxWidth': 'A largura da imagem é muito grande ({{ value }}}px máx).',
+			'minHeight': 'A altura da imagem é muito pequena ({{ value }}}px min).',
+			'maxHeight': 'A altura da imagem é muito grande ({{ value }}px máx).',
+			'imageFormat': 'O formato da imagem não é permitido ({{ value }} only).'
+		}
+	});
+	
+	$('.escolaridade .btn-remove').unbind('click');
+	$(document).on('click', '.escolaridade .btn-remove', function(e){
+		e.preventDefault();
+		var b = $(this).parents(".item-block").parent("div");
+		if($(this).parents('.row').parents('.row').length > 1){
+			b.fadeOut(600, function () {
+				b.remove()
+			});
+		}
+	})
 });
 
 
-//
-// Draw map in page-contact
-//
-function initMap() {
-	var mapDiv = document.getElementById('contact-map');
-	var map = new google.maps.Map(mapDiv, {
-		center: { lat: 44.540, lng: -78.546 },
-		zoom: 14
-	});
-
-	var marker = new google.maps.Marker({
-		position: { lat: 44.540, lng: -78.546 },
-		map: map
-	});
-
-	var infowindow = new google.maps.InfoWindow({
-		content: "<strong>Our office</strong><br>3652 Seventh Avenue, Los Angeles, CA"
-	});
-
-	marker.addListener('click', function () {
-		infowindow.open(map, marker);
-	});
-
-	infowindow.open(map, marker);
-
-	map.set('styles', [{ "featureType": "landscape", "stylers": [{ "hue": "#FFBB00" }, { "saturation": 43.400000000000006 }, { "lightness": 37.599999999999994 }, { "gamma": 1 }] }, { "featureType": "road.highway", "stylers": [{ "hue": "#FFC200" }, { "saturation": -61.8 }, { "lightness": 45.599999999999994 }, { "gamma": 1 }] }, { "featureType": "road.arterial", "stylers": [{ "hue": "#FF0300" }, { "saturation": -100 }, { "lightness": 51.19999999999999 }, { "gamma": 1 }] }, { "featureType": "road.local", "stylers": [{ "hue": "#FF0300" }, { "saturation": -100 }, { "lightness": 52 }, { "gamma": 1 }] }, { "featureType": "water", "stylers": [{ "hue": "#0078FF" }, { "saturation": -13.200000000000003 }, { "lightness": 2.4000000000000057 }, { "gamma": 1 }] }, { "featureType": "poi", "stylers": [{ "hue": "#00FF6A" }, { "saturation": -1.0989010989011234 }, { "lightness": 11.200000000000017 }, { "gamma": 1 }] }]);
-}
+/**
+ * Funcoes e variavaies mask input
+ */
+var SPMaskBehavior = function (val) {
+	return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+spOptions = {
+	onKeyPress: function(val, e, field, options) {
+		field.mask(SPMaskBehavior.apply({}, arguments), options);
+	}
+};

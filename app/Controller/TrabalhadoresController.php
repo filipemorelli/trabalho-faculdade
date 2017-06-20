@@ -101,26 +101,33 @@ class TrabalhadoresController extends AppController
     */
     public function candidatarVaga($id = null) {
         $this->set('title_for_layout', __('Candidatar a vaga'));
-        var_dump($id);
-        exit();
+        if(!is_null($id)){
+            var_dump($id);
+            exit();
+        } else {
+            $this->redirect(array("controller" => "users", "action" => "vagas"));
+        }
 	}
 
     private function salvaRequisicaoTrabalhador($data){
         $endereco = $data['Endereco'];
         $trabalhador = $data['Trabalhador'];
         $trabalhadorEscolaridade = $data['TrabalhadorEscolaridade'];
-        $trabalhadorExperiencia = $data['TrabalhadorExperiencia'];
 
         $endereco_id = 0; //mudar para 0 depois dos testes
-             
+        
         //salvar/atualizar endereco
         $endereco_id = $this->salvaEndereco($endereco);
 
         //manipulacao de pedido
         $trabalhador['endereco_id'] = $endereco_id;
         $trabalhador_id = $this->salvaTrabalhador($trabalhador);
-        $this->salvaTrabalhadorEscolaridade($trabalhadorEscolaridade, $trabalhador_id);
-        return $this->salvaTrabalhadorExperiencia($trabalhadorExperiencia, $trabalhador_id);
+
+        if(isset($data['TrabalhadorExperiencia'])){
+            $trabalhadorExperiencia = $data['TrabalhadorExperiencia'];
+            $this->salvaTrabalhadorExperiencia($trabalhadorExperiencia, $trabalhador_id);
+        }
+        return $this->salvaTrabalhadorEscolaridade($trabalhadorEscolaridade, $trabalhador_id);
 
     }
 
@@ -134,7 +141,7 @@ class TrabalhadoresController extends AppController
                 'cidade' => $endereco['cidade'],
                 'estado' => $endereco['estado'],
                 'numero' => $endereco['numero'],
-                'cep' => $endereco['cep'],
+                'cep' => str_replace('-', '', str_replace('.', '', $endereco['cep'])),
             )
         ));
         if (!$existeEndereco) {
@@ -159,7 +166,7 @@ class TrabalhadoresController extends AppController
                 return $this->Trabalhador->id;
             } else {
                 //nao chega aqui mas caso chegar
-                 throw new NotFoundException(__('Imposivel cadastro de trabalhador'));
+                throw new NotFoundException(__('Imposivel cadastro de trabalhador'));
             }
         } else if ($this->Trabalhador->save($trabalhador)) {
             return $this->Trabalhador->id;
@@ -176,7 +183,7 @@ class TrabalhadoresController extends AppController
         foreach ($trabalhadorEscolaridades as $escolaridade) {
             $escolaridade['TrabalhadorEscolaridade'] = $escolaridade;
             $escolaridade['TrabalhadorEscolaridade']['trabalhador_id'] = $trabalhador_id;
-            if (!$this->Trabalhador->TrabalhadorEscolaridade->saveAll($escolaridade)) {
+            if (!$this->Trabalhador->TrabalhadorEscolaridade->save($escolaridade)) {
                 throw new NotFoundException(__('Imposivel cadastro de Escolaridade'));
             }
         }
