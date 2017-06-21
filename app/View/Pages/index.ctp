@@ -97,7 +97,7 @@
                         <div class="text-left">
                           <p class="status"><strong>Periodo de trabalho:</strong> <?php echo $vaga['Vaga']['periodo_trabalho']; ?></p>
                         </div>
-                        <div class="text-right">
+                        <div class="text-right mobile-text-center">
                           <?php
                             $classCss = '';
                             $status = '';

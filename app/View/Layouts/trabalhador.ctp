@@ -65,7 +65,7 @@
               <?php echo $this->Html->link('<i class=""></i> Editar Currículo', array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'), array('title' => 'perfil', 'escape' => false));?>
           </li>
           <li>
-            <?php echo $this->Html->link('<i class="ti-book"></i> Histórico de candidaturas', array('controller' => 'pages', 'action' => 'historicoCandidaturas'), array('title' => 'Histórico de candidaturas', 'escape' => false));?>
+            <?php echo $this->Html->link('<i class="ti-book"></i> Histórico de candidaturas', array('controller' => 'trabalhador_vaga', 'action' => 'historicoCandidaturas'), array('title' => 'Histórico de candidaturas', 'escape' => false));?>
           </li>
           <li>
             <?php echo $this->Html->link('<i class="ti-search"></i> Vagas', array('controller' => 'users', 'action' => 'vagas'), array('title' => 'pesquisar vagar', 'escape' => false));?>

@@ -57,3 +57,15 @@
     content: "\f054";
     margin-left: 5px;
 }
+
+@media (max-width: 991px){
+    .label-mobile{
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .mobile-text-center{
+        text-align: center;
+    }
+}
