@@ -68,9 +68,6 @@
             <?php echo $this->Html->link('<i class="ti-layout-list-thumb"></i> Nossas Vagas', array('controller' => 'empresas', 'action' => 'listarVagas'), array('title' => 'Listar Vagas da Empresa', 'escape' => false));?>
           </li>
           <li>
-            <?php echo $this->Html->link('<i class="ti-search"></i> Profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'), array('title' => 'pesquisar vagar', 'escape' => false));?>
-          </li>
-          <li>
               <?php echo $this->Html->link('<i class="ti-user"></i> ' . $this->Session->read('Auth.User.nome'), "#", array('class' => '', 'title' => 'login', 'escape' => false)); ?>
               <ul>
                   <li>
