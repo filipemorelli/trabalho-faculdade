@@ -60,7 +60,8 @@
 	Router::connect('/historico-de-candidaturas', array('controller' => 'trabalhadores', 'action' => 'historicoCandidaturas'));
 	Router::connect('/candidatar-a-vaga/', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga'));
 	Router::connect('/candidatar-a-vaga/:id', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga'), array('pass' => array('id')));
-	
+	Router::connect('/cancelar-candidatura-a-vaga/', array('controller' => 'trabalhadores', 'action' => 'cancelarCandidadidaturaVaga'));
+	Router::connect('/cancelar-candidatura-a-vaga/:id', array('controller' => 'trabalhadores', 'action' => 'cancelarCandidadidaturaVaga'), array('pass' => array('id')));	
 
 	/*Recursos para as empresas*/
 	Router::connect('/profissionais', array('controller' => 'empresas', 'action' => 'buscarProfissionais'));

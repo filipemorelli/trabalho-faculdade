@@ -31,7 +31,7 @@ class TrabalhadoresController extends AppController
     {
         $this->ForcaCriarPerfil();
         if(!parent::isAuth()){
-            $this->redirect(array("controller" => "pages", "action" => "editarPerfilTrabalhador"));
+            $this->redirect(array("controller" => "pages", "action" => "index"));
         }
         $tipoUsuario = $this->Session->read('Auth.User.tipo');
         switch ($tipoUsuario) {
@@ -126,6 +126,39 @@ class TrabalhadoresController extends AppController
             $this->redirect(array("controller" => "users", "action" => "vagas"));
         }
 	}
+
+    /**
+        cancelar candidatura a vaga
+        @params $id integer id da vaga 
+    */
+    public function cancelarCandidadidaturaVaga($id = null) {
+        $this->set('title_for_layout', __('Candidatar a vaga'));
+        if(!is_null($id)){
+            $trabalhador = $this->Trabalhador->find('first', array(
+                'conditions' => array(
+                    'user_id' => $this->Session->read('Auth.User.id'),
+                ),
+                'recursive' => -1
+            ));
+            if($this->removeCandidatura($trabalhador['Trabalhador']['id'], $id)){
+                $this->Session->setFlash(__('Candidatura cancelada com sucesso'), 'success');
+                return $this->redirect(array('controller' => 'users', 'action' => 'vaga', 'id' => $id));
+            }
+            $this->Session->setFlash(
+                __('Não pode cancelar candididatura a vaga.'), 'error'
+            );
+        } else {
+            $this->redirect(array("controller" => "users", "action" => "vagas"));
+        }
+    }
+
+    private function removeCandidatura($trabalhador_id = null, $vaga_id = null){
+        if(!is_null($trabalhador_id) && !is_null($vaga_id)){
+            $this->Trabalhador->TrabalhadorVaga->query("DELETE FROM trabalhador_vaga WHERE trabalhador_id = $trabalhador_id AND vaga_id = $vaga_id");
+            return true;
+        }
+        return false;
+    }
 
     private function salvaRequisicaoTrabalhador($data){
         $endereco = $data['Endereco'];

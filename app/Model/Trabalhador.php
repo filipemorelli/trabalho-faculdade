@@ -34,9 +34,9 @@ class Trabalhador extends AppModel {
 
     public $hasAndBelongsToMany = array(
         'Vaga'  => array(
-            'className'    => 'TrabalhadorVaga',
+            'className'    => 'Vaga',
             'joinTable' => 'trabalhador_vaga',
-            'foreignKey' => 'vaga_id',
+            'foreignKey' => 'trabalhador_id',
             'associationForeignKey' => 'vaga_id',
         ),
     );

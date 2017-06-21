@@ -143,6 +143,9 @@ class AppController extends Controller {
                 case 'candidatarVaga':
                     return true;
                     break;
+                case 'cancelarCandidadidaturaVaga':
+                    return true;
+                    break;
                 default:
                     return false;
                     break;

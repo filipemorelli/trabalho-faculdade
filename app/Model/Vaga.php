@@ -22,7 +22,7 @@ class Vaga extends AppModel {
         'Trabalhador'  => array(
             'className'    => 'Trabalhador',
             'joinTable' => 'trabalhador_vaga',
-            'foreignKey' => 'trabalhador_id',
+            'foreignKey' => 'vaga_id',
             'associationForeignKey' => 'trabalhador_id',
         ),
     );

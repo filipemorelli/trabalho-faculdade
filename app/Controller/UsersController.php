@@ -55,9 +55,18 @@ class UsersController extends AppController
             
             if(count($vaga) == 0 || $vaga['Vaga']['status'] == 3) {
                 $this->redirect(array("controller" => "pages", "action" => "index"));
-            }        
+            }
+
+            $cadidatouVaga = false;
+            foreach ($vaga['Trabalhador'] as $key => $value) {
+                if($value['user_id'] == $this->Session->read('Auth.User.id')){
+                    $cadidatouVaga = true;
+                    break;
+                }
+            }
             
             $this->set('vaga', $vaga);
+            $this->set('cadidatouVaga', $cadidatouVaga);
         }
 
     }

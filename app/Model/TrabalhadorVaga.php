@@ -44,6 +44,13 @@ class TrabalhadorVaga extends AppModel {
         
         return false;
     }
+
+    public function teste($vaga_id){
+        var_dump($this);
+        exit();
+        $data = $this->query('select trabalhador_id from trabalhador_vaga;');
+        return $data;
+    }
     
 }
 ?>

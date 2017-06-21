@@ -41,6 +41,8 @@
                     <?php
                         if($this->Session->read('Auth.User.tipo') !== "trabalhador"){
                             echo $this->Html->link('Candidatar', array('controller' => 'users', 'action' => 'login', '?' => array("redirect" => $this->Html->url(array('controller' => $this->params->controller, 'action' => $this->params->action, 'id' => $this->params->id), true))), array('class' => 'btn btn-info', 'target' => '_blank'));
+                        } else if($cadidatouVaga) {
+                            echo $this->Html->link('Cancelar candididatura', array('controller' => 'trabalhadores', 'action' => 'cancelarCandidadidaturaVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-danger'));
                         } else {
                             echo $this->Html->link('Candidatar', array('controller' => 'trabalhadores', 'action' => 'candidatarVaga', 'id' => $vaga['Vaga']['id']), array('class' => 'btn btn-info btn-candidatar'));
                         }
