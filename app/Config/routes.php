@@ -49,6 +49,7 @@
 	Router::connect('/vaga', array('controller' => 'users', 'action' => 'vaga'));
 	Router::connect('/vaga/:id', array('controller' => 'users', 'action' => 'vaga'), array('pass' => array('id')));
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
+	Router::connect('/visualizar-perfil/:id', array('controller' => 'users', 'action' => 'visualizarPerfil'), array('pass' => array('id')));
 	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
 	Router::connect('/curriculos', array('controller' => 'users', 'action' => 'curriculosPerfil'));
 	Router::connect('/endereco-rapido', array('controller' => 'users', 'action' => 'enderecoRapido'));
@@ -77,7 +78,8 @@
 	//Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
 	Router::connect('/detalhes-vaga/:id', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('pass' => array('id')));
 	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
-	Router::connect('/candidatos-a-vaga/:id', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id')));
+	Router::connect('/candidatos-a-vaga/vaga/:id', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id')));
+	Router::connect('/candidatos-a-vaga/vaga/:id/pagina/:page', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id', 'page')));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

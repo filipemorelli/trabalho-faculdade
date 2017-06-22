@@ -279,12 +279,49 @@ class EmpresasController extends AppController
         $this->set('vaga', $vaga);
     }
 
-    public function candidatarVaga() {
-        $this->set('title_for_layout', __('Candidatar a vaga'));
-	}
-
-    public function candidadosAVaga(){
+    /**
+        Mostra candidatos à vaga
+    */
+    public function candidadosAVaga($id = null, $page = 1){
         $this->set('title_for_layout', __('Candidatos à vaga'));
+        $this->loadModel('Trabalhador');
+        $conditions = array(
+            'Vaga.id' => $id,
+            'Vaga.empresa_id' => $this->Session->read('Auth.User.id')
+        );
+        $limit = 10;
+        $this->Paginator->settings = array(
+            'conditions' => $conditions,
+            'page' => $page,
+            'limit' => $limit
+        );
+        $this->paginate = array(
+            'Trabalhador' => array(
+                'conditions' => $conditions,
+                'page' => $page,
+                'limit' => $limit,
+                'recursive' => 1,
+                'joins' => array(
+                     array(
+                        'alias' => 'TrabalhadorVaga',
+                        'table' => 'trabalhador_vaga',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'TrabalhadorVaga.trabalhador_id = Trabalhador.id',
+                        )
+                    ),
+                    array(
+                        'alias' => 'Vaga',
+                        'table' => 'vagas_empresa',
+                        'type' => 'LEFT',
+                        'conditions' => 'TrabalhadorVaga.vaga_id = Vaga.id'
+                    )
+                )
+            )
+        );
+        $trabalhadores = $this->paginate('Trabalhador');
+        $this->set(compact('trabalhadores'));
+        $this->set('vaga_id', $id);
     }
 
     private function salvaRequisicaoVaga($data){

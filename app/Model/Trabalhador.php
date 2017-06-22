@@ -30,15 +30,11 @@ class Trabalhador extends AppModel {
             'order'        => '',
             'foreignKey'   => 'trabalhador_id'
         ),
-    );
-
-    public $hasAndBelongsToMany = array(
-        'Vaga'  => array(
-            'className'    => 'Vaga',
-            'joinTable' => 'trabalhador_vaga',
-            'foreignKey' => 'trabalhador_id',
-            'associationForeignKey' => 'vaga_id',
-        ),
+        'TrabalhadorVaga' => array(
+            'className'    => 'TrabalhadorVaga',
+            'order'        => '',
+            'foreignKey'   => 'trabalhador_id'
+        )
     );
 
     public $useTable = "trabalhadores";

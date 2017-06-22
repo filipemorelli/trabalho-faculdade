@@ -18,13 +18,12 @@ class Vaga extends AppModel {
         ),
     );
 
-    public $hasAndBelongsToMany = array(
-        'Trabalhador'  => array(
-            'className'    => 'Trabalhador',
-            'joinTable' => 'trabalhador_vaga',
-            'foreignKey' => 'vaga_id',
-            'associationForeignKey' => 'trabalhador_id',
-        ),
+    public $hasMany = array(
+        'TrabalhadorVaga' => array(
+            'className'    => 'TrabalhadorVaga',
+            'order'        => '',
+            'foreignKey'   => 'vaga_id'
+        )
     );
 
     public $virtualFields = array(

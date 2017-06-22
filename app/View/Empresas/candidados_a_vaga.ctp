@@ -1,10 +1,9 @@
 <header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
     <div class="container page-name">
-        <h1 class="text-center">Job Candidates</h1>
-        <p class="lead text-center">Use following search box to find best candidates for your openning position</p>
+        <h1 class="text-center">Candidatos à Vaga</h1>
+        <?php /*<p class="lead text-center">Use following search box to find best candidates for your openning position</p> */ ?>
     </div>
     <div class="container">
-        <h5>Applicants for</h5>
         <a class="item-block item-block-flat" href="job-detail.htm">
             <header>
                 <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
@@ -15,6 +14,8 @@
                 <div class="header-meta"> <span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span> </div>
             </header>
         </a>
+        <?php
+        /*
         <hr>
         <h5>Search</h5>
         <form action="#">
@@ -48,79 +49,70 @@
                 </div>
             </div>
         </form>
+        */
+        ?>
     </div>
 </header>
 <main>
     <section class="no-padding-top bg-alt">
         <div class="container">
+            <?php echo $this->Session->flash(); ?>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.htm">
-                                <?php echo $this->Html->image('/template/img/avatar-1.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
-                            </a>
-                            <div class="hgroup">
-                                <h4> <a href="resume-detail.htm">John Doe</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>" selected="">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
-                                <h5>Front-end developer</h5> </div>
-                            <div class="header-meta"> <span class="location">Menlo park, CA</span> <span class="rate">$55 per hour</span> </div>
-                        </header>
-                        <footer>
-                            <div class="status"><strong>Applied on:</strong> July 16, 2016</div>
-                            <div class="action-btn"> <a class="btn btn-xs btn-gray" href="#">Download CV</a> <a class="btn btn-xs btn-gray" data-toggle="modal" data-target="#modal-contact" href="#">Contact</a> <a class="btn btn-xs btn-danger" href="#">Delete</a> </div>
-                        </footer>
-                    </div>
+                <div class="col-xs-12 col-sm-8">
+                    <h5>
+                    <?php
+                        echo $this->Paginator->counter(
+                            'Encontramos <strong>{:count}</strong> candidatos, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>'
+                        );
+                    ?>
+                    </h5>
                 </div>
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.htm">
-                                <?php echo $this->Html->image('/template/img/avatar-2.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
-                            </a>
-                            <div class="hgroup">
-                                <h4> <a href="resume-detail.htm">Bikesh Soltanian</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>" selected="">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
-                                <h5>Java developer</h5> </div>
-                            <div class="header-meta"> <span class="location">Fairfield, IA</span> <span class="rate">$60 per hour</span> </div>
-                        </header>
-                        <footer>
-                            <div class="status"><strong>Applied on:</strong> July 16, 2016</div>
-                            <div class="action-btn"> <a class="btn btn-xs btn-gray" href="#">Download CV</a> <a class="btn btn-xs btn-gray" data-toggle="modal" data-target="#modal-contact" href="#">Contact</a> <a class="btn btn-xs btn-danger" href="#">Delete</a> </div>
-                        </footer>
+            </div>
+            <div class="row">
+                <?php
+                    foreach($trabalhadores as $trabalhador){
+                ?>
+                    <div class="col-xs-12">
+                        <div class="item-block">
+                            <header>
+                                <a href="resume-detail.htm">
+                                    <?php 
+                                        if($trabalhador['Trabalhador']['url_imagem'] != ""){
+                                            echo $this->Html->image('/upload/img/vaga/'.$trabalhador['Trabalhador']['url_imagem'], array('alt' => $trabalhador['Trabalhador']['nome'], 'title' => $trabalhador['Trabalhador']['nome']));
+                                        } else{
+                                            echo $this->Html->image('/template/img/logo.png', array('alt' => $trabalhador['Trabalhador']['nome'], 'title' => $trabalhador['Trabalhador']['nome']));
+                                        }
+                                    ?>
+                                </a>
+                                <div class="hgroup">
+                                    <h4><a href="resume-detail.htm"><?php echo $trabalhador['Trabalhador']['nome']; ?></a></h4>
+                                    <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5> </div>
+                                <div class="header-meta"> <span class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', '.$trabalhador['Endereco']['cidade'] . ', '. $trabalhador['Endereco']['estado']; ?></span> </div>
+                            </header>
+                            <footer>
+                                <?php /*<div class="status"><strong>Candidatado em:</strong><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($trabalhador['TrabalhadorVaga']['modified']))); ?></div> */ ?>
+                                <div class="action-btn">
+                                    <?php echo $this->Html->link('Visualizar Perfil', array('controller' => 'users', 'action' => 'visualizarPerfil', 'id' => $trabalhador['Trabalhador']['id']), array('class' => 'btn btn-xs btn-info', 'title' => 'Visualizar Perfil '. $trabalhador['Trabalhador']['nome'])) ?>
+                                    &nbsp;
+                                    <a class="btn btn-xs btn-danger" href="#">Delete</a>
+                                </div>
+                            </footer>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.htm">
-                                <?php echo $this->Html->image('/template/img/avatar-4.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
-                            </a>
-                            <div class="hgroup">
-                                <h4> <a href="resume-detail.htm">Chris Hernandeziyan</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>" selected="">Interviewed <option data-content="<span class='label label-success'>Hired</span>">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
-                                <h5>Front-end developer</h5> </div>
-                            <div class="header-meta"> <span class="location">Seattle, WA</span> <span class="rate">$50 per hour</span> </div>
-                        </header>
-                        <footer>
-                            <div class="status"><strong>Applied on:</strong> July 16, 2016</div>
-                            <div class="action-btn"> <a class="btn btn-xs btn-gray" href="#">Download CV</a> <a class="btn btn-xs btn-gray" data-toggle="modal" data-target="#modal-contact" href="#">Contact</a> <a class="btn btn-xs btn-danger" href="#">Delete</a> </div>
-                        </footer>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.htm">
-                                <?php echo $this->Html->image('/template/img/avatar-3.jpg', array('alt' => '', 'class' => 'resume-avatar')); ?>
-                            </a>
-                            <div class="hgroup">
-                                <h4> <a href="resume-detail.htm">Maryam Amiri</a> <select class="form-control selectpicker label-style"> <option data-content="<span class='label label-default'>New</span>">New <option data-content="<span class='label label-warning'>Contacted</span>">Contacted <option data-content="<span class='label label-info'>Interviewed</span>">Interviewed <option data-content="<span class='label label-success'>Hired</span>" selected="">Hired <option data-content="<span class='label label-danger'>Archived</span>">Archived </select> </h4>
-                                <h5>Javascript developer</h5> </div>
-                            <div class="header-meta"> <span class="location">Fremont, CA</span> <span class="rate">$70 per hour</span> </div>
-                        </header>
-                        <footer>
-                            <div class="status"><strong>Applied on:</strong> July 16, 2016</div>
-                            <div class="action-btn"> <a class="btn btn-xs btn-gray" href="#">Download CV</a> <a class="btn btn-xs btn-gray" data-toggle="modal" data-target="#modal-contact" href="#">Contact</a> <a class="btn btn-xs btn-danger" href="#">Delete</a> </div>
-                        </footer>
-                    </div>
+                <?php
+                    }
+                ?>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="pagination">
+                    <?php
+                        $this->Paginator->options['url'] = array('controller' => 'empresas', 'action' => 'candidadosAVaga', 'id' => $vaga_id);
+                        echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                        echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
+                        echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
+                    ?>
+                    </ul>
                 </div>
             </div>
         </div>
