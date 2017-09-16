@@ -1,37 +1,21 @@
 <?php
-/**
- * Static content controller.
- *
- * This file will render views from views/pages/
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-
 App::uses('AppController', 'Controller');
 
 /**
- * Static content controller
- *
- * Override this controller by placing a copy in controllers directory of an application
+ * Controla todas as ações das páginas de acesso publico
  *
  * @package       app.Controller
- * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
 class PagesController extends AppController {
 
+    /**
+     * @var array
+     */
 	public $components = array('Paginator');
 
+    /**
+     * Executa antes de executar os metodos
+     */
     public function beforeFilter()
     {
 		$this->Auth->allow(array('index', 'sobre', 'contato', 'politicasDePrivacidade', 'termosDeUso'));
@@ -49,7 +33,10 @@ class PagesController extends AppController {
         }
     }
 
-	public function index(){ 
+    /**
+     * Página inicial
+     */
+	public function index(){
 		$this->set('title_for_layout', __('Bem vindo'));
         $this->loadModel('Vaga');
         $vagas = $this->Vaga->find("all", array(
@@ -75,18 +62,30 @@ class PagesController extends AppController {
         $this->set('vagas', $vagas);
 	}
 
+    /**
+     * Página Sobre
+     */
 	public function sobre(){
 		$this->set('title_for_layout', __('Sobre'));
 	}
 
+    /**
+     * Página Contato
+     */
 	public function contato(){
-		$this->set('title_for_layout', __('Contato'));		
+		$this->set('title_for_layout', __('Contato'));
 	}
 
+    /**
+     * Página Politicas de Privacidade
+     */
     public function politicasDePrivacidade(){
         $this->set('title_for_layout', __('Políticas de Privacidade - FreeJobs'));
     }
 
+    /**
+     * Página de Termos de uso
+     */
     public function termosDeUso(){
         $this->set('title_for_layout', __('Políticas de Privacidade - FreeJobs'));
     }

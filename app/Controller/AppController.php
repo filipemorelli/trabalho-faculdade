@@ -27,25 +27,36 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package        app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
-     public $helpers = array('MinifyHtml');
-     public $components = array(
+class AppController extends Controller
+{
+    /**
+     * Helpers que serão invocados
+     *
+     * @var array
+     */
+    public $helpers = array('MinifyHtml');
+    /**
+     * Componentes e configurações iniciais
+     *
+     * @var array
+     */
+    public $components = array(
         'Session',
         'Auth' => array(
-            'loginRedirect' => array(
+            'loginRedirect'  => array(
                 'controller' => 'pages',
-                'action' => 'index'
+                'action'     => 'index'
             ),
             'logoutRedirect' => array(
                 'controller' => 'pages',
-                'action' => 'index'
+                'action'     => 'index'
             ),
-            'authenticate' => array(
+            'authenticate'   => array(
                 'Form' => array(
-                    'scope' => array('User.ativo' => '1'),
+                    'scope'  => array('User.ativo' => '1'),
                     'fields' => array(
                         'username' => 'email',
                         'password' => 'senha'
@@ -55,16 +66,26 @@ class AppController extends Controller {
         )
     );
 
-    public function isAuth(){
+    /**
+     * Verifica se Tem autorizacao
+     * @return bool
+     */
+    public function isAuth()
+    {
         return $this->verifyPermission();
     }
 
-    private function verifyPermission(){
+    /**
+     * Verifica Permissao
+     * @return bool
+     */
+    private function verifyPermission()
+    {
         //$this->request->params['controller']
         $userRole = $this->Session->read('Auth.User.tipo');
 
         //verifica permisao geral de paginas
-        if($this->permissaoGeral()){
+        if ($this->permissaoGeral()) {
             return true;
         }
 
@@ -80,14 +101,20 @@ class AppController extends Controller {
                 return false;
                 break;
         }
-        
+
         return false;
     }
 
-    private function permissaoGeral(){
+    /**
+     * Definia a permissao de acesso a todas areas do site que não existe problemas de acesso
+     *
+     * @return bool
+     */
+    private function permissaoGeral()
+    {
         $controller = $this->request->params['controller'];
         $action = $this->request->params['action'];
-        if($controller === "users"){
+        if ($controller === "users") {
             switch ($action) {
                 case 'login':
                     return true;
@@ -118,12 +145,18 @@ class AppController extends Controller {
                     break;
             }
         }
-    } 
+    }
 
-    private function permissaoTrabalhador(){
+    /**
+     * Permissao de acesso ao usuario trabalhador
+     *
+     * @return bool
+     */
+    private function permissaoTrabalhador()
+    {
         $controller = $this->request->params['controller'];
         $action = $this->request->params['action'];
-        if($controller === "trabalhadores"){
+        if ($controller === "trabalhadores") {
             switch ($action) {
                 case 'perfil':
                     return true;
@@ -147,7 +180,8 @@ class AppController extends Controller {
                     return false;
                     break;
             }
-        } else if($controller === "trabalhador_vaga"){
+        }
+        else if ($controller === "trabalhador_vaga") {
             switch ($action) {
                 case 'historicoCandidaturas':
                     return true;
@@ -156,10 +190,16 @@ class AppController extends Controller {
         }
     }
 
-    private function permissaoEmpregador(){
+    /**
+     * Permissao de acesso ao empregador
+     *
+     * @return bool
+     */
+    private function permissaoEmpregador()
+    {
         $controller = $this->request->params['controller'];
         $action = $this->request->params['action'];
-        if($controller === "empresas"){
+        if ($controller === "empresas") {
             switch ($action) {
                 case 'buscarProfissionais':
                     return true;
