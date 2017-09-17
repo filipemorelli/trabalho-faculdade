@@ -1,4 +1,5 @@
-<header class="page-header bg-img size-lg" style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
+<header class="page-header bg-img size-lg"
+        style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
     <div class="container page-name">
         <h1 class="text-center">Candidatos à Vaga</h1>
         <?php /*<p class="lead text-center">Use following search box to find best candidates for your openning position</p> */ ?>
@@ -11,7 +12,8 @@
                     <h4>Senior front-end developer</h4>
                     <h5>Google</h5>
                 </div>
-                <div class="header-meta"> <span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span> </div>
+                <div class="header-meta"><span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span>
+                </div>
             </header>
         </a>
         <?php
@@ -60,58 +62,92 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8">
                     <h5>
-                    <?php
-                        echo $this->Paginator->counter(
-                            'Encontramos <strong>{:count}</strong> candidatos, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>'
-                        );
-                    ?>
+                        <?php
+                        echo $this->Paginator->counter('Encontramos <strong>{:count}</strong> candidatos, você está vendo página - <i>{:page}</i> de <i>{:pages}</i>');
+                        ?>
                     </h5>
                 </div>
             </div>
             <div class="row">
                 <?php
-                    foreach($trabalhadores as $trabalhador){
-                ?>
+                foreach ($trabalhadores as $trabalhador) {
+                    ?>
                     <div class="col-xs-12">
                         <div class="item-block">
                             <header>
                                 <a href="resume-detail.htm">
-                                    <?php 
-                                        if($trabalhador['Trabalhador']['url_imagem'] != ""){
-                                            echo $this->Html->image('/upload/img/vaga/'.$trabalhador['Trabalhador']['url_imagem'], array('alt' => $trabalhador['Trabalhador']['nome'], 'title' => $trabalhador['Trabalhador']['nome']));
-                                        } else{
-                                            echo $this->Html->image('/template/img/logo.png', array('alt' => $trabalhador['Trabalhador']['nome'], 'title' => $trabalhador['Trabalhador']['nome']));
-                                        }
+                                    <?php
+                                    if ($trabalhador['Trabalhador']['url_imagem'] != "") {
+                                        echo $this->Html->image('/upload/img/vaga/' . $trabalhador['Trabalhador']['url_imagem'], array(
+                                            'alt'   => $trabalhador['Trabalhador']['nome'],
+                                            'title' => $trabalhador['Trabalhador']['nome']
+                                        ));
+                                    }
+                                    else {
+                                        echo $this->Html->image('/template/img/logo.png', array(
+                                            'alt'   => $trabalhador['Trabalhador']['nome'],
+                                            'title' => $trabalhador['Trabalhador']['nome']
+                                        ));
+                                    }
                                     ?>
                                 </a>
                                 <div class="hgroup">
-                                    <h4><a href="resume-detail.htm"><?php echo $trabalhador['Trabalhador']['nome']; ?></a></h4>
-                                    <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5> </div>
-                                <div class="header-meta"> <span class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', '.$trabalhador['Endereco']['cidade'] . ', '. $trabalhador['Endereco']['estado']; ?></span> </div>
+                                    <h4>
+                                        <a href="resume-detail.htm"><?php echo $trabalhador['Trabalhador']['nome']; ?></a>
+                                    </h4>
+                                    <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5></div>
+                                <div class="header-meta"><span
+                                            class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', ' . $trabalhador['Endereco']['cidade'] . ', ' . $trabalhador['Endereco']['estado']; ?></span>
+                                </div>
                             </header>
                             <footer>
                                 <?php /*<div class="status"><strong>Candidatado em:</strong><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($trabalhador['TrabalhadorVaga']['modified']))); ?></div> */ ?>
                                 <div class="action-btn">
-                                    <?php echo $this->Html->link('Visualizar Perfil', array('controller' => 'users', 'action' => 'visualizarPerfil', 'id' => $trabalhador['Trabalhador']['id']), array('class' => 'btn btn-xs btn-info', 'title' => 'Visualizar Perfil '. $trabalhador['Trabalhador']['nome'])) ?>
+                                    <?php echo $this->Html->link('Visualizar Perfil', array(
+                                        'controller' => 'users',
+                                        'action'     => 'visualizarPerfil',
+                                        'id'         => $trabalhador['Trabalhador']['id']
+                                    ), array(
+                                        'class' => 'btn btn-xs btn-info',
+                                        'title' => 'Visualizar Perfil ' . $trabalhador['Trabalhador']['nome']
+                                    )) ?>
                                     &nbsp;
                                     <a class="btn btn-xs btn-danger" href="#">Delete</a>
                                 </div>
                             </footer>
                         </div>
                     </div>
-                <?php
-                    }
+                    <?php
+                }
                 ?>
             </div>
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <ul class="pagination">
-                    <?php
-                        $this->Paginator->options['url'] = array('controller' => 'empresas', 'action' => 'candidadosAVaga', 'id' => $vaga_id);
-                        echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-                        echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
-                        echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a'));
-                    ?>
+                        <?php
+                        $this->Paginator->options['url'] = array(
+                            'controller' => 'empresas',
+                            'action'     => 'candidadosAVaga',
+                            'id'         => $vaga_id
+                        );
+                        echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array(
+                            'tag'         => 'li',
+                            'class'       => 'disabled',
+                            'disabledTag' => 'a'
+                        ));
+                        echo $this->Paginator->numbers(array(
+                            'separator'    => '',
+                            'currentTag'   => 'a',
+                            'currentClass' => 'active',
+                            'tag'          => 'li',
+                            'first'        => 1
+                        ));
+                        echo $this->Paginator->next(__('Próximo »'), array('tag' => 'li'), null, array(
+                            'tag'         => 'li',
+                            'class'       => 'disabled',
+                            'disabledTag' => 'a'
+                        ));
+                        ?>
                     </ul>
                 </div>
             </div>

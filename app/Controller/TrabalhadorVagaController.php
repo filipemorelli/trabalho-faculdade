@@ -18,7 +18,8 @@ class TrabalhadorVagaController extends AppController
      *
      * @return bool
      */
-    private function TemPerfil(){
+    private function TemPerfil()
+    {
         $qtde = $this->TrabalhadorVaga->Trabalhador->find('count', array(
             'conditions' => array(
                 'user_id =' => $this->Session->read('Auth.User.id'),
@@ -32,12 +33,16 @@ class TrabalhadorVagaController extends AppController
      *
      * @return bool|\Cake\Network\Response|null
      */
-    private function ForcaCriarPerfil(){
-        if(!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilTrabalhador"){
-            if($this->Session->read('Auth.User.tipo') === "trabalhador"){
+    private function ForcaCriarPerfil()
+    {
+        if (!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilTrabalhador") {
+            if ($this->Session->read('Auth.User.tipo') === "trabalhador") {
                 $this->Session->setFlash(__('Precisa criar seu perfil!'), 'info');
             }
-            return $this->redirect(array('controller' => 'trabalhadores', 'action' => 'editarPerfilTrabalhador'));
+            return $this->redirect(array(
+                'controller' => 'trabalhadores',
+                'action'     => 'editarPerfilTrabalhador'
+            ));
         }
         return true;
     }
@@ -48,8 +53,11 @@ class TrabalhadorVagaController extends AppController
     public function beforeFilter()
     {
         $this->ForcaCriarPerfil();
-        if(!parent::isAuth()){
-            $this->redirect(array("controller" => "pages", "action" => "index"));
+        if (!parent::isAuth()) {
+            $this->redirect(array(
+                "controller" => "pages",
+                "action"     => "index"
+            ));
         }
         $tipoUsuario = $this->Session->read('Auth.User.tipo');
         switch ($tipoUsuario) {
@@ -71,7 +79,8 @@ class TrabalhadorVagaController extends AppController
      *
      * @param int $page
      */
-    public function historicoCandidaturas($page = 1){
+    public function historicoCandidaturas($page = 1)
+    {
         $this->set('title_for_layout', __('Histórico de candidaturas'));
         $conditions = array(
             'user_id' => $this->Session->read('Auth.User.id')
@@ -79,8 +88,8 @@ class TrabalhadorVagaController extends AppController
         $limit = 10;
         $this->Paginator->settings = array(
             'conditions' => $conditions,
-            'page' => $page,
-            'limit' => $limit
+            'page'       => $page,
+            'limit'      => $limit
         );
         $vagas = $this->Paginator->paginate('TrabalhadorVaga');
         $this->set(compact('vagas'));

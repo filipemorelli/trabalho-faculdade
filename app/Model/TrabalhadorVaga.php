@@ -4,7 +4,8 @@ App::uses('AuthComponent', 'Controller/Component');
 /**
  * Class TrabalhadorVaga Model resoponsavel por integridade dos dados da escolaridade do trabalhador
  */
-class TrabalhadorVaga extends AppModel {
+class TrabalhadorVaga extends AppModel
+{
 
     /**
      * @var string
@@ -16,14 +17,14 @@ class TrabalhadorVaga extends AppModel {
      */
     public $belongsTo = array(
         'Trabalhador' => array(
-            'className'    => 'Trabalhador',
-            'order'        => '',
-            'foreignKey'   => 'trabalhador_id'
+            'className'  => 'Trabalhador',
+            'order'      => '',
+            'foreignKey' => 'trabalhador_id'
         ),
-        'Vaga' => array(
-            'className'    => 'Vaga',
-            'order'        => '',
-            'foreignKey'   => 'vaga_id'
+        'Vaga'        => array(
+            'className'  => 'Vaga',
+            'order'      => '',
+            'foreignKey' => 'vaga_id'
         ),
     );
 
@@ -69,7 +70,7 @@ class TrabalhadorVaga extends AppModel {
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -126,6 +127,7 @@ class TrabalhadorVaga extends AppModel {
         $result = $this->query($query);
         return $result[0][0]['qtde'];
     }
-    
+
 }
+
 ?>

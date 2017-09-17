@@ -644,8 +644,8 @@ class UsersController extends AppController
                 )
             ));
             return json_encode(array(
-                    "options" => $result
-                ));
+                "options" => $result
+            ));
         }
     }
 
@@ -673,8 +673,8 @@ class UsersController extends AppController
                 "recursive"  => -1
             ));
             return json_encode(array(
-                    "options" => $result
-                ));
+                "options" => $result
+            ));
         }
     }
 
