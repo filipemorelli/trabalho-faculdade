@@ -1,10 +1,21 @@
 <?php
 App::uses('AppModel', 'Model');
 
+/**
+ * Class Endereco Model responsavel pela integridade da tabela endereco
+ */
 class Endereco extends AppModel {
 
+    /**
+     * @var string
+     */
     public $displayField = 'nome';
 
+    /**
+     * Relacionamento de tabela
+     *
+     * @var array
+     */
     public $hasOne = array(
         'Vaga' => array(
             'className'    => 'Vaga',
@@ -14,6 +25,11 @@ class Endereco extends AppModel {
         ),
     );
 
+    /**
+     * Responsavel pela validacao dos dados
+     *
+     * @var array
+     */
     public $validate = array(
         'endereco' => array(
             'required' => array(
@@ -87,7 +103,10 @@ class Endereco extends AppModel {
             )
         ),
     );
-    
+
+    /**
+     * @var string
+     */
     public $errorMessage = '';
     
 }
