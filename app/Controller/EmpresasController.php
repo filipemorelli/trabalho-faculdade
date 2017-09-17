@@ -2,10 +2,21 @@
 
 App::uses('AuthComponent', 'Controller/Component');
 
+/**
+ * Class EmpresasController controle da parte dos empregadores
+ */
 class EmpresasController extends AppController
 {
+    /**
+     * @var array
+     */
     public $components = array('Paginator');
 
+    /**
+     * Verifica se usuário tem perfil
+     *
+     * @return bool
+     */
     private function TemPerfil(){
         $qtde = $this->Empresa->find('count', array(
             'conditions' => array(
@@ -15,6 +26,11 @@ class EmpresasController extends AppController
         return $qtde == 1;
     }
 
+    /**
+     * Força com que o usuário crie seu perfil antes de fazer qualquer modificação de seus dados
+     *
+     * @return bool|\Cake\Network\Response|null
+     */
     private function ForcaCriarPerfil(){
         if(!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilEmpresa"){
             if($this->Session->read('Auth.User.tipo') === "empregador"){
@@ -25,6 +41,9 @@ class EmpresasController extends AppController
         return true;
     }
 
+    /**
+     * Executa antes de executar os metodos
+     */
     public function beforeFilter()
     {
         $this->ForcaCriarPerfil();
@@ -46,13 +65,16 @@ class EmpresasController extends AppController
         //$this->Auth->allow(array('buscarfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
     }
 
+    /**
+     * Pagina para buscar Profissionais
+     */
     public function buscarfissionais(){
         $this->set('title_for_layout', __('curar fissionais'));
     }
 
     /**
-    Perfil visualizados pelo administrador do perfil
-    */
+     * Perfil visualizados pelo administrador do perfil
+     */
     public function perfilEmpresa(){
         $this->set('title_for_layout', __('Vizualizar perfil da Empresa'));
         $empresa = $this->Empresa->find('first', array(
@@ -68,9 +90,10 @@ class EmpresasController extends AppController
         $this->set('empresa', $empresa);
         $this->set('vagas', $vagas);
     }
+
     /**
-    Curriculo visualizado somente pelo usuario e pode ser editado
-    */
+     * Curriculo visualizado somente pelo usuario e pode ser editado
+     */
     public function editarPerfilEmpresa(){
         $this->set('title_for_layout', __('Editar perfil'));
 
@@ -130,6 +153,10 @@ class EmpresasController extends AppController
         }
     }
 */
+    /**
+     * Adiciona Vaga de trabalho
+     * @return \Cake\Network\Response|null
+     */
     public function adicionarVaga(){
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Adicionar vaga'));
@@ -154,6 +181,12 @@ class EmpresasController extends AppController
         }
     }
 
+    /**
+     * Edita a vaga de trabalho caso necessário
+     *
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function editarVaga($id = null){
         $this->Empresa->Vaga->id = $id;
         if(!$this->Empresa->Vaga->exists()){
@@ -185,6 +218,11 @@ class EmpresasController extends AppController
         }
     }
 
+    /**
+     * Lista as vagas de trabalho que a empresa tem
+     *
+     * @param int $page
+     */
     public function listarVagas($page = 1){
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
@@ -205,6 +243,12 @@ class EmpresasController extends AppController
         $this->set(compact('vagas'));
     }
 
+    /**
+     * Exclui vaga de trabalho caso necessário
+     *
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function excluirVaga($id = null){
         $this->loadModel('Vaga');
         $this->Vaga->id = $id;
@@ -231,6 +275,12 @@ class EmpresasController extends AppController
         return $this->redirect(array('action' => 'listarVagas'));
     }
 
+    /**
+     * Ativar vaga de trabalho
+     *
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function ativarVaga($id = null){
         $this->loadModel('Vaga');
         $this->Vaga->id = $id;
@@ -257,6 +307,12 @@ class EmpresasController extends AppController
         return $this->redirect(array('action' => 'listarVagas'));
     }
 
+    /**
+     * Mostra detalhes da vaga de trabalho
+     *
+     * @param null $id
+     * @return \Cake\Network\Response|null
+     */
     public function detalhesVaga($id = null){
         $this->set('title_for_layout', __('Sobre a vaga'));
         $this->loadModel('Vaga');
@@ -280,8 +336,11 @@ class EmpresasController extends AppController
     }
 
     /**
-        Mostra candidatos à vaga
-    */
+     * Mostra candidatos à vaga
+     *
+     * @param null $id
+     * @param int $page
+     */
     public function candidadosAVaga($id = null, $page = 1){
         $this->set('title_for_layout', __('Candidatos à vaga'));
         $this->loadModel('Trabalhador');
@@ -324,6 +383,12 @@ class EmpresasController extends AppController
         $this->set('vaga_id', $id);
     }
 
+    /**
+     * Salva criação da vaga
+     *
+     * @param array $data informacoes da vaga de trabalho
+     * @return boolean
+     */
     private function salvaRequisicaoVaga($data){
         $endereco = $data['Endereco'];
         $vaga = $data['Vaga'];   
@@ -338,6 +403,10 @@ class EmpresasController extends AppController
         return $this->Empresa->Vaga->save($vaga);
     }
 
+    /**
+     * @param array $endereco Dados do endereco da vaga
+     * @return int
+     */
     private function salvaEndereco($endereco){
 
         $existeEndereco = $this->Empresa->Vaga->Endereco->find('first', array(
