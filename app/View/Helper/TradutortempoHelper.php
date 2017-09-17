@@ -2,14 +2,26 @@
 
 App::uses('AppHelper', 'View/Helper');
 
-
+/**
+ * Class TradutortempoHelper Tradutor de tempo
+ */
 class TradutortempoHelper extends AppHelper {
 
+    /**
+     * TradutortempoHelper constructor.
+     * @param View $view
+     * @param array $settings
+     */
     public function __construct(View $view, $settings = array()) {
         parent::__construct($view, $settings);
     }
 
 
+    /**
+     * Cake tem uma função para pasar tempo para string porém em ingles, então essa funcao traduz para portugues
+     * @param $texto
+     * @return string
+     */
     public function tempoPtBr($texto) {
         $texto = str_replace('days', 'dias' , $texto);
         $texto = str_replace('minutes', 'minutos' , $texto);

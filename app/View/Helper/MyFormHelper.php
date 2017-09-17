@@ -1,8 +1,18 @@
 <?php
 App::uses('FormHelper', 'View/Helper');
 
+/**
+ * Class MyFormHelper create Custom fields
+ */
 class MyFormHelper extends FormHelper
 {
+    /**
+     * HTML5 Time field
+     *
+     * @param $fieldName
+     * @param array $options
+     * @return string
+     */
     public function customTime($fieldName, $options = array())
     {
         $options =
@@ -15,6 +25,13 @@ class MyFormHelper extends FormHelper
         );
     }
 
+    /**
+     * HTML5 Date field
+     *
+     * @param $fieldName
+     * @param array $options
+     * @return string
+     */
     public function customDate($fieldName, $options = array())
     {
         $options =
