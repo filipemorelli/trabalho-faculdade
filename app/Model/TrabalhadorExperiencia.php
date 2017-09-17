@@ -1,8 +1,14 @@
 <?php
 App::uses('AuthComponent', 'Controller/Component');
 
+/**
+ * Class TrabalhadorExperiencia Model resoponsavel por integridade dos dados da experiencia do trabalhador
+ */
 class TrabalhadorExperiencia extends AppModel {
 
+    /**
+     * @var array
+     */
     public $belongsTo = array(
         'Trabalhadores' => array(
             'className'    => 'Trabalhadores',
@@ -12,8 +18,14 @@ class TrabalhadorExperiencia extends AppModel {
         ),
     );
 
+    /**
+     * @var string
+     */
     public $useTable = "experiencia";
 
+    /**
+     * @var array
+     */
     public $validate = array(
         'cargo' => array(
             'required' => array(
@@ -56,7 +68,10 @@ class TrabalhadorExperiencia extends AppModel {
             )
         ),
     );
-    
+
+    /**
+     * @var string
+     */
     public $errorMessage = '';
     
 }

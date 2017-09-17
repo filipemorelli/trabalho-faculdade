@@ -1,9 +1,19 @@
 <?php
 App::uses('AuthComponent', 'Controller/Component');
 
+/**
+ * Class TrabalhadorVaga Model resoponsavel por integridade dos dados da escolaridade do trabalhador
+ */
 class TrabalhadorVaga extends AppModel {
 
+    /**
+     * @var string
+     */
     public $displayField = 'created';
+
+    /**
+     * @var array
+     */
     public $belongsTo = array(
         'Trabalhador' => array(
             'className'    => 'Trabalhador',
@@ -17,10 +27,22 @@ class TrabalhadorVaga extends AppModel {
         ),
     );
 
+    /**
+     * @var string
+     */
     public $useTable = "trabalhador_vaga";
-    
+
+    /**
+     * @var string
+     */
     public $errorMessage = '';
 
+    /**
+     * Inativar Vaga
+     *
+     * @param $vaga
+     * @return bool
+     */
     public function inativar($vaga)
     {
         if (!empty($vaga) && $vaga['Vaga']['ativo'] == 1) {
@@ -32,7 +54,13 @@ class TrabalhadorVaga extends AppModel {
         $this->errorMessage = 'Vaga não pode ser removida, tente mais tarde.';
         return false;
     }
-    
+
+    /**
+     * Reativar Vaga
+     *
+     * @param $vaga
+     * @return bool
+     */
     public function reativar($vaga)
     {
         if (!empty($vaga) && $vaga['Vaga']['ativo'] == 0) {
@@ -46,9 +74,17 @@ class TrabalhadorVaga extends AppModel {
     }
 
     /**
-        Paginate esta customizado
-        $conditions = userid
-    */
+     * Paginacao customizada das Vagas
+     *
+     * @param array $conditions
+     * @param array $fields
+     * @param string $order
+     * @param int $limit
+     * @param int $page
+     * @param int $recursive
+     * @param array $extra
+     * @return array
+     */
     function paginate($conditions, $fields, $order, $limit = 10, $page, $recursive, $extra)
     {
         $page = $page - 1;
@@ -67,6 +103,14 @@ class TrabalhadorVaga extends AppModel {
         return $result;
     }
 
+    /**
+     * Paginacao customizada das Vagas contagem
+     *
+     * @param null $conditions
+     * @param int $recursive
+     * @param array $extra
+     * @return mixed
+     */
     public function paginateCount($conditions = null, $recursive = 0, $extra = array())
     {
         $this->recursive = 0;
