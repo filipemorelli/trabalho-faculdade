@@ -2,10 +2,19 @@
 App::uses('AppModel', 'Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
+/**
+ * Class User
+ */
 class User extends AppModel {
 
+    /**
+     * @var string
+     */
     public $displayField = 'nome';
 
+    /**
+     * @var array
+     */
     public $validate = array(
         'nome' => array(
             'required' => array(
@@ -41,9 +50,16 @@ class User extends AppModel {
             )
         )
     );
-    
+
+    /**
+     * @var string
+     */
     public $errorMessage = '';
 
+    /**
+     * @param array $options
+     * @return bool
+     */
     public function beforeSave($options = array()) {
         
         //se tiver id pega dados usuario
@@ -63,7 +79,11 @@ class User extends AppModel {
         
         return true;
     }
-    
+
+    /**
+     * @param $user_id
+     * @return bool
+     */
     public function getAutor($user_id)
     {
         if (isset($user_id)) {
@@ -74,7 +94,11 @@ class User extends AppModel {
         return false;
         
     }
-    
+
+    /**
+     * @param $user
+     * @return bool
+     */
     public function inativar($user){
         
         // pr(AuthComponent::user('id'));die;
@@ -92,7 +116,11 @@ class User extends AppModel {
         $this->errorMessage = 'Usuário não pode ser removido, tente mais tarde.';
         return false;
     }
-    
+
+    /**
+     * @param $user
+     * @return bool
+     */
     public function reativar($user){
         if (!empty($user) && $user['User']['ativo'] == 0) {
             $user['User']['ativo'] = 1;
