@@ -2,7 +2,7 @@
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
- * Class Trabalhador
+ * Class Trabalhador Model Trabalhador resoponsavel por integridade dos dados da trabalhadores empresa
  */
 class Trabalhador extends AppModel
 {
