@@ -2,9 +2,16 @@
 
 App::uses('AppHelper', 'View/Helper');
 
-
+/**
+ * Class EscolaridadeHelper
+ */
 class EscolaridadeHelper extends AppHelper {
 
+    /**
+     * Escolaridade id para texto
+     * @param int $escolaridade
+     * @return string
+     */
     public function escolaridadeTexto($escolaridade = 0){
         switch ($escolaridade) {
             case 0:

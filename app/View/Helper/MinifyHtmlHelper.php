@@ -5,33 +5,45 @@ $SS = '"(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\'';
 $CC = '\/\*[\s\S]*?\*\/';
 $CH = '<\!--[\s\S]*?-->';
 
+/**
+ * Class MinifyHtmlHelper
+ */
 class MinifyHtmlHelper extends AppHelper {
-    
 
+
+    /**
+     * Executa depois de renderizar a pagina
+     *
+     * @param string $viewFile
+     * @param string $content
+     * @return string HTML minificado
+     */
     public function afterRenderFile($viewFile, $content) {
         return $this->minify_html($content);
     }
 
+    /**
+     * @param $input
+     * @return mixed
+     */
     function __minify_x($input) {
         return str_replace(array("\n", "\t", ' '), array(X . '\n', X . '\t', X . '\s'), $input);
     }
 
+    /**
+     * @param $input
+     * @return mixed
+     */
     function __minify_v($input) {
         return str_replace(array(X . '\n', X . '\t', X . '\s'), array("\n", "\t", ' '), $input);
     }
 
-
     /**
-    * =======================================================
-    *  HTML MINIFIER
-    * =======================================================
-    * -- CODE: ----------------------------------------------
-    *
-    *    echo minify_html(file_get_contents('test.html'));
-    *
-    * -------------------------------------------------------
-    */
-
+     * HTML MINIFIER
+     *
+     * @param $input
+     * @return mixed
+     */
     function _minify_html($input) {
         return preg_replace_callback('#<\s*([^\/\s]+)\s*(?:>|(\s[^<>]+?)\s*>)#', function($m) {
             if(isset($m[2])) {
@@ -64,6 +76,12 @@ class MinifyHtmlHelper extends AppHelper {
         }, $input);
     }
 
+    /**
+     * HTML MINIFIER
+     *
+     * @param $input
+     * @return array|mixed|string
+     */
     function minify_html($input) {
         if( ! $input = trim($input)) return $input;
         global $CH;
@@ -111,18 +129,12 @@ class MinifyHtmlHelper extends AppHelper {
         return preg_replace('#<(code|pre|script|style)(>|\s[^<>]*?>)\s*([\s\S]*?)\s*<\/\1>#i', '<$1$2$3</$1>', $output);
     }
 
-
     /**
-    * =======================================================
-    *  CSS MINIFIER
-    * =======================================================
-    * -- CODE: ----------------------------------------------
-    *
-    *    echo minify_css(file_get_contents('test.css'));
-    *
-    * -------------------------------------------------------
-    */
-
+     * CSS inline minified
+     *
+     * @param $input
+     * @return mixed
+     */
     function _minify_css($input) {
         // Keep important white-space(s) in `calc()`
         if(stripos($input, 'calc(') !== false) {
@@ -187,6 +199,12 @@ class MinifyHtmlHelper extends AppHelper {
         $input);
     }
 
+    /**
+     * CSS inline minified
+     *
+     * @param $input
+     * @return mixed
+     */
     function minify_css($input) {
         if( ! $input = trim($input)) return $input;
         global $SS, $CC;
@@ -223,18 +241,12 @@ class MinifyHtmlHelper extends AppHelper {
         return $this->__minify_v($output);
     }
 
-
     /**
-    * =======================================================
-    *  JAVASCRIPT MINIFIER
-    * =======================================================
-    * -- CODE: ----------------------------------------------
-    *
-    *    echo minify_js(file_get_contents('test.js'));
-    *
-    * -------------------------------------------------------
-    */
-
+     * JS inline minified
+     *
+     * @param $input
+     * @return mixed
+     */
     function _minify_js($input) {
         return preg_replace(
             array(
@@ -260,6 +272,12 @@ class MinifyHtmlHelper extends AppHelper {
         $input);
     }
 
+    /**
+     * JS inline minified
+     *
+     * @param $input
+     * @return mixed
+     */
     function minify_js($input) {
         if( ! $input = trim($input)) return $input;
         // Create chunk(s) of string(s), comment(s), regex(es) and text
