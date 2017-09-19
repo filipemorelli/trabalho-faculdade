@@ -13,6 +13,19 @@ class User extends AppModel
      */
     public $displayField = 'nome';
 
+    public $belongsTo = array(
+        'Trabalhador' => array(
+            'className'  => 'Trabalhador',
+            'foreignKey' => false,
+            'finderQuery' => 'select Trabalhador.* from Trabalhador where Trabalhador.user_id = User.id'
+        ),
+        'Empresa' => array(
+            'className'  => 'Empresa',
+            'foreignKey' => false,
+            'finderQuery' => 'select Empresa.* from Empresa where Empresa.user_id = User.id'
+        ),
+    );
+
     /**
      * @var array
      */

@@ -96,9 +96,9 @@ class UsersController extends AppController
             }
 
             $cadidatouVaga = false;
-            if (array_key_exists('Trabalhador', $vaga)) {
-                foreach ($vaga['Trabalhador'] as $key => $value) {
-                    if ($value['user_id'] == $this->Session->read('Auth.User.id')) {
+            if (array_key_exists('TrabalhadorVaga', $vaga)) {
+                foreach ($vaga['TrabalhadorVaga'] as $key => $value) {
+                    if ($value['trabalhador_id'] == $this->Session->read('Auth.User.Trabalhador.id')) {
                         $cadidatouVaga = true;
                         break;
                     }
