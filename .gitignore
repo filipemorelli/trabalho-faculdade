@@ -17,6 +17,8 @@
 /.project
 /.buildpath
 /.settings/
+.project
+.settings
 
 # OS generated files #
 ######################
