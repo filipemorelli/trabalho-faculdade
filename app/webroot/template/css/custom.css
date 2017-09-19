@@ -69,3 +69,7 @@
         text-align: center;
     }
 }
+
+.social-icons a.whatsapp:hover {
+    background-color: #01E675;
+}

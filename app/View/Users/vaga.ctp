@@ -9,8 +9,7 @@
                     'alt'   => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
                     'title' => $vaga['Vaga']['nome'] . " - " . $vaga['Vaga']['nome']
                 ));
-            }
-            else {
+            } else {
                 echo $this->Html->image('/upload/img/vaga/' . $vaga['Vaga']['url_imagem'], array(
                     'class' => 'img-vaga',
                     'alt'   => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
@@ -64,6 +63,13 @@
                            ), true); ?> &title=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs"; ?>"><i
                                     class="fa fa-linkedin"></i></a>
                     </li>
+                    <li><a class="whatsapp" target="_blank"
+                           href="https://api.whatsapp.com/send?text=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . $this->Html->url(array(
+                                   'controller' => $this->params->controller,
+                                   'action'     => $this->params->action,
+                                   'id'         => $this->params->id
+                               ), true); ?>"><i class="fa fa-whatsapp"></i></a>
+                    </li>
                 </ul>
                 <div class="action-buttons">
                     <?php
@@ -82,15 +88,13 @@
                             'class' => 'btn btn-info',
                             'target' => '_blank'
                         ));
-                    }
-                    else if ($cadidatouVaga) {
+                    } elseif ($cadidatouVaga) {
                         echo $this->Html->link('Cancelar candididatura', array(
                             'controller' => 'trabalhadores',
                             'action'     => 'cancelarCandidadidaturaVaga',
                             'id'         => $vaga['Vaga']['id']
                         ), array('class' => 'btn btn-danger'));
-                    }
-                    else {
+                    } else {
                         echo $this->Html->link('Candidatar', array(
                             'controller' => 'trabalhadores',
                             'action'     => 'candidatarVaga',
