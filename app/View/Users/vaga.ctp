@@ -74,7 +74,7 @@
                 <div class="action-buttons">
                     <?php
                     if ($this->Session->read('Auth.User.tipo') !== "trabalhador") {
-                        echo $this->Html->link('Candidatar', array(
+                        echo $this->Html->link('Logar como trabalhador', array(
                             'controller' => 'users',
                             'action'     => 'login',
                             '?'          => array(

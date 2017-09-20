@@ -91,6 +91,7 @@
                         <a class="item-block" href="<?php echo $this->Html->url(array(
                             'controller' => 'users',
                             'action'     => 'vaga',
+                            'titulo'     => $this->UrlControl->parseSlug($vaga['Vaga']['nome']),
                             'id'         => $vaga['Vaga']['id']
                         )); ?>">
                             <header>

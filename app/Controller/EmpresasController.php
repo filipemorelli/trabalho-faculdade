@@ -7,6 +7,7 @@ App::uses('AuthComponent', 'Controller/Component');
  */
 class EmpresasController extends AppController
 {
+    public $helpers = array('UrlControl');
     /**
      * @var array
      */

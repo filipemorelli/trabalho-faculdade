@@ -47,7 +47,7 @@
 	Router::connect('/vagas', array('controller' => 'users', 'action' => 'vagas'));
 	Router::connect('/vagas/:page', array('controller' => 'users', 'action' => 'vagas'), array('pass' => array('page')));
 	Router::connect('/vaga', array('controller' => 'users', 'action' => 'vaga'));
-	Router::connect('/vaga/:id', array('controller' => 'users', 'action' => 'vaga'), array('pass' => array('id')));
+	Router::connect('/vaga/:id/:titulo', array('controller' => 'users', 'action' => 'vaga'), array('pass' => array('id', 'titulo')));
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
 	Router::connect('/visualizar-perfil/:id', array('controller' => 'users', 'action' => 'visualizarPerfil'), array('pass' => array('id')));
 	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
