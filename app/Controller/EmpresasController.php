@@ -240,6 +240,21 @@ class EmpresasController extends AppController
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
 
+        if ($this->request->is('post')) {
+            $this->Session->write('EmpresaPesquisaVaga', $this->request->data);
+            if ($page != 1) {
+                $this->redirect(array(
+                    "controller" => "users",
+                    "action"     => "vagas"
+                ));
+            }
+        }
+        else {
+            $this->request->data = $this->Session->read('EmpresaPesquisaVaga');
+        }
+
+        //$conditions = $this->paginationConditionQuery($this->request->data);
+
         $this->Paginator->settings = array(
             'fields'     => array(
                 'Vaga.id',
@@ -262,8 +277,17 @@ class EmpresasController extends AppController
             'page'       => $page,
             'limit'      => 10
         );
+        $horasSemanais = $this->Vaga->find('list', array(
+            'fields' => array(
+                'Vaga.horario_trabalho',
+                'Vaga.horasSemanaisExtenso'
+            ),
+            'group'  => array('Vaga.horario_trabalho')
+        ));
+
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));
+        $this->set(compact('horasSemanais'));
     }
 
     /**
