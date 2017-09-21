@@ -1,7 +1,7 @@
 <!-- Page header -->
 <header class="page-header page-vaga bg-img"
         style="background-image: url(<?php echo $this->Html->url('/template/img/bg-banner1.jpg'); ?>)">
-    <div class="container page-name">
+    <div class="container">
         <h1 class="text-center">Pesquisar Vagas</h1>
         <p class="lead text-center">Use o filtro de pesquisa para encontrar trabalhos que melhor se adaptem a você.</p>
     </div>
@@ -11,7 +11,7 @@
 
 <!-- Main container -->
 <main>
-    <section class="no-padding-top bg-alt">
+    <section class="bg-alt">
         <div class="container">
             <div class="row">
 

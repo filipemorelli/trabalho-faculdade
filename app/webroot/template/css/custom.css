@@ -73,3 +73,6 @@
 .social-icons a.whatsapp:hover {
     background-color: #01E675;
 }
+.details.cols-4 li {
+    width: 25%;
+}

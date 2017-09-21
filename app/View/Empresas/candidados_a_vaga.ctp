@@ -96,8 +96,9 @@
                                         <a href="resume-detail.htm"><?php echo $trabalhador['Trabalhador']['nome']; ?></a>
                                     </h4>
                                     <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5></div>
-                                <div class="header-meta"><span
-                                            class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', ' . $trabalhador['Endereco']['cidade'] . ', ' . $trabalhador['Endereco']['estado']; ?></span>
+                                <div class="header-meta">
+                                    <span class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', ' . $trabalhador['Endereco']['cidade'] . ', ' . $trabalhador['Endereco']['estado']; ?></span>
+                                    <i class="fa fa-envelop-o"></i> <?php echo $this->Text->autoLinkEmails($trabalhador['Trabalhador']['email'], array('target' => '_blank')); ?>
                                 </div>
                             </header>
                             <footer>

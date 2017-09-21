@@ -125,23 +125,9 @@
                                 </div>
                                 <div class="text-right mobile-text-center">
                                     <?php
-                                    $classCss = '';
-                                    $status = '';
-                                    switch ($vaga['Vaga']['status']) {
-                                        case '0':
-                                            $classCss = 'info';
-                                            $status = "Andamento";
-                                            break;
-                                        case '1':
-                                            $classCss = 'warning';
-                                            $status = "Análise de Currículos";
-                                            break;
-                                        case '2':
-                                            $classCss = 'danger';
-                                            $status = "Encerrado";
-                                            break;
-                                    }
+                                    $infoStatus = $this->Utility->getStatusVaga($vaga['Vaga']['status']);
                                     ?>
+                                    <span class="label label-<?php echo $infoStatus['class']; ?>"><?php echo $infoStatus['status']; ?></span>
                                     <span class="label label-<?php echo $classCss; ?>"><?php echo $status; ?></span>
                                 </div>
                             </footer>

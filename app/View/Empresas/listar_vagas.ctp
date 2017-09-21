@@ -1,15 +1,14 @@
-<header class="page-header bg-img size-lg">
+<header class="page-header bg-img size-lg page-vaga">
     <div class="container no-shadow">
         <h1 class="text-center">Nossas Vagas</h1>
-        <p class="lead text-center">Aqui está a lista de suas vagas de trabalho. Você pode editá-los ou excluí-los, ou
-            até mesmo adicionar um novo.</p>
+        <p class="lead text-center">Aqui está a lista de suas vagas de trabalho. Você pode editá-los ou excluí-los.</p>
     </div>
 </header>
 <main>
-    <section class="no-padding-top bg-alt">
+    <section class="bg-alt">
         <div class="container">
-            <div class="row">
 
+            <div class="row">
                 <div class="col-xs-12">
                     <br />
                     <h5>
@@ -18,7 +17,10 @@
                         ?>
                     </h5>
                 </div>
+            </div>
 
+
+            <div class="row">
 
                 <div class="col-md-4">
 
@@ -299,36 +301,25 @@
                                                 echo $this->Html->url(array(
                                                     'controller' => 'empresas',
                                                     'action' => 'detalhesVaga',
-                                                    'id' => $vaga['Vaga']['id']
+                                                    'id' => $vaga['Vaga']['id'],
+                                                    'titulo' => $this->UrlControl->parseSlug($vaga['Vaga']['nome']),
                                                 ));
                                                 ?>"><?php echo $vaga['Empresa']['nome']; ?></a></h5></div>
-                                        <div class="header-meta"><span
-                                                class="location"><?php echo $vaga['Endereco']['cidade'] . ', ' . $vaga['Endereco']['estado']; ?></span>
+                                        <div class="header-meta">
+                                            <span class="location"><?php echo $vaga['Endereco']['cidade'] . ', ' . $vaga['Endereco']['estado']; ?></span>
                                             <time datetime="<?php echo $vaga['Vaga']['modified']; ?>"><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($vaga['Vaga']['modified']))); ?></time>
                                         </div>
-                                    </header>
+                                    </header>    
+                                    
+                                    <div class="item-body">
+                                        <p><?php echo $vaga['Vaga']['descricao_rapida']; ?></p>
+                                    </div>
+
                                     <footer>
                                         <?php
-                                        $classCss = '';
-                                        $status = '';
-                                        switch ($vaga['Vaga']['status']) {
-                                            case '0':
-                                                $classCss = 'success';
-                                                $status = "Andamento";
-                                                break;
-
-                                            case '1':
-                                                $classCss = 'warning';
-                                                $status = "Análise de Currículos";
-                                                break;
-
-                                            case '2':
-                                                $classCss = 'danger';
-                                                $status = "Encerrado";
-                                                break;
-                                        }
+                                        $infoStatus = $this->Utility->getStatusVaga($vaga['Vaga']['status']);
                                         ?>
-                                        <span class="label label-<?php echo $classCss; ?>"><?php echo $status; ?></span>
+                                        <span class="label label-<?php echo $infoStatus['class']; ?>"><?php echo $infoStatus['status']; ?></span>
                                         <div class="action-btn">
                                             <?php
                                             echo $this->Html->link('Editar', array(
@@ -337,7 +328,8 @@
                                                 'id' => $vaga['Vaga']['id']
                                                     ), array(
                                                 'class' => 'btn btn-xs btn-gray',
-                                                'title' => 'Editar vaga ' . $vaga['Vaga']['nome']
+                                                'title' => 'Editar vaga ' . $vaga['Vaga']['nome'],
+                                                'target' => '_blank'
                                             ))
                                             ?>
                                             &nbsp;
@@ -348,7 +340,8 @@
                                                 'id' => $vaga['Vaga']['id']
                                                     ), array(
                                                 'class' => 'btn btn-xs btn-info',
-                                                'title' => 'Candidatos vaga ' . $vaga['Vaga']['nome']
+                                                'title' => 'Candidatos vaga ' . $vaga['Vaga']['nome'],
+                                                'target' => '_blank'
                                             ));
                                             ?>
                                             &nbsp;

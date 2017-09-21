@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AuthComponent', 'Controller/Component');
+App::uses('CakeTime', 'Utility');
 
 /**
  * Class EmpresasController controle da parte dos empregadores
@@ -260,6 +261,10 @@ class EmpresasController extends AppController
         $this->Paginator->settings = array(
             'fields'     => array(
                 'Vaga.id',
+                'Vaga.descricao_rapida',
+                'Vaga.periodo_trabalho',
+                'Vaga.experiencia',
+                'Vaga.salario',
                 'Vaga.nome',
                 'Vaga.url_imagem',
                 'Vaga.status',
