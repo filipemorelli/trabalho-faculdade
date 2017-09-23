@@ -246,6 +246,32 @@
                             ?>
                         </div>
 
+                        <div class="form-group col-xs-12">
+                            <?php
+                            echo $this->Form->input('status', array(
+                                'label' => array(
+                                    'text' => 'Andamento da vaga',
+                                    'class' => 'vaga-horas'
+                                ),
+                                // 'required' => true,
+                                'multiple' => 'checkbox',
+                                'type' => 'select',
+                                'options' => array(
+                                    0 => 'Em Andamento',
+                                    1 => 'Analise de curriculo',
+                                    2 => 'Encerrado'
+                                ),
+                                'title' => 'Horas Semanais',
+                                'error' => array(
+                                    'attributes' => array(
+                                        'wrap' => 'span',
+                                        'class' => 'text-danger'
+                                    )
+                                ),
+                            ));
+                            ?>
+                        </div>
+
                     </div>
 
                     <div class="button-group">

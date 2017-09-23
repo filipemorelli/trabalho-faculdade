@@ -506,7 +506,10 @@ class EmpresasController extends AppController
              }
              //$conditions['Vaga.horario_trabalho'] = '';
          }
- 
+
+         if(isset($data['Users']['status']) && count($data['Users']['status'])){
+            $conditions['Vaga.status'] = $data['Users']['status'];
+         }
          return $conditions;
      }
  
