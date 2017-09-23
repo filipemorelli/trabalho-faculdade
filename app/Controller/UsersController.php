@@ -71,8 +71,7 @@ class UsersController extends AppController
                 "controller" => "pages",
                 "action"     => "index"
             ));
-        }
-        else {
+        } else {
             $this->set('title_for_layout', __('Sobre a vaga'));
             $this->loadModel('Vaga');
 
@@ -107,7 +106,6 @@ class UsersController extends AppController
             $this->set('vaga', $vaga);
             $this->set('cadidatouVaga', $cadidatouVaga);
         }
-
     }
 
     /**
@@ -129,8 +127,7 @@ class UsersController extends AppController
                     "action"     => "vagas"
                 ));
             }
-        }
-        else {
+        } else {
             $this->request->data = $this->Session->read('FormularioPesquisaVaga');
         }
 
@@ -173,8 +170,6 @@ class UsersController extends AppController
         $vagas = $this->Paginator->paginate('Vaga');
         $this->set(compact('vagas'));
         $this->set(compact('horasSemanais'));
-
-
     }
 
     /**
@@ -293,6 +288,10 @@ class UsersController extends AppController
             }
             //$conditions['Vaga.horario_trabalho'] = '';
         }
+        
+        if (isset($data['Users']['status']) && count($data['Users']['status'])) {
+            $conditions['Vaga.status'] = $data['Users']['status'];
+        }
 
         return $conditions;
     }
@@ -370,8 +369,7 @@ class UsersController extends AppController
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('Usuário não pode ser editado.'), 'error');
-        }
-        else {
+        } else {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
         }
@@ -412,8 +410,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             if ($this->Auth->login() && $this->request->query['redirect'] != "") {
                 return $this->redirect($this->request->query['redirect']);
-            }
-            else if ($this->Auth->login()) {
+            } elseif ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirect());
             }
             $this->Session->setFlash(__('Usuário ou senha inválida'), 'error');
@@ -435,8 +432,7 @@ class UsersController extends AppController
             //verifica se possui usuario
             if (count($user) == 0) {
                 $this->Session->setFlash(__('Email não consta no sistema'), 'error');
-            }
-            else {
+            } else {
                 //mandar email
                 $novaSenha = md5(uniqid(""));
                 $this->User->read(null, $user['User']['id']);
@@ -463,16 +459,13 @@ class UsersController extends AppController
                                 "controller" => "users",
                                 "action"     => "login"
                             ));
-                        }
-                        else {
+                        } else {
                             $this->Session->setFlash(__('Não foi possivel enviar o email'), 'error');
                         }
-                    }
-                    catch (Exception $e) {
+                    } catch (Exception $e) {
                         throw new NotFoundException(__('Email não foi enviado'));
                     }
-                }
-                else {
+                } else {
                     throw new NotFoundException(__('Não salvou a senha'));
                 }
             }
@@ -488,8 +481,7 @@ class UsersController extends AppController
     {
         if ($this->Session->id(session_id()) == $session_id) {
             //sua nova senha e x gerada por hash depois ele atualiza
-        }
-        else {
+        } else {
             $this->redirect(array(
                 "controller" => "users",
                 "action"     => "index"
@@ -552,8 +544,7 @@ class UsersController extends AppController
         if ($this->request->is('ajax')) {
             if ($tipo == 1) {
                 return $this->buscaDados(1);
-            }
-            else {
+            } else {
                 return $this->buscaDados(0);
             }
         }
@@ -677,7 +668,4 @@ class UsersController extends AppController
             ));
         }
     }
-
 }
-
-?>
