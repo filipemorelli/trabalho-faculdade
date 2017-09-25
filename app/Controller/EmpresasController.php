@@ -558,6 +558,7 @@ class EmpresasController extends AppController
                 )
             )
         );
+
         $trabalhadores = $this->paginate('Trabalhador');
         $this->set(compact('trabalhadores'));
         $this->set('vaga_id', $id);

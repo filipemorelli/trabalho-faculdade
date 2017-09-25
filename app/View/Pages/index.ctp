@@ -128,7 +128,6 @@
                                     $infoStatus = $this->Utility->getStatusVaga($vaga['Vaga']['status']);
                                     ?>
                                     <span class="label label-<?php echo $infoStatus['class']; ?>"><?php echo $infoStatus['status']; ?></span>
-                                    <span class="label label-<?php echo $classCss; ?>"><?php echo $status; ?></span>
                                 </div>
                             </footer>
                         </a>

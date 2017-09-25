@@ -180,8 +180,7 @@ class AppController extends Controller
                     return false;
                     break;
             }
-        }
-        else if ($controller === "trabalhador_vaga") {
+        } elseif ($controller === "trabalhador_vaga") {
             switch ($action) {
                 case 'historicoCandidaturas':
                     return true;
@@ -229,6 +228,9 @@ class AppController extends Controller
                     return true;
                     break;
                 case 'candidadosAVaga':
+                    return true;
+                    break;
+                case 'visualizarPerfil':
                     return true;
                     break;
                 default:

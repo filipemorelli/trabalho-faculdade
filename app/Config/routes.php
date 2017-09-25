@@ -49,7 +49,7 @@
 	Router::connect('/vaga', array('controller' => 'users', 'action' => 'vaga'));
 	Router::connect('/vaga/:id/:titulo', array('controller' => 'users', 'action' => 'vaga'), array('pass' => array('id', 'titulo')));
 	Router::connect('/perfil', array('controller' => 'users', 'action' => 'perfil'));
-	Router::connect('/visualizar-perfil/:id', array('controller' => 'users', 'action' => 'visualizarPerfil'), array('pass' => array('id')));
+	Router::connect('/visualizar-perfil/:nome/:id', array('controller' => 'users', 'action' => 'visualizarPerfil'), array('pass' => array('id', 'nome')));
 	Router::connect('/editar-curriculo', array('controller' => 'users', 'action' => 'editarPerfil'));
 	Router::connect('/curriculos', array('controller' => 'users', 'action' => 'curriculosPerfil'));
 	Router::connect('/endereco-rapido', array('controller' => 'users', 'action' => 'enderecoRapido'));

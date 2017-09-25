@@ -74,8 +74,8 @@
                     ?>
                     <div class="col-xs-12">
                         <div class="item-block">
-                            <header>
-                                <a href="resume-detail.htm">
+                            <header>                            
+                                <a href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'visualizarPerfil', 'id' => $trabalhador['Trabalhador']['id'],'nome' => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']))); ?>">
                                     <?php
                                     if ($trabalhador['Trabalhador']['url_imagem'] != "") {
                                         echo $this->Html->image('/upload/img/vaga/' . $trabalhador['Trabalhador']['url_imagem'], array(
@@ -93,7 +93,14 @@
                                 </a>
                                 <div class="hgroup">
                                     <h4>
-                                        <a href="resume-detail.htm"><?php echo $trabalhador['Trabalhador']['nome']; ?></a>
+                                        <?php
+                                            echo $this->Html->link($trabalhador['Trabalhador']['nome'], array(
+                                                    'controller' => 'users',
+                                                    'action'     => 'visualizarPerfil',
+                                                    'id'         => $trabalhador['Trabalhador']['id'],
+                                                    'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
+                                            ));
+                                        ?>
                                     </h4>
                                     <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5></div>
                                 <div class="header-meta">
@@ -107,7 +114,8 @@
                                     <?php echo $this->Html->link('Visualizar Perfil', array(
                                         'controller' => 'users',
                                         'action'     => 'visualizarPerfil',
-                                        'id'         => $trabalhador['Trabalhador']['id']
+                                        'id'         => $trabalhador['Trabalhador']['id'],
+                                        'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
                                     ), array(
                                         'class' => 'btn btn-xs btn-info',
                                         'title' => 'Visualizar Perfil ' . $trabalhador['Trabalhador']['nome']
