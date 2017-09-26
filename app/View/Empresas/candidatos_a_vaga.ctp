@@ -9,8 +9,8 @@
             <header>
                 <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
                 <div class="hgroup">
-                    <h4><?php $trabalhadores['Vaga']['nome'] ?></h4>
-                    <h5>Google</h5>
+                    <h4><?php echo $vaga['Vaga']['nome'] ?></h4>
+                    <h5><?php echo $vaga['Empresa']['nome'] ?></h5>
                 </div>
                 <div class="header-meta"><span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span>
                 </div>
@@ -137,7 +137,7 @@
                         $this->Paginator->options['url'] = array(
                             'controller' => 'empresas',
                             'action'     => 'candidatosAVaga',
-                            'id'         => $vaga_id
+                            'id'         => $vaga['Vaga']['id']
                         );
                         echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array(
                             'tag'         => 'li',

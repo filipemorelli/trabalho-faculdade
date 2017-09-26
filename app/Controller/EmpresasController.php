@@ -524,6 +524,7 @@ class EmpresasController extends AppController
     {
         $this->set('title_for_layout', __('Candidatos à vaga'));
         $this->loadModel('Trabalhador');
+        $this->loadModel('Vaga');
         $conditions = array(
             'Vaga.id'         => $id,
             'Vaga.empresa_id' => $this->Session->read('Auth.User.id')
@@ -558,10 +559,16 @@ class EmpresasController extends AppController
                 )
             )
         );
-
+        
         $trabalhadores = $this->paginate('Trabalhador');
+        $vaga = $this->Vaga->find('first', array(
+            'conditions' => array(
+                'Vaga.id' => $id,
+                'Empresa.id' => $this->Session->read('Auth.User.Empresa.id')
+            )
+        ));
         $this->set(compact('trabalhadores'));
-        $this->set('vaga_id', $id);
+        $this->set('vaga', $vaga);
     }
 
     /**
