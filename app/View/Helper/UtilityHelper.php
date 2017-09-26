@@ -37,6 +37,16 @@ class UtilityHelper extends AppHelper
             'status' => $status
         );
     }
-}
 
-?>
+    /**
+     * Convert money or float to Brazil money format string
+     *
+     * @param int $value
+     * @return string
+    */
+    public function parseMoneyPtBr($value)
+    {
+        $newValue = str_replace(".", ",", $value);
+        return "R$ " . $newValue;
+    }
+}

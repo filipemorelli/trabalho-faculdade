@@ -1,3 +1,11 @@
+<?php
+    $linkVaga = $this->Html->url(array(
+        'controller' => 'users',
+        'action'     => 'vaga',
+        'id'         => $vaga['Vaga']['id'],
+        'titulo'     => $vaga['Vaga']['nome']
+    ), true);
+?>
 <header class="page-header bg-img size-lg">
     <div class="container">
         <div class="header-detail descricao-vaga">
@@ -8,8 +16,7 @@
                     'alt'   => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
                     'title' => $vaga['Vaga']['nome'] . " - " . $vaga['Vaga']['nome']
                 ));
-            }
-            else {
+            } else {
                 echo $this->Html->image('/upload/img/vaga/' . $vaga['Vaga']['url_imagem'], array(
                     'class' => 'img-vaga',
                     'alt'   => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
@@ -26,31 +33,45 @@
                 <?php echo $vaga['Vaga']['descricao_rapida'] ?>
             </p>
             <ul class="details cols-3">
-                <li><i class="fa fa-map-marker"></i> <span>Menlo Park, CA</span></li>
-                <li><i class="fa fa-briefcase"></i> <span>Full time</span></li>
-                <li><i class="fa fa-money"></i> <span>$90,000 - $110,000 / year</span></li>
-                <li><i class="fa fa-clock-o"></i> <span>40h / week</span></li>
-                <li><i class="fa fa-flask"></i> <span>2+ years experience</span></li>
-                <li><i class="fa fa-certificate"></i> <a href="#">Master or Bachelor</a></li>
+                <li><i class="fa fa-map-marker"></i> <span><?php echo $vaga['Endereco']['bairro'] . " - " . $vaga['Endereco']['cidade'] . ", ". $vaga['Endereco']['estado'] ?></span></li>
+                <li><i class="fa fa-briefcase"></i> <span><?php echo $vaga['Vaga']['periodo_trabalho'] ?></span></li>
+                <li><i class="fa fa-money"></i> <span><?php echo $this->Utility->parseMoneyPtBr($vaga['Vaga']['salario']); ?></span></li>
+                <li><i class="fa fa-clock-o"></i> <span><?php echo $vaga['Vaga']['horario_trabalho'] ?>h / semanais</span></li>
+                <li><i class="fa fa-flask"></i> <span><?php echo $vaga['Vaga']['experiencia'] ?> de experiência</span></li>
+                <li><i class="fa fa-certificate"></i><?php echo $this->Escolaridade->escolaridadeTexto($vaga['Vaga']['escolaridade']) ?></li>
             </ul>
             <div class="button-group">
                 <ul class="social-icons">
-                    <li class="title">Share on</li>
-                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <li class="title">Compartilhe:</li>
+                    <li><a class="facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
                     </li>
-                    <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                    <li><a class="google-plus" target="_blank"
+                        href="https://plus.google.com/share?url=<?php echo $linkVaga ?> "><i
+                                    class="fa fa-google-plus"></i></a>
                     </li>
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                    <li><a class="twitter" target="_blank"
+                        href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . $linkVaga ?>"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                    <li><a class="linkedin" target="_blank"
+                        href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $linkVaga ?> &title=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs"; ?>"><i
+                                    class="fa fa-linkedin"></i></a>
+                    </li>
+                    <li><a class="whatsapp" target="_blank"
+                        href="https://api.whatsapp.com/send?text=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . $linkVaga ?>"><i class="fa fa-whatsapp"></i></a>
                     </li>
                 </ul>
                 <div class="action-buttons">
+                    <?php echo $this->Html->link('Editar Vaga', array(
+                        'controller' => 'empresas',
+                        'action'     => 'editarVaga',
+                        'id'         => $vaga['Vaga']['id'],
+                    ), array('class' => 'btn btn-primary')); ?>
+                    &nbsp;
                     <?php echo $this->Html->link('Candidatos', array(
                         'controller' => 'empresas',
                         'action'     => 'candidatosAVaga',
                         'id'         => $vaga['Vaga']['id'],
-                    ), array('class' => 'btn btn-info')); ?>
+                    ), array('class' => 'btn btn-success')); ?>
                 </div>
             </div>
         </div>

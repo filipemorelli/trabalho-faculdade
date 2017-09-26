@@ -5,14 +5,31 @@
         <?php /*<p class="lead text-center">Use following search box to find best candidates for your openning position</p> */ ?>
     </div>
     <div class="container">
-        <a class="item-block item-block-flat" href="job-detail.htm">
+        <a class="item-block item-block-flat" href="<?php echo $this->Html->url(array(
+            'controller' => 'empresas',
+            'action' => 'detalhesVaga',
+            'titulo' => $this->UrlControl->parseSlug($vaga['Vaga']['nome']),
+            'id' => $vaga['Vaga']['id']
+        )); ?>">
             <header>
-                <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
+                <?php
+                if ($vaga['Vaga']['url_imagem'] != "") {
+                    echo $this->Html->image('/upload/img/vaga/' . $vaga['Vaga']['url_imagem'], array(
+                        'alt' => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
+                        'title' => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome']
+                    ));
+                } else {
+                    echo $this->Html->image('/template/img/logo.png', array(
+                        'alt' => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome'],
+                        'title' => $vaga['Vaga']['nome'] . " - " . $vaga['Empresa']['nome']
+                    ));
+                }
+                ?>
                 <div class="hgroup">
                     <h4><?php echo $vaga['Vaga']['nome'] ?></h4>
                     <h5><?php echo $vaga['Empresa']['nome'] ?></h5>
                 </div>
-                <div class="header-meta"><span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span>
+                <div class="header-meta"><span class="location"><?php echo $vaga['Endereco']['bairro'] . " - " . $vaga['Endereco']['cidade'] . ", ". $vaga['Endereco']['estado'] ?></span> <span class="label label-success"><?php echo $vaga['Vaga']['periodo_trabalho']; ?></span>
                 </div>
             </header>
         </a>
