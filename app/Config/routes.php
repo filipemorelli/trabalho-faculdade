@@ -80,7 +80,7 @@
 	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidatosAVaga'));
 	Router::connect('/candidatos-a-vaga/vaga/:id', array('controller' => 'empresas', 'action' => 'candidatosAVaga'), array('pass' => array('id')));
 	Router::connect('/candidatos-a-vaga/vaga/:id/pagina/:page', array('controller' => 'empresas', 'action' => 'candidatosAVaga'), array('pass' => array('id', 'page')));
-	Router::connect('/candidato-perfil/:nome/:id', array('controller' => 'empresas', 'action' => 'candidatoPerfil'), array('pass' => array('id', 'nome')));
+	Router::connect('/candidato-perfil/:nomeTrabalhador/:idTrabalhador/:nomeVaga/:idVaga', array('controller' => 'empresas', 'action' => 'candidatoPerfil'), array('pass' => array('idVaga', 'idTrabalhador', 'nomeTrabalhador', 'nomeVaga')));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

@@ -75,7 +75,7 @@
                     <div class="col-xs-12">
                         <div class="item-block">
                             <header>                            
-                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas','action' => 'candidatoPerfil', 'id' => $trabalhador['Trabalhador']['id'],'nome' => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']))); ?>">
+                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas', 'action' => 'candidatoPerfil', 'idTrabalhador' => $trabalhador['Trabalhador']['id'], 'nomeTrabalhador' => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']), 'idVaga' => $vaga['Vaga']['id'], 'nomeVaga' => $this->UrlControl->parseSlug($vaga['Vaga']['nome']))); ?>">
                                     <?php
                                     if ($trabalhador['Trabalhador']['url_imagem'] != "") {
                                         echo $this->Html->image('/upload/img/vaga/' . $trabalhador['Trabalhador']['url_imagem'], array(
@@ -97,8 +97,10 @@
                                             echo $this->Html->link($trabalhador['Trabalhador']['nome'], array(
                                                     'controller' => 'empresas',
                                                     'action'     => 'candidatoPerfil',
-                                                    'id'         => $trabalhador['Trabalhador']['id'],
-                                                    'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
+                                                    'idTrabalhador'         => $trabalhador['Trabalhador']['id'],
+                                                    'nomeTrabalhador'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']),
+                                                    'idVaga'         => $vaga['Vaga']['id'],
+                                                    'nomeVaga'       => $this->UrlControl->parseSlug($vaga['Vaga']['nome'])
                                             ));
                                         ?>
                                     </h4>
