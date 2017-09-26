@@ -49,26 +49,14 @@
                                     class="fa fa-google-plus"></i></a>
                     </li>
                     <li><a class="twitter" target="_blank"
-                           href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . $this->Html->url(array(
-                                   'controller' => $this->params->controller,
-                                   'action'     => $this->params->action,
-                                   'id'         => $this->params->id
-                               ), true); ?>"><i class="fa fa-twitter"></i></a>
+                           href="https://twitter.com/home?status=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . Router::url($this->here, true); ?>"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li><a class="linkedin" target="_blank"
-                           href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $this->Html->url(array(
-                               'controller' => $this->params->controller,
-                               'action'     => $this->params->action,
-                               'id'         => $this->params->id
-                           ), true); ?> &title=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs"; ?>"><i
+                           href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo Router::url($this->here, true); ?> &title=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs"; ?>"><i
                                     class="fa fa-linkedin"></i></a>
                     </li>
                     <li><a class="whatsapp" target="_blank"
-                           href="https://api.whatsapp.com/send?text=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . $this->Html->url(array(
-                                   'controller' => $this->params->controller,
-                                   'action'     => $this->params->action,
-                                   'id'         => $this->params->id
-                               ), true); ?>"><i class="fa fa-whatsapp"></i></a>
+                           href="https://api.whatsapp.com/send?text=<?php echo "Vaga de " . $vaga['Vaga']['nome'] . " - Freejobs link: " . Router::url($this->here, true); ?>"><i class="fa fa-whatsapp"></i></a>
                     </li>
                 </ul>
                 <div class="action-buttons">
