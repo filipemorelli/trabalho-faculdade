@@ -9,7 +9,7 @@
             <header>
                 <?php echo $this->Html->image('/template/img/logo-google.jpg', array('alt' => '')); ?>
                 <div class="hgroup">
-                    <h4>Senior front-end developer</h4>
+                    <h4><?php $trabalhadores['Vaga']['nome'] ?></h4>
                     <h5>Google</h5>
                 </div>
                 <div class="header-meta"><span class="location">Menlo park, CA</span> <span class="label label-success">Full-time</span>
@@ -75,7 +75,7 @@
                     <div class="col-xs-12">
                         <div class="item-block">
                             <header>                            
-                                <a href="<?php echo $this->Html->url(array('controller' => 'users','action' => 'visualizarPerfil', 'id' => $trabalhador['Trabalhador']['id'],'nome' => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']))); ?>">
+                                <a href="<?php echo $this->Html->url(array('controller' => 'empresas','action' => 'candidatoPerfil', 'id' => $trabalhador['Trabalhador']['id'],'nome' => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']))); ?>">
                                     <?php
                                     if ($trabalhador['Trabalhador']['url_imagem'] != "") {
                                         echo $this->Html->image('/upload/img/vaga/' . $trabalhador['Trabalhador']['url_imagem'], array(
@@ -95,8 +95,8 @@
                                     <h4>
                                         <?php
                                             echo $this->Html->link($trabalhador['Trabalhador']['nome'], array(
-                                                    'controller' => 'users',
-                                                    'action'     => 'visualizarPerfil',
+                                                    'controller' => 'empresas',
+                                                    'action'     => 'candidatoPerfil',
                                                     'id'         => $trabalhador['Trabalhador']['id'],
                                                     'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
                                             ));
@@ -112,8 +112,8 @@
                                 <?php /*<div class="status"><strong>Candidatado em:</strong><?php echo ucfirst($this->Tradutortempo->tempoPtBr($this->Time->timeAgoInWords($trabalhador['TrabalhadorVaga']['modified']))); ?></div> */ ?>
                                 <div class="action-btn">
                                     <?php echo $this->Html->link('Visualizar Perfil', array(
-                                        'controller' => 'users',
-                                        'action'     => 'visualizarPerfil',
+                                        'controller' => 'empresas',
+                                        'action'     => 'candidatoPerfil',
                                         'id'         => $trabalhador['Trabalhador']['id'],
                                         'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
                                     ), array(

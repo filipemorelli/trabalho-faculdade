@@ -618,6 +618,12 @@ class EmpresasController extends AppController
         }
     }
 
+    public function candidatoPerfil($id = null)
+    {
+        var_dump($id);
+        exit();
+    }
+
 
 }
 

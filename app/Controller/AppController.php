@@ -230,7 +230,7 @@ class AppController extends Controller
                 case 'candidadosAVaga':
                     return true;
                     break;
-                case 'visualizarPerfil':
+                case 'candidatoPerfil':
                     return true;
                     break;
                 default:
