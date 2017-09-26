@@ -1,8 +1,14 @@
 <?php
+/**
+ * Class UrlControlHelper | View\Helper\UrlControlHelper
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
+
 App::uses('AppHelper', 'View/Helper');
 
 /**
- * Class MyFormHelper create Custom fields
+ * Class UrlControlHelper manipulate data to url format
  */
 class UrlControlHelper extends AppHelper
 {

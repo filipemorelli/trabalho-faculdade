@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class TradutortempoHelper | View/TradutortempoHelper
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
 
 App::uses('AppHelper', 'View/Helper');
 

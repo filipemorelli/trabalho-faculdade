@@ -1,4 +1,10 @@
 <?php
+/**
+ * Class MyFormHelper create Custom fields | View\Helper\MyFormHelper
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
+
 App::uses('FormHelper', 'View/Helper');
 
 /**

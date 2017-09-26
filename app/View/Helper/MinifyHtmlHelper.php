@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class MinifyHtmlHelper | View/MinifyHtmlHelper.php
+ * 
+ * Classe responsavel por minificar o codigo HTML para ser mostrado no site
+ * 
+ *
+ * @package     MyApp XYZ
+ * @author      Filipe Morelli <morellitecinfo@gmail.com>
+ * @copyright   Copyright (c) 2016, Sandro
+ */
 
 define('X', "\x1A"); // a placeholder character
 $SS = '"(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\'';
@@ -6,11 +16,9 @@ $CC = '\/\*[\s\S]*?\*\/';
 $CH = '<\!--[\s\S]*?-->';
 
 /**
- * Class MinifyHtmlHelper
+ * Class MinifyHtmlHelper minify HTML code
  */
-class MinifyHtmlHelper extends AppHelper
-{
-
+class MinifyHtmlHelper extends AppHelper {
 
     /**
      * Executa depois de renderizar a pagina
@@ -19,43 +27,44 @@ class MinifyHtmlHelper extends AppHelper
      * @param string $content
      * @return string HTML minificado
      */
-    public function afterRenderFile($viewFile, $content)
-    {
+    public function afterRenderFile($viewFile, $content) {
         return $this->minify_html($content);
     }
 
     /**
+     * Minify X
+     * 
      * @param $input
      * @return mixed
      */
-    function __minify_x($input)
-    {
+    function __minify_x($input) {
         return str_replace(array(
             "\n",
             "\t",
             ' '
-        ), array(
+                ), array(
             X . '\n',
             X . '\t',
             X . '\s'
-        ), $input);
+                ), $input);
     }
 
     /**
+     * Minify V
+     * 
      * @param $input
      * @return mixed
      */
-    function __minify_v($input)
-    {
+    function __minify_v($input) {
         return str_replace(array(
             X . '\n',
             X . '\t',
             X . '\s'
-        ), array(
+                ), array(
             "\n",
             "\t",
             ' '
-        ), $input);
+                ), $input);
     }
 
     /**
@@ -64,8 +73,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return mixed
      */
-    function _minify_html($input)
-    {
+    function _minify_html($input) {
         return preg_replace_callback('#<\s*([^\/\s]+)\s*(?:>|(\s[^<>]+?)\s*>)#', function ($m) {
             if (isset($m[2])) {
                 // Minify inline CSS declaration(s)
@@ -75,20 +83,20 @@ class MinifyHtmlHelper extends AppHelper
                     }, $m[2]);
                 }
                 return '<' . $m[1] . preg_replace(array(
-                        // From `defer="defer"`, `defer='defer'`, `defer="true"`, `defer='true'`, `defer=""` and `defer=''` to `defer` [^1]
-                        '#\s(checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)(?:=([\'"]?)(?:true|\1)?\2)#i',
-                        // Remove extra white-space(s) between HTML attribute(s) [^2]
-                        '#\s*([^\s=]+?)(=(?:\S+|([\'"]?).*?\3)|$)#',
-                        // From `<img />` to `<img/>` [^3]
-                        '#\s+\/$#'
-                    ), array(
+                            // From `defer="defer"`, `defer='defer'`, `defer="true"`, `defer='true'`, `defer=""` and `defer=''` to `defer` [^1]
+                            '#\s(checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)(?:=([\'"]?)(?:true|\1)?\2)#i',
+                            // Remove extra white-space(s) between HTML attribute(s) [^2]
+                            '#\s*([^\s=]+?)(=(?:\S+|([\'"]?).*?\3)|$)#',
+                            // From `<img />` to `<img/>` [^3]
+                            '#\s+\/$#'
+                                ), array(
                             // [^1]
                             ' $1',
                             // [^2]
                             ' $1$2',
                             // [^3]
                             '/'
-                        ), str_replace("\n", ' ', $m[2])) . '>';
+                                ), str_replace("\n", ' ', $m[2])) . '>';
             }
             return '<' . $m[1] . '>';
         }, $input);
@@ -100,8 +108,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return array|mixed|string
      */
-    function minify_html($input)
-    {
+    function minify_html($input) {
         if (!$input = trim($input)) {
             return $input;
         }
@@ -122,23 +129,21 @@ class MinifyHtmlHelper extends AppHelper
                         continue;
                     }
                     $output .= $v;
-                }
-                else {
+                } else {
                     $output .= $this->__minify_x($this->_minify_html($v));
                 }
-            }
-            else {
+            } else {
                 // Force line-break with `&#10;` or `&#xa;`
                 $v = str_replace(array(
                     '&#10;',
                     '&#xA;',
                     '&#xa;'
-                ), X . '\n', $v);
+                        ), X . '\n', $v);
                 // Force white-space with `&#32;` or `&#x20;`
                 $v = str_replace(array(
                     '&#32;',
                     '&#x20;'
-                ), X . '\s', $v);
+                        ), X . '\s', $v);
                 // Replace multiple white-space(s) with a space
                 $output .= preg_replace('#\s+#', ' ', $v);
             }
@@ -149,12 +154,12 @@ class MinifyHtmlHelper extends AppHelper
             '#>([\n\r\t]\s*|\s{2,})<#',
             // Remove white-space(s) before tag-close [^2]
             '#\s+(<\/[^\s]+?>)#'
-        ), array(
-                // [^1]
-                '><',
-                // [^2]
-                '$1'
-            ), $output);
+                ), array(
+            // [^1]
+            '><',
+            // [^2]
+            '$1'
+                ), $output);
         $output = $this->__minify_v($output);
         // Remove white-space(s) after ignored tag-open and before ignored tag-close (except `<textarea>`)
         return preg_replace('#<(code|pre|script|style)(>|\s[^<>]*?>)\s*([\s\S]*?)\s*<\/\1>#i', '<$1$2$3</$1>', $output);
@@ -166,8 +171,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return mixed
      */
-    function _minify_css($input)
-    {
+    function _minify_css($input) {
         // Keep important white-space(s) in `calc()`
         if (stripos($input, 'calc(') !== false) {
             $input = preg_replace_callback('#\b(calc\()\s*(.*?)\s*\)#i', function ($m) {
@@ -202,34 +206,34 @@ class MinifyHtmlHelper extends AppHelper
             '#;+([;\}])#',
             // Replace multiple white-space(s) with a space [^12]
             '#\s+#'
-        ), array(
-                // [^1]
-                X . '\s$1',
-                // [^2]
-                ']' . X . '\s',
-                X . '\s(',
-                ')' . X . '\s',
-                // [^3]
-                '#$1$2$3',
-                // [^4]
-                '$1',
-                // [^5]
-                '0',
-                // [^6]
-                '.$1',
-                // [^7]
-                ':0',
-                // [^8]
-                '$1:0 0',
-                // [^9]
-                '$1:0',
-                // [^10]
-                '$1',
-                // [^11]
-                '$1',
-                // [^12]
-                ' '
-            ), $input);
+                ), array(
+            // [^1]
+            X . '\s$1',
+            // [^2]
+            ']' . X . '\s',
+            X . '\s(',
+            ')' . X . '\s',
+            // [^3]
+            '#$1$2$3',
+            // [^4]
+            '$1',
+            // [^5]
+            '0',
+            // [^6]
+            '.$1',
+            // [^7]
+            ':0',
+            // [^8]
+            '$1:0 0',
+            // [^9]
+            '$1:0',
+            // [^10]
+            '$1',
+            // [^11]
+            '$1',
+            // [^12]
+            ' '
+                ), $input);
     }
 
     /**
@@ -238,8 +242,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return mixed
      */
-    function minify_css($input)
-    {
+    function minify_css($input) {
         if (!$input = trim($input)) {
             return $input;
         }
@@ -259,8 +262,7 @@ class MinifyHtmlHelper extends AppHelper
                     continue;
                 }
                 $output .= $v; // String or comment ...
-            }
-            else {
+            } else {
                 $output .= $this->_minify_css($v);
             }
         }
@@ -268,10 +270,10 @@ class MinifyHtmlHelper extends AppHelper
         $output = preg_replace(array(
             // '#(' . $CC . ')|(?<!\bcontent\:|[\s\(])([\'"])([a-z_][-\w]*?)\2#i',
             '#(' . $CC . ')|\b(url\()([\'"])([^\s]+?)\3(\))#i'
-        ), array(
-                // '$1$3',
-                '$1$2$4$5'
-            ), $output);
+                ), array(
+            // '$1$3',
+            '$1$2$4$5'
+                ), $output);
         return $this->__minify_v($output);
     }
 
@@ -281,8 +283,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return mixed
      */
-    function _minify_js($input)
-    {
+    function _minify_js($input) {
         return preg_replace(array(
             // Remove inline comment(s) [^1]
             '#\s*\/\/.*$#m',
@@ -294,18 +295,18 @@ class MinifyHtmlHelper extends AppHelper
             '#\btrue\b#',
             '#\bfalse\b#',
             '#\breturn\s+#'
-        ), array(
-                // [^1]
-                "",
-                // [^2]
-                '$1',
-                // [^3]
-                '$1',
-                // [^4]
-                '!0',
-                '!1',
-                'return '
-            ), $input);
+                ), array(
+            // [^1]
+            "",
+            // [^2]
+            '$1',
+            // [^3]
+            '$1',
+            // [^4]
+            '!0',
+            '!1',
+            'return '
+                ), $input);
     }
 
     /**
@@ -314,8 +315,7 @@ class MinifyHtmlHelper extends AppHelper
      * @param $input
      * @return mixed
      */
-    function minify_js($input)
-    {
+    function minify_js($input) {
         if (!$input = trim($input)) {
             return $input;
         }
@@ -333,8 +333,7 @@ class MinifyHtmlHelper extends AppHelper
                     continue;
                 }
                 $output .= $v; // String, comment or regex ...
-            }
-            else {
+            } else {
                 $output .= _minify_js($v);
             }
         }
@@ -343,12 +342,12 @@ class MinifyHtmlHelper extends AppHelper
             '#(' . $CC . ')|([\{,])([\'])(\d+|[a-z_]\w*)\3(?=:)#i',
             // From `foo['bar']` to `foo.bar` [^2]
             '#([\w\)\]])\[([\'"])([a-z_]\w*)\2\]#i'
-        ), array(
-                // [^1]
-                '$1$2$4',
-                // [^2]
-                '$1.$3'
-            ), $output);
+                ), array(
+            // [^1]
+            '$1$2$4',
+            // [^2]
+            '$1.$3'
+                ), $output);
     }
 
 }

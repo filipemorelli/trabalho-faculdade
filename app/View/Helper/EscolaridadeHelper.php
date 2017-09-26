@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Class EscolaridadeHelper | View/EscolaridadeHelper
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
 App::uses('AppHelper', 'View/Helper');
 
 /**

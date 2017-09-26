@@ -1,4 +1,10 @@
 <?php
+/**
+ * Class UtilityHelper | View/UtilityHelper
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
+
 App::uses('AppHelper', 'View/Helper');
 
 /**

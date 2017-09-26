@@ -1,13 +1,22 @@
 <?php
+/**
+ * Class TrabalhadorExperiencia | Model/TrabalhadorExperiencia
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ */
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
- * Class TrabalhadorExperiencia Model resoponsavel por integridade dos dados da experiencia do trabalhador
+ * Class TrabalhadorExperiencia
+ * 
+ * Model resoponsavel por integridade dos dados da experiencia do trabalhador
  */
 class TrabalhadorExperiencia extends AppModel
 {
 
     /**
+     * Relation Table
+     * 
      * @var array
      */
     public $belongsTo = array(
@@ -20,11 +29,15 @@ class TrabalhadorExperiencia extends AppModel
     );
 
     /**
+     * Usar tabela experiencia
+     * 
      * @var string
      */
     public $useTable = "experiencia";
 
     /**
+     * Validacao dos dados
+     * 
      * @var array
      */
     public $validate = array(
@@ -77,6 +90,8 @@ class TrabalhadorExperiencia extends AppModel
     );
 
     /**
+     * Mensagem de erro para o usuario
+     * 
      * @var string
      */
     public $errorMessage = '';
