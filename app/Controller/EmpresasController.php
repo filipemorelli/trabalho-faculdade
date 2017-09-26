@@ -627,8 +627,8 @@ class EmpresasController extends AppController
 
     public function candidatoPerfil($idVaga = null, $idTrabalhador = null)
     {
-        var_dump($idVaga, $idTrabalhador);
-        exit();
+        // var_dump($idVaga, $idTrabalhador);
+        // exit();
     }
 
 

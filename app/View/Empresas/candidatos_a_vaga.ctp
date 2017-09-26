@@ -133,8 +133,10 @@
                                     <?php echo $this->Html->link('Visualizar Perfil', array(
                                         'controller' => 'empresas',
                                         'action'     => 'candidatoPerfil',
-                                        'id'         => $trabalhador['Trabalhador']['id'],
-                                        'nome'       => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome'])
+                                        'nomeTrabalhador'   => $this->UrlControl->parseSlug($trabalhador['Trabalhador']['nome']),
+                                        'idTrabalhador'     => $trabalhador['Trabalhador']['id'],
+                                        'nomeVaga'          => $this->UrlControl->parseSlug($vaga['Vaga']['nome']),
+                                        'idVaga'            => $vaga['Vaga']['id'],
                                     ), array(
                                         'class' => 'btn btn-xs btn-info',
                                         'title' => 'Visualizar Perfil ' . $trabalhador['Trabalhador']['nome']
