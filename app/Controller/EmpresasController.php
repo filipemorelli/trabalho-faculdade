@@ -69,7 +69,7 @@ class EmpresasController extends AppController
                 $this->layout = "pagina";
                 break;
         }
-        //$this->Auth->allow(array('buscarfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidadosAVaga'));
+        //$this->Auth->allow(array('buscarfissionais', 'perfilEmpresa', 'editarPerfilEmpresa', 'adicionarVaga', 'listarVagas', 'detalhesVaga', 'candidatarVaga', 'candidatosAVaga'));
     }
 
     /**
@@ -520,7 +520,7 @@ class EmpresasController extends AppController
      * @param null $id
      * @param int $page
      */
-    public function candidadosAVaga($id = null, $page = 1)
+    public function candidatosAVaga($id = null, $page = 1)
     {
         $this->set('title_for_layout', __('Candidatos à vaga'));
         $this->loadModel('Trabalhador');

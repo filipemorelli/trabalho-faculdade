@@ -77,9 +77,9 @@
 	Router::connect('/nossas-vagas/:page', array('controller' => 'empresas', 'action' => 'listarVagas'), array('pass' => array('page')));
 	//Router::connect('/detalhes-vaga', array('controller' => 'empresas', 'action' => 'detalhesVaga'));
 	Router::connect('/detalhes-vaga/:id/:titulo', array('controller' => 'empresas', 'action' => 'detalhesVaga'), array('pass' => array('id', 'titulo')));
-	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidadosAVaga'));
-	Router::connect('/candidatos-a-vaga/vaga/:id', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id')));
-	Router::connect('/candidatos-a-vaga/vaga/:id/pagina/:page', array('controller' => 'empresas', 'action' => 'candidadosAVaga'), array('pass' => array('id', 'page')));
+	Router::connect('/candidatos-a-vaga', array('controller' => 'empresas', 'action' => 'candidatosAVaga'));
+	Router::connect('/candidatos-a-vaga/vaga/:id', array('controller' => 'empresas', 'action' => 'candidatosAVaga'), array('pass' => array('id')));
+	Router::connect('/candidatos-a-vaga/vaga/:id/pagina/:page', array('controller' => 'empresas', 'action' => 'candidatosAVaga'), array('pass' => array('id', 'page')));
 	Router::connect('/candidato-perfil/:nome/:id', array('controller' => 'empresas', 'action' => 'candidatoPerfil'), array('pass' => array('id', 'nome')));
 
 /**

@@ -136,7 +136,7 @@
                         <?php
                         $this->Paginator->options['url'] = array(
                             'controller' => 'empresas',
-                            'action'     => 'candidadosAVaga',
+                            'action'     => 'candidatosAVaga',
                             'id'         => $vaga_id
                         );
                         echo $this->Paginator->prev(__('« Anterior'), array('tag' => 'li'), null, array(

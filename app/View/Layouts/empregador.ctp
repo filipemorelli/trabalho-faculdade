@@ -127,7 +127,7 @@
                     <li>
                         <?php echo $this->Html->link('Candidatos à vaga', array(
                             'controller' => 'empresas',
-                            'action'     => 'candidadosAVaga'
+                            'action'     => 'candidatosAVaga'
                         ), array(
                             'title'  => 'Candidatos à vaga',
                             'escape' => false

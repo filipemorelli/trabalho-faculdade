@@ -362,7 +362,7 @@
                                             <?php
                                             echo $this->Html->link('Candidatos', array(
                                                 'controller' => 'empresas',
-                                                'action' => 'candidadosAVaga',
+                                                'action' => 'candidatosAVaga',
                                                 'id' => $vaga['Vaga']['id']
                                                     ), array(
                                                 'class' => 'btn btn-xs btn-info',

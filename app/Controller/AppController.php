@@ -227,7 +227,7 @@ class AppController extends Controller
                 case 'detalhesVaga':
                     return true;
                     break;
-                case 'candidadosAVaga':
+                case 'candidatosAVaga':
                     return true;
                     break;
                 case 'candidatoPerfil':
