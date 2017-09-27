@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class Model | Model/Vaga
+ * 
+ * Classe responsavel pela manipulação dos dados no banco de dados
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
@@ -8,6 +16,8 @@ class Vaga extends AppModel
 {
 
     /**
+     * Campo mostrado por default por padrao no framework
+     * 
      * @var string
      */
     public $displayField = 'nome';
@@ -45,6 +55,8 @@ class Vaga extends AppModel
     );
 
     /**
+     * Campos virtuais que serao criados na hora de utilizar na controller
+     * 
      * @var array
      */
     public $virtualFields = array(
@@ -52,11 +64,15 @@ class Vaga extends AppModel
     );
 
     /**
+     * Usa a tabela vagas_empresa
+     * 
      * @var string
      */
     public $useTable = "vagas_empresa";
 
     /**
+     * Campos para validacao
+     * 
      * @var array
      */
     public $validate = array(
@@ -213,11 +229,15 @@ class Vaga extends AppModel
     );
 
     /**
+     * Mensagem de erro exibida para usuario
+     * 
      * @var string
      */
     public $errorMessage = '';
 
     /**
+     * Executa antes de validar os dados
+     * 
      * @param array $options
      * @return void
      */
@@ -229,6 +249,8 @@ class Vaga extends AppModel
     }
 
     /**
+     * Executa antes de salvar os dados
+     * 
      * @param array $options
      * @return void
      */
@@ -252,6 +274,11 @@ class Vaga extends AppModel
 
     /**
      * Faz o Upload do arquivo
+     * 
+     * @param array $imagem | dados da imagem de upload
+     * @param string $dir | diretorio onde sera salvo
+     * @return string
+     * @throws NotImplementedException
      */
     private function upload($imagem = array(), $dir = 'img')
     {

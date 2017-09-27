@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Class TrabalhadoresController | Controller/TrabalhadoresController
+ * 
+ * Controller dos trabalhadores
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
 App::uses('AuthComponent', 'Controller/Component');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
@@ -10,10 +17,14 @@ class TrabalhadoresController extends AppController
 {
     /**
      * Para mudar o nome da model para deixar no portugues
+     * 
      * @var array
      */
     public $uses = array('Trabalhador');
+    
     /**
+     * Ativa os componentes que serão usados
+     * 
      * @var array
      */
     public $components = array('Paginator');
@@ -130,8 +141,10 @@ class TrabalhadoresController extends AppController
 
 
     /**
-     * Candidatar a vaga
-     * @params $id integer id da vaga
+     * Metodo para usuário candidatar a vaga
+     * 
+     * @param int $id
+     * @return void|\Cake\Network\Response
      */
     public function candidatarVaga($id = null)
     {
@@ -169,7 +182,9 @@ class TrabalhadoresController extends AppController
 
     /**
      * cancelar candidatura a vaga
-     * @params $id integer id da vaga
+     * 
+     * @param int $id
+     * @return void|\Cake\Network|response
      */
     public function cancelarCandidadidaturaVaga($id = null)
     {

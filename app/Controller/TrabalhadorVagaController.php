@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class TrabalhadorVagaController | Controller/TrabalhadorVagaController
+ * 
+ * Class TrabalhadorVagaController Faz o controlole da relacao entre trabalhador e vagas
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
 
 App::uses('AuthComponent', 'Controller/Component');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
@@ -9,6 +17,8 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class TrabalhadorVagaController extends AppController
 {
     /**
+     * Componentes ativos
+     * 
      * @var array
      */
     public $components = array('Paginator');

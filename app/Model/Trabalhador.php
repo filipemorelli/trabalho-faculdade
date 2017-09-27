@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Trabalhador | Model/Trabalhador
+ * 
+ * Class Trabalhador Model Trabalhador resoponsavel por integridade dos dados da trabalhadores empresa
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
+
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
@@ -7,11 +16,15 @@ App::uses('AuthComponent', 'Controller/Component');
 class Trabalhador extends AppModel
 {
     /**
+     * Ajusta para o framework nao atrapalhar no ingles
+     * 
      * @var string
      */
     public $name = 'Trabalhadore';
 
     /**
+     * Campo mostrado pelo framework por default
+     * 
      * @var string
      */
     public $displayField = 'profissao';
@@ -67,6 +80,7 @@ class Trabalhador extends AppModel
 
     /**
      * Valicação dos dados
+     * 
      * @var array
      */
     public $validate = array(
@@ -195,11 +209,15 @@ class Trabalhador extends AppModel
     );
 
     /**
+     * Mensagem de erro exibida para o usuario
+     * 
      * @var string
      */
     public $errorMessage = '';
 
     /**
+     * Executa antes de validar
+     * 
      * @param array $options
      * @return void
      */
@@ -211,6 +229,8 @@ class Trabalhador extends AppModel
     }
 
     /**
+     * Executar antes de salvar os dados
+     * 
      * @param array $options
      * @return void
      */
@@ -238,7 +258,9 @@ class Trabalhador extends AppModel
         }
     }
 
-
+    /**
+     * Manda Executar o upload
+     */
     private function uploadAction()
     {
         if (!empty($this->data['Trabalhador']['url_imagem']['name'])) {
@@ -251,10 +273,11 @@ class Trabalhador extends AppModel
 
     /**
      * Faz o Upload do arquivo
-     *
+     * 
      * @param array $imagem
      * @param string $dir
      * @return string
+     * @throws NotImplementedException
      */
     private function upload($imagem = array(), $dir = 'img')
     {

@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class PagesController | Controller/PagesController
+ * 
+ * Controla todas as ações das páginas de acesso publico
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
+
 App::uses('AppController', 'Controller');
 
 /**
@@ -10,6 +19,8 @@ class PagesController extends AppController
 {
 
     /**
+     * Componentes ativos
+     * 
      * @var array
      */
     public $components = array('Paginator');

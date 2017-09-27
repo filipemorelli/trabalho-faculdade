@@ -1,4 +1,10 @@
 <?php
+/**
+ * Class User | Model/User
+ * 
+ * Class User será responsavel por manipular os usuarios
+ */
+
 App::uses('AppModel', 'Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
@@ -9,10 +15,17 @@ class User extends AppModel
 {
 
     /**
+     * Campo que será exibido por default no framework
+     * 
      * @var string
      */
     public $displayField = 'nome';
 
+    /**
+     * Relacionamento com o banco de dados
+     * 
+     * @var array 
+     */
     public $belongsTo = array(
         'Trabalhador' => array(
             'className'  => 'Trabalhador',
@@ -27,6 +40,8 @@ class User extends AppModel
     );
 
     /**
+     * Validacao dos campos
+     * 
      * @var array
      */
     public $validate = array(
@@ -75,13 +90,17 @@ class User extends AppModel
     );
 
     /**
+     * Mensagem de erro exibida para o usuario
+     * 
      * @var string
      */
     public $errorMessage = '';
 
     /**
+     * Executa antes de salvar
+     * 
      * @param array $options
-     * @return bool
+     * @return boolean
      */
     public function beforeSave($options = array())
     {
@@ -104,23 +123,10 @@ class User extends AppModel
     }
 
     /**
-     * @param $user_id
-     * @return bool
-     */
-    public function getAutor($user_id)
-    {
-        if (isset($user_id)) {
-            $autor = $this->findById($user_id);
-            return $autor['User']['nome'];
-        }
-
-        return false;
-
-    }
-
-    /**
-     * @param $user
-     * @return bool
+     * Executa a exclusão logica no banco de dados
+     * 
+     * @param int $user
+     * @return boolean
      */
     public function inativar($user)
     {
@@ -142,8 +148,10 @@ class User extends AppModel
     }
 
     /**
-     * @param $user
-     * @return bool
+     * Recupera o usuario da exclusão logica
+     * 
+     * @param int $user
+     * @return boolean
      */
     public function reativar($user)
     {

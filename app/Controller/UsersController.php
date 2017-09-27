@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class UsersController | Controller/UsersController
+ * 
+ * Class UsersController Controlla ações de todos os usuarios cadastrados
+ * 
+ * @author Filipe Morelli <morellitecinfo@gmail.com>
+ * @version 1.0.0
+ */
 
 App::uses('AuthComponent', 'Controller/Component');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
@@ -11,6 +19,8 @@ App::uses('CakeTime', 'Utility');
 class UsersController extends AppController
 {
     /**
+     * Componentes usados
+     * 
      * @var array
      */
     public $components = array('Paginator');
@@ -548,61 +558,6 @@ class UsersController extends AppController
                 return $this->buscaDados(0);
             }
         }
-    }
-
-    private function buscaDados($ativo)
-    {
-
-        $limit = is_null($this->request->data['length']) ? 10 : $this->request->data['length'];
-        $start = is_null($this->request->data['start']) ? 0 : $this->request->data['start'];
-        $colOrder = $this->request->data['columns'][$this->request->data['order'][0]['column']]['data'];
-        $orderBY = $this->request->data['order'][0]['dir'];
-
-        switch ($colOrder) {
-            case '0.created':
-                $colOrder = "u.created";
-                break;
-            case '0.modified':
-                $colOrder = "u.modified";
-                break;
-            default:
-                # code...
-                break;
-        }
-
-        $queryBase = "SELECT u.id, u.username, u.email, u.telefone, u.role, DATE_FORMAT(u.created, '%d/%m/%Y %H:%i:%s') as created,  DATE_FORMAT(u.modified, '%d/%m/%Y %H:%i:%s') as modified from users u
-                    WHERE u.ativo = $ativo AND (
-                    u.id LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    u.username LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    u.email LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    u.telefone LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    u.role LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    DATE_FORMAT(u.created, '%d/%m/%Y %H:%i:%s') LIKE '%" . $this->request->data['search']['value'] . "%' OR
-                    DATE_FORMAT(u.modified, '%d/%m/%Y %H:%i:%s') LIKE '%" . $this->request->data['search']['value'] . "%')
-                    ORDER BY $colOrder $orderBY";
-
-        $query = $queryBase . " LIMIT $limit OFFSET $start";
-        $users = $this->User->query($query);
-
-        $total = $this->User->find('count', array(
-            'conditions' => array("User.ativo =" => $ativo)
-        )); //total de linhas
-
-        $filtrado = count($this->User->query($queryBase)); //total filtrado
-
-
-        $data = array(); //json com dados
-        foreach ($users as $user) {
-            array_push($data, $user);
-        }
-
-        $resultDataTables = array(
-            "recordsTotal"    => $total,
-            "recordsFiltered" => $filtrado,
-            "data"            => $data
-        );
-
-        return json_encode($resultDataTables);
     }
 
     /**

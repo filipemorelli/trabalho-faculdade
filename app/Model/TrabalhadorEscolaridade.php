@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class TrabalhadorEscolaridade | Model/TrabalhadorEscolaridade
+ * 
+ * Class TrabalhadorEscolaridade Model resoponsavel por integridade dos dados da escolaridade do trabalhador
+ * 
+ * @author Filipe Morelli <morelliteicnfo@gmail.com>
+ * @version 1.0.0
+ */
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
@@ -22,11 +30,15 @@ class TrabalhadorEscolaridade extends AppModel
     );
 
     /**
+     * Usar a tabela escolaridade
+     * 
      * @var string
      */
     public $useTable = "escolaridade";
 
     /**
+     * Validacao dos campos
+     * 
      * @var array
      */
     public $validate = array(
@@ -104,6 +116,8 @@ class TrabalhadorEscolaridade extends AppModel
     );
 
     /**
+     * Mensagem de erro para usuario
+     * 
      * @var string
      */
     public $errorMessage = '';

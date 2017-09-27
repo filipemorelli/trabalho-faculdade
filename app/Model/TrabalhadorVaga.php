@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class TrabalhadorVaga | Model/TrabalhadorVaga
+ * 
+ * Class TrabalhadorVaga Model resoponsavel por integridade dos dados da escolaridade do trabalhador
+ */
 App::uses('AuthComponent', 'Controller/Component');
 
 /**
@@ -8,11 +13,15 @@ class TrabalhadorVaga extends AppModel
 {
 
     /**
+     * Campo exibido default pelo framework
+     * 
      * @var string
      */
     public $displayField = 'created';
 
     /**
+     * Relacionamento da tabela
+     * 
      * @var array
      */
     public $belongsTo = array(
@@ -29,20 +38,24 @@ class TrabalhadorVaga extends AppModel
     );
 
     /**
+     * Usa a tabela trabalhador_vaga
+     * 
      * @var string
      */
     public $useTable = "trabalhador_vaga";
 
     /**
+     * Mensagem de erro para o usuario
+     * 
      * @var string
      */
     public $errorMessage = '';
 
     /**
-     * Inativar Vaga
-     *
-     * @param $vaga
-     * @return bool
+     * Inativar Vaga. exclusao logica
+     * 
+     * @param boolean $vaga | int 0 ou 1
+     * @return boolean
      */
     public function inativar($vaga)
     {
@@ -57,9 +70,9 @@ class TrabalhadorVaga extends AppModel
     }
 
     /**
-     * Reativar Vaga
+     * Reativar Vaga. recuperacao da exclusao logica
      *
-     * @param $vaga
+     * @param bollean $vaga | int 0 ou 1
      * @return bool
      */
     public function reativar($vaga)
