@@ -1,3 +1,4 @@
+/* global $, document */
 "use strict";
 
 /**
@@ -54,15 +55,16 @@ $(function () {
         var qtde = $(this).parent().parent().children().not(".text-center .duplicateable-content").find(".item-form").length;
         clone.find('input, textarea, select, button').each(function () {
             $(this).attr("disabled", false).removeClass("disabled");
+            var name;
             if ($(this)[0].hasAttribute("name")) {
-                var name = $(this).attr("name");
+                name = $(this).attr("name");
                 name = name.replace("][", "][" + qtde + "][");
                 $(this).attr("name", name);
             }
 
             if ($(this)[0].hasAttribute("id")) {
                 var id = $(this).attr("id");
-                var name = $(this).attr("name");
+                name = $(this).attr("name");
                 var vetor = name.split(/[\[\]]+/).filter(function (e) {
                     return e;
                 });
