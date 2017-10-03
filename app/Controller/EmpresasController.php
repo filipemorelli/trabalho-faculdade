@@ -67,7 +67,7 @@ class EmpresasController extends AppController {
         if (!parent::isAuth()) {
             $this->redirect(array(
                 "controller" => "pages",
-                "action" => "index"
+                "action"     => "index"
             ));
         }
         $tipoUsuario = $this->Session->read('Auth.User.tipo');
@@ -102,7 +102,7 @@ class EmpresasController extends AppController {
                 'user_id =' => $this->Session->read('Auth.User.id'),
             )
         ));
-        $vagas = $this->Empresa->Vaga->find('all', array(
+        $vagas   = $this->Empresa->Vaga->find('all', array(
             'conditions' => array(
                 'user_id =' => $this->Session->read('Auth.User.id'),
             )
@@ -125,11 +125,11 @@ class EmpresasController extends AppController {
             // verifica se existe perfil criado
 
             $empresaId = $this->Empresa->find('first', array(
-                'fields' => array('id'),
+                'fields'     => array('id'),
                 'conditions' => array(
                     'user_id =' => $this->Session->read('Auth.User.id'),
                 ),
-                'recursive' => -1
+                'recursive'  => -1
             ));
             if (!isset($empresaId['Empresa']['id'])) {
                 $this->Empresa->create(); //cria perfil
@@ -149,7 +149,7 @@ class EmpresasController extends AppController {
                 'conditions' => array(
                     'user_id =' => $this->Session->read('Auth.User.id')
                 ),
-                'recursive' => -1
+                'recursive'  => -1
             ));
             unset($this->request->data['Empresa']['password']);
         }
@@ -186,12 +186,12 @@ class EmpresasController extends AppController {
         if ($this->request->is('post')) {
             //$this->
             $this->Vaga->create();
-            $empresa_id = $this->Empresa->find('first', array(
-                'fields' => array('id'),
+            $empresa_id                                = $this->Empresa->find('first', array(
+                'fields'     => array('id'),
                 'conditions' => array(
                     'Empresa.user_id' => $this->Session->read('Auth.User.id')
                 ),
-                'recursive' => -1
+                'recursive'  => -1
             ));
             $this->request->data['Vaga']['empresa_id'] = $empresa_id['Empresa']['id'];
             if ($this->salvaRequisicaoVaga($this->request->data)) {
@@ -217,7 +217,7 @@ class EmpresasController extends AppController {
 
         $vaga = $this->Empresa->Vaga->find('first', array(
             'conditions' => array(
-                'Vaga.id' => $id,
+                'Vaga.id'         => $id,
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
             ),
         ));
@@ -251,7 +251,7 @@ class EmpresasController extends AppController {
             if ($page != 1) {
                 $this->redirect(array(
                     "controller" => "users",
-                    "action" => "vagas"
+                    "action"     => "vagas"
                 ));
             }
         } else {
@@ -263,7 +263,7 @@ class EmpresasController extends AppController {
         $conditions['Empresa.user_id'] = $this->Session->read('Auth.User.id');
 
         $this->Paginator->settings = array(
-            'fields' => array(
+            'fields'     => array(
                 'Vaga.id',
                 'Vaga.descricao_rapida',
                 'Vaga.periodo_trabalho',
@@ -279,19 +279,19 @@ class EmpresasController extends AppController {
                 'Endereco.estado'
             ),
             'conditions' => $conditions,
-            'order' => array(
+            'order'      => array(
                 'Vaga.modified' => 'DESC',
-                'Vaga.id' => 'DESC'
+                'Vaga.id'       => 'DESC'
             ),
-            'page' => $page,
-            'limit' => 10
+            'page'       => $page,
+            'limit'      => 10
         );
-        $horasSemanais = $this->Vaga->find('list', array(
+        $horasSemanais             = $this->Vaga->find('list', array(
             'fields' => array(
                 'Vaga.horario_trabalho',
                 'Vaga.horasSemanaisExtenso'
             ),
-            'group' => array('Vaga.horario_trabalho')
+            'group'  => array('Vaga.horario_trabalho')
         ));
 
         $vagas = $this->Paginator->paginate('Vaga');
@@ -315,7 +315,7 @@ class EmpresasController extends AppController {
 
         $vaga = $this->Vaga->find('first', array(
             'conditions' => array(
-                'Vaga.id' => $id,
+                'Vaga.id'         => $id,
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
             ),
         ));
@@ -347,7 +347,7 @@ class EmpresasController extends AppController {
 
         $vaga = $this->Vaga->find('first', array(
             'conditions' => array(
-                'Vaga.id' => $id,
+                'Vaga.id'         => $id,
                 'Empresa.user_id' => $this->Session->read('Auth.User.id')
             ),
         ));
@@ -402,13 +402,13 @@ class EmpresasController extends AppController {
         $conditions = array();
 
         if (isset($data['Users']['cargo']) && strlen($data['Users']['cargo']) > 0) {
-            $nomeVaga = $data['Users']['cargo'];
+            $nomeVaga         = $data['Users']['cargo'];
             $conditions['OR'] = array(
-                'Vaga.nome LIKE' => "%$nomeVaga%",
-                'Vaga.descricao_rapida LIKE' => "%$nomeVaga%",
-                'Vaga.descricao_completa LIKE' => "%$nomeVaga%",
-                'Empresa.nome LIKE' => "%$nomeVaga%",
-                'Empresa.descricao_rapida LIKE' => "%$nomeVaga%",
+                'Vaga.nome LIKE'                  => "%$nomeVaga%",
+                'Vaga.descricao_rapida LIKE'      => "%$nomeVaga%",
+                'Vaga.descricao_completa LIKE'    => "%$nomeVaga%",
+                'Empresa.nome LIKE'               => "%$nomeVaga%",
+                'Empresa.descricao_rapida LIKE'   => "%$nomeVaga%",
                 'Empresa.descricao_completa LIKE' => "%$nomeVaga%"
             );
         }
@@ -422,7 +422,7 @@ class EmpresasController extends AppController {
         }
 
         if (isset($data['Users']['salario']) && $data['Users']['estado'] >= 0) {
-            $salarioOperador = isset($data['Users']['salario-operador']) ? $data['Users']['salario-operador'] : '>=';
+            $salarioOperador                             = isset($data['Users']['salario-operador']) ? $data['Users']['salario-operador'] : '>=';
             $conditions["Vaga.salario $salarioOperador"] = $data['Users']['salario'];
         }
 
@@ -441,7 +441,7 @@ class EmpresasController extends AppController {
         if (isset($data['Users']['tempo_vaga']) && strlen($data['Users']['tempo_vaga'])) {
             switch ($data['Users']['tempo_vaga']) {
                 case 'hoje':
-                    $conditions['Vaga.modified = '] = CakeTime::format(time(), '%Y-%m-%d');
+                    $conditions['Vaga.modified = ']              = CakeTime::format(time(), '%Y-%m-%d');
                     break;
                 case '3 dias':
                     $conditions['Vaga.modified BETWEEN ? and ?'] = array(
@@ -514,6 +514,59 @@ class EmpresasController extends AppController {
     }
 
     /**
+     * Manipula as condições da paginação de pesquisa de candidatos a vaga
+     *
+     * @param array $data
+     * @return array
+     */
+    private function paginationConditionQueryCandidatos($data) {
+
+        $conditions = array();
+
+        if (isset($data['Users']['geral']) && strlen($data['Users']['geral']) > 0) {
+            $buscaGeral       = $data['Users']['geral'];
+            $conditions['OR'] = array(
+                'Trabalhador.nome LIKE'                    => "%$nomeVaga%",
+                'Trabalhador.profissao LIKE'               => "%$nomeVaga%",
+                'Trabalhador.descricao_rapida LIKE'        => "%$nomeVaga%",
+                'Trabalhador.site LIKE'                    => "%$nomeVaga%",
+                'Trabalhador.telefone LIKE'                => "%$nomeVaga%",
+                'Trabalhador.email LIKE'                   => "%$nomeVaga%",
+                'Trabalhador.url_linkedin LIKE'            => "%$nomeVaga%",
+                'Trabalhador.url_facebook LIKE'            => "%$nomeVaga%",
+                'Trabalhador.url_google_plus LIKE'         => "%$nomeVaga%",
+                'TrabalhadorEscolaridade.descricao_rapida' => "%$nomeVaga%",
+                'TrabalhadorEscolaridade.curso'            => "%$nomeVaga%",
+                'TrabalhadorExperiencia.cargo'             => "%$nomeVaga%",
+                'TrabalhadorExperiencia.instituicao'       => "%$nomeVaga%",
+                'TrabalhadorExperiencia.descricao'         => "%$nomeVaga%",
+            );
+        }
+
+        if (isset($data['Users']['cidade']) && strlen($data['Users']['cidade']) > 0) {
+            $conditions['Endereco.cidade'] = $data['Users']['cidade'];
+        }
+
+        if (isset($data['Users']['estado']) && strlen($data['Users']['estado']) > 0) {
+            $conditions['Endereco.estado'] = $data['Users']['estado'];
+        }
+
+        if (isset($data['Users']['escolaridade']) && $data['Users']['escolaridade'] >= 0) {
+            $conditions['Escolaridade.nivel >='] = $data['Users']['escolaridade'];
+        }
+
+        if (isset($data['Users']['periodo_trabalho']) && strlen($data['Users']['periodo_trabalho']) > 0) {
+            $conditions['Vaga.periodo_trabalho'] = $data['Users']['periodo_trabalho'];
+        }
+
+        if (isset($data['Users']['horas']) && is_array($data['Users']['horas'])) {
+            $conditions['Vaga.horario_trabalho'] = $data['Users']['horas'];
+        }
+
+        return $conditions;
+    }
+
+    /**
      * Mostra candidatos à vaga
      *
      * @param null $id
@@ -523,45 +576,71 @@ class EmpresasController extends AppController {
         $this->set('title_for_layout', __('Candidatos à vaga'));
         $this->loadModel('Trabalhador');
         $this->loadModel('Vaga');
-        $conditions = array(
-            'Vaga.id' => $id,
-            'Vaga.empresa_id' => $this->Session->read('Auth.User.id')
-        );
-        $limit = 10;
+
+        if ($this->request->is('post')) {
+            $this->Session->write('EmpresaPesquisaVaga', $this->request->data);
+            if ($page != 1) {
+                $this->redirect(array(
+                    "controller" => "users",
+                    "action"     => "vagas"
+                ));
+            }
+        } else {
+            $this->request->data = $this->Session->read('EmpresaPesquisaVaga');
+        }
+
+        $conditions = $this->paginationConditionQueryCandidatos($this->request->data);
+
+        $conditions['Vaga.id']         = $id;
+        $conditions['Vaga.empresa_id'] = $this->Session->read('Auth.User.Empresa.id');
+        $limit                         = 10;
+
         $this->Paginator->settings = array(
             'conditions' => $conditions,
-            'page' => $page,
-            'limit' => $limit
+            'page'       => $page,
+            'limit'      => $limit
         );
-        $this->paginate = array(
+        $this->paginate            = array(
             'Trabalhador' => array(
                 'conditions' => $conditions,
-                'page' => $page,
-                'limit' => $limit,
-                'recursive' => 1,
-                'joins' => array(
+                'page'       => $page,
+                'limit'      => $limit,
+                'recursive'  => 1,
+                'joins'      => array(
                     array(
-                        'alias' => 'TrabalhadorVaga',
-                        'table' => 'trabalhador_vaga',
-                        'type' => 'LEFT',
+                        'alias'      => 'TrabalhadorVaga',
+                        'table'      => 'trabalhador_vaga',
+                        'type'       => 'LEFT',
                         'conditions' => array(
                             'TrabalhadorVaga.trabalhador_id = Trabalhador.id',
                         )
                     ),
                     array(
-                        'alias' => 'Vaga',
-                        'table' => 'vagas_empresa',
-                        'type' => 'LEFT',
+                        'alias'      => 'Vaga',
+                        'table'      => 'vagas_empresa',
+                        'type'       => 'LEFT',
                         'conditions' => 'TrabalhadorVaga.vaga_id = Vaga.id'
+                    ),
+                    array(
+                        'alias'      => 'Escolaridade',
+                        'table'      => 'escolaridade',
+                        'type'       => 'LEFT',
+                        'conditions' => 'Escolaridade.trabalhador_id = Trabalhador.id'
+                    ),
+                    array(
+                        'alias'      => 'Experiencia',
+                        'table'      => 'experiencia',
+                        'type'       => 'LEFT',
+                        'conditions' => 'Experiencia.trabalhador_id = Trabalhador.id'
                     )
                 )
             )
         );
 
         $trabalhadores = $this->paginate('Trabalhador');
-        $vaga = $this->Vaga->find('first', array(
+        $vaga          = $this->Vaga->find('first', array(
             'conditions' => array(
-                'Vaga.id' => $id,
+                'Vaga.id'    => $id,
                 'Empresa.id' => $this->Session->read('Auth.User.Empresa.id')
             )
         ));
@@ -577,7 +656,7 @@ class EmpresasController extends AppController {
      */
     private function salvaRequisicaoVaga($data) {
         $endereco = $data['Endereco'];
-        $vaga = $data['Vaga'];
+        $vaga     = $data['Vaga'];
 
         $endereco_id = 0; //mudar para 0 depois dos testes
         //salvar/atualizar endereco
@@ -599,13 +678,13 @@ class EmpresasController extends AppController {
 
         $existeEndereco = $this->Empresa->Vaga->Endereco->find('first', array(
             'conditions' => array(
-                'endereco' => $endereco['endereco'],
+                'endereco'    => $endereco['endereco'],
                 'complemento' => $endereco['complemento'],
-                'bairro' => $endereco['bairro'],
-                'cidade' => $endereco['cidade'],
-                'estado' => $endereco['estado'],
-                'numero' => $endereco['numero'],
-                'cep' => $endereco['cep'],
+                'bairro'      => $endereco['bairro'],
+                'cidade'      => $endereco['cidade'],
+                'estado'      => $endereco['estado'],
+                'numero'      => $endereco['numero'],
+                'cep'         => $endereco['cep'],
             )
         ));
         if (!$existeEndereco) {

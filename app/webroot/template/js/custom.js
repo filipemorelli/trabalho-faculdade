@@ -94,7 +94,7 @@ $(function () {
         selectFirst: true,
         source: function (request, response) {
             $.ajax({
-                url: "endereco-rapido",
+                url: getUrl() + "/endereco-rapido",
                 dataType: "json",
                 data: {
                     q: $(".endereco-rapido").val()
@@ -133,7 +133,7 @@ $(function () {
         minLength: 2,
         source: function (request, response) {
             $.ajax({
-                url: "titulo-vagas-rapido",
+                url: getUrl() + "/titulo-vagas-rapido",
                 dataType: "json",
                 data: {
                     q: $(".titulo-vagas-rapido").val()
@@ -189,8 +189,23 @@ $(function () {
 var SPMaskBehavior = function (val) {
     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
 },
-spOptions = {
-    onKeyPress: function (val, e, field, options) {
-        field.mask(SPMaskBehavior.apply({}, arguments), options);
+        spOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+/**
+ * Get URL
+ * 
+ * @returns {String}
+ */
+function getUrl() {
+    if (window.location.hostname === "localhost")
+    {
+        var protocol = window.location.protocol;
+        var host = window.location.host;
+        return protocol + "//" + host + "/freejobs";
     }
-};
+    return "";
+}
