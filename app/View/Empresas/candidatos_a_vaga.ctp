@@ -231,7 +231,7 @@
                                             </h4>
                                             <h5><?php echo $trabalhador['Trabalhador']['profissao']; ?></h5></div>
                                         <div class="header-meta">
-                                            <span class="location"><?php echo $trabalhador['Endereco']['bairro'] . ', ' . $trabalhador['Endereco']['cidade'] . ', ' . $trabalhador['Endereco']['estado']; ?></span>
+                                            <span class="location"><?php echo $this->Utility->enderecoToLinkGoogleMaps($trabalhador['Endereco']); ?></span>
                                             <div><i class="fa fa-envelope"></i> <?php echo $this->Text->autoLinkEmails($trabalhador['Trabalhador']['email'], array('target' => '_blank')); ?></div>
                                             <div><i class="fa fa-phone"></i> <?php echo $trabalhador['Trabalhador']['telefone']; ?></div>
                                         </div>

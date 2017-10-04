@@ -1,7 +1,7 @@
 <?php
 /**
  * Class UtilityHelper | View/UtilityHelper
- * 
+ *
  * @author Filipe Morelli <morellitecinfo@gmail.com>
  */
 
@@ -54,5 +54,17 @@ class UtilityHelper extends AppHelper
     {
         $newValue = str_replace(".", ",", $value);
         return "R$ " . $newValue;
+    }
+
+
+    public function enderecoToLinkGoogleMaps(array $endereco = null)
+    {
+        if (is_null($endereco)) {
+            return false;
+        }
+        $urlGoogleMaps = "https://www.google.com.br/maps/place/";
+        $textoLink = $endereco['bairro'] . ', ' . $endereco['cidade'] . ', ' . $endereco['estado'];
+        $urlLink = $urlGoogleMaps . $endereco['endereco'] . ', '. $endereco['numero'] . ', ' . $endereco['bairro'].', '.$endereco['cidade'].', '.$endereco['estado'];
+        return "<a href=\"{$urlLink}\" target=\"_blank\">{$textoLink}</a>";
     }
 }

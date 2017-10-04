@@ -2,9 +2,9 @@
 
 /**
  * Class EmpresasController | Controller/EmpresasController
- * 
+ *
  * Class EmpresasController controla a parte dos empregadores
- * 
+ *
  * @author Filipe Morelli <morellitecinfo@gmail.com>
  * @version 1.0.0
  */
@@ -14,18 +14,19 @@ App::uses('CakeTime', 'Utility');
 /**
  * Class EmpresasController controle da parte dos empregadores
  */
-class EmpresasController extends AppController {
+class EmpresasController extends AppController
+{
 
     /**
      * Funcoes externas urilizadas
-     * 
-     * @var array 
+     *
+     * @var array
      */
     public $helpers = array('UrlControl');
 
     /**
      * Componentes utilizados
-     * 
+     *
      * @var array
      */
     public $components = array('Paginator');
@@ -35,7 +36,8 @@ class EmpresasController extends AppController {
      *
      * @return bool
      */
-    private function TemPerfil() {
+    private function TemPerfil()
+    {
         $qtde = $this->Empresa->find('count', array(
             'conditions' => array(
                 'user_id =' => $this->Session->read('Auth.User.id'),
@@ -49,7 +51,8 @@ class EmpresasController extends AppController {
      *
      * @return bool|\Cake\Network\Response|null
      */
-    private function ForcaCriarPerfil() {
+    private function ForcaCriarPerfil()
+    {
         if (!$this->TemPerfil() && $this->request->params['action'] !== "editarPerfilEmpresa") {
             if ($this->Session->read('Auth.User.tipo') === "empregador") {
                 $this->Session->setFlash(__('Precisa criar perfil da empresa!'), 'info');
@@ -62,7 +65,8 @@ class EmpresasController extends AppController {
     /**
      * Executa antes de executar os metodos
      */
-    public function beforeFilter() {
+    public function beforeFilter()
+    {
         $this->ForcaCriarPerfil();
         if (!parent::isAuth()) {
             $this->redirect(array(
@@ -88,14 +92,16 @@ class EmpresasController extends AppController {
     /**
      * Pagina para buscar Profissionais
      */
-    public function buscarfissionais() {
+    public function buscarfissionais()
+    {
         $this->set('title_for_layout', __('curar fissionais'));
     }
 
     /**
      * Perfil visualizados pelo administrador do perfil
      */
-    public function perfilEmpresa() {
+    public function perfilEmpresa()
+    {
         $this->set('title_for_layout', __('Vizualizar perfil da Empresa'));
         $empresa = $this->Empresa->find('first', array(
             'conditions' => array(
@@ -114,7 +120,8 @@ class EmpresasController extends AppController {
     /**
      * Curriculo visualizado somente pelo usuario e pode ser editado
      */
-    public function editarPerfilEmpresa() {
+    public function editarPerfilEmpresa()
+    {
         $this->set('title_for_layout', __('Editar perfil'));
 
         if ($this->request->is(array(
@@ -180,7 +187,8 @@ class EmpresasController extends AppController {
      * Adiciona Vaga de trabalho
      * @return \Cake\Network\Response|null
      */
-    public function adicionarVaga() {
+    public function adicionarVaga()
+    {
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Adicionar vaga'));
         if ($this->request->is('post')) {
@@ -208,7 +216,8 @@ class EmpresasController extends AppController {
      * @param null $id
      * @return \Cake\Network\Response|null
      */
-    public function editarVaga($id = null) {
+    public function editarVaga($id = null)
+    {
         $this->Empresa->Vaga->id = $id;
         if (!$this->Empresa->Vaga->exists()) {
             //throw new NotFoundException(__('Vaga Inválida'));
@@ -242,7 +251,8 @@ class EmpresasController extends AppController {
      *
      * @param int $page
      */
-    public function listarVagas($page = 1) {
+    public function listarVagas($page = 1)
+    {
         $this->loadModel('Vaga');
         $this->set('title_for_layout', __('Listar Vaga da empresa'));
 
@@ -305,7 +315,8 @@ class EmpresasController extends AppController {
      * @param null $id
      * @return \Cake\Network\Response|null
      */
-    public function excluirVaga($id = null) {
+    public function excluirVaga($id = null)
+    {
         $this->loadModel('Vaga');
         $this->Vaga->id = $id;
         if (!$this->Vaga->exists()) {
@@ -337,7 +348,8 @@ class EmpresasController extends AppController {
      * @param null $id
      * @return \Cake\Network\Response|null
      */
-    public function ativarVaga($id = null) {
+    public function ativarVaga($id = null)
+    {
         $this->loadModel('Vaga');
         $this->Vaga->id = $id;
         if (!$this->Vaga->exists()) {
@@ -369,7 +381,8 @@ class EmpresasController extends AppController {
      * @param null $id
      * @return \Cake\Network\Response|null
      */
-    public function detalhesVaga($id = null) {
+    public function detalhesVaga($id = null)
+    {
         $this->set('title_for_layout', __('Sobre a vaga'));
         $this->loadModel('Vaga');
 
@@ -397,7 +410,8 @@ class EmpresasController extends AppController {
      * @param array $data
      * @return array
      */
-    private function paginationConditionQuery($data) {
+    private function paginationConditionQuery($data)
+    {
 
         $conditions = array();
 
@@ -519,7 +533,8 @@ class EmpresasController extends AppController {
      * @param array $data
      * @return array
      */
-    private function paginationConditionQueryCandidatos($data) {
+    private function paginationConditionQueryCandidatos($data)
+    {
 
         $conditions = array();
 
@@ -572,7 +587,8 @@ class EmpresasController extends AppController {
      * @param null $id
      * @param int $page
      */
-    public function candidatosAVaga($id = null, $page = 1) {
+    public function candidatosAVaga($id = null, $page = 1)
+    {
         $this->set('title_for_layout', __('Candidatos à vaga'));
         $this->loadModel('Trabalhador');
         $this->loadModel('Vaga');
@@ -654,7 +670,8 @@ class EmpresasController extends AppController {
      * @param array $data informacoes da vaga de trabalho
      * @return boolean
      */
-    private function salvaRequisicaoVaga($data) {
+    private function salvaRequisicaoVaga($data)
+    {
         $endereco = $data['Endereco'];
         $vaga     = $data['Vaga'];
 
@@ -669,12 +686,13 @@ class EmpresasController extends AppController {
 
     /**
      * Salva ou busca endereco de acordo com os dados passados pelo empregador
-     * 
+     *
      * @param array $endereco
      * @return type
      * @throws NotFoundException
      */
-    private function salvaEndereco($endereco) {
+    private function salvaEndereco($endereco)
+    {
 
         $existeEndereco = $this->Empresa->Vaga->Endereco->find('first', array(
             'conditions' => array(
@@ -702,15 +720,23 @@ class EmpresasController extends AppController {
 
     /**
      * Metodo candidato perfil
-     * 
+     *
      * @param int $idVaga
      * @param int $idTrabalhador
      */
-    public function candidatoPerfil($idVaga = null, $idTrabalhador = null) {
-        // var_dump($idVaga, $idTrabalhador);
-        // exit();
+    public function candidatoPerfil($idVaga = null, $idTrabalhador = null)
+    {
+        $this->loadModel('Trabalhador');
+        $trabalhador = $this->Trabalhador->findById($idTrabalhador);
+
+        if(!count($trabalhador))
+        {
+            return $this->redirect(array('action' => 'index'));
+        }
+
+        echo '<pre>';
+        var_dump($trabalhador);
+        echo '</pre>';
+        $this->set('trabalhador', $trabalhador);
     }
-
 }
-
-?>
