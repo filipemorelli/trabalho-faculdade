@@ -21,6 +21,9 @@
 /.settings/
 .project
 .settings
+*.komodoproject
+*.sublime-project
+*.sublime-workspace
 
 # OS generated files #
 ######################
